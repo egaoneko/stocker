@@ -1,0 +1,1 @@
+export const ENVIRONMENT: string | undefined = process.env.NODE_ENV;

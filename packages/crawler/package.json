@@ -1,0 +1,22 @@
+{
+  "name": "@stocker/crawler",
+  "version": "0.0.1",
+  "description": "crawler",
+  "main": "lib/index",
+  "types": "lib/index",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "npm run clean && npm run compile",
+    "clean": "rm -rf ./lib",
+    "compile": "tsc -p tsconfig.build.json",
+    "start": "node lib/index.js"
+  },
+  "dependencies": {
+    "@stocker/core": "^0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "~3.6.4"
+  }
+}

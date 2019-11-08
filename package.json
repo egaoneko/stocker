@@ -1,0 +1,13 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "start:crawler": "lerna run start --scope @stocker/crawler",
+    "start:server": "lerna run start --stream --scope @stocker/server"
+  },
+  "devDependencies": {
+    "lerna": "^3.16.4"
+  }
+}

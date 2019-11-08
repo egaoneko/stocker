@@ -1,0 +1,71 @@
+{
+  "name": "@stocker/server",
+  "version": "0.0.1",
+  "description": "Server",
+  "scripts": {
+    "start": "cross-env NODE_ENV=local nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node -r tsconfig-paths/register ./src/local.ts",
+    "test": "jest --coverage --detectOpenHandles"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cross-env": "^6.0.0",
+    "dotenv-flow": "^3.1.0",
+    "koa": "^2.8.2",
+    "koa-body": "^4.1.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^7.4.0",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^5.19.2",
+    "sequelize-typescript": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.28",
+    "@types/dotenv-flow": "^3.0.0",
+    "@types/jest": "^24.0.18",
+    "@types/koa": "^2.0.50",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.0.42",
+    "@types/node": "^12.11.1",
+    "@types/pg": "^7.11.2",
+    "@types/sequelize": "^4.28.5",
+    "@types/supertest": "^2.0.8",
+    "@types/validator": "^10.11.3",
+    "jest": "^24.9.0",
+    "jest-config": "^24.9.0",
+    "nodemon": "^1.19.2",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.1.0",
+    "ts-node": "^8.4.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.6.3"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/src/server.ts",
+      "/test/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    },
+    "collectCoverageFrom": [
+      "src/*.{js,ts}"
+    ]
+  }
+}
