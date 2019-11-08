@@ -75,6 +75,9 @@ typings/
 # OSX
 .DS_Store
 
+# IntelliJ
+.idea
+
 # build
 dist
 lib
