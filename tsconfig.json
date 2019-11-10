@@ -1,10 +1,19 @@
 {
-  "extends": "./tsconfig.build.json",
-
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@stocker/core/*": ["./packages/core/*"]
-    }
-  }
+    "module": "commonjs",
+    "target": "esnext",
+    "strict": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true
+  },
+
+  "exclude": [
+    "node_modules",
+    "lib",
+    "dist",
+    "**/*.spec.ts"
+  ]
 }

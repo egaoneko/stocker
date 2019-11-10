@@ -1,3 +1,5 @@
-import meaningOfLife from '@stocker/core';
+import crawlStockItems from './stock-item';
 
-console.log(meaningOfLife);
+export {
+  crawlStockItems
+}

@@ -1,11 +1,12 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
-      "@database/*": ["./packages/server/src/database/*"],
-      "@controllers/*": ["./packages/server/src/controllers/*"],
-      "@routes/*": ["./packages/server/src/routes/*"],
-      "@models/*": ["./packages/server/src/database/models/*"]
+      "@database/*": ["src/database/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@routes/*": ["src/routes/*"],
+      "@models/*": ["src/database/models/*"]
     }
   },
   "include": [

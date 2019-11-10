@@ -2,6 +2,7 @@
   "name": "@stocker/crawler",
   "version": "0.0.1",
   "description": "crawler",
+  "license": "MIT",
   "main": "lib/index",
   "types": "lib/index",
   "files": [
@@ -10,13 +11,28 @@
   "scripts": {
     "build": "npm run clean && npm run compile",
     "clean": "rm -rf ./lib",
-    "compile": "tsc -p tsconfig.build.json",
-    "start": "node lib/index.js"
+    "compile": "tsc --project tsconfig.json",
+    "start": "npm run build && node lib/index.js",
+    "test": "jest"
   },
   "dependencies": {
-    "@stocker/core": "^0.0.1"
+    "@stocker/core": "^0.0.1",
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "iconv-lite": "^0.5.0",
+    "rxjs": "^6.5.3"
   },
   "devDependencies": {
-    "typescript": "~3.6.4"
+    "@types/axios": "^0.14.0",
+    "@types/cheerio": "^0.22.13",
+    "@types/iconv-lite": "^0.0.1",
+    "@types/jest": "^24.0.22",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.7",
+    "jest": "^24.9.0",
+    "jest-config": "^24.9.0",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.1.0",
+    "typescript": "~3.7.2"
   }
 }
