@@ -22,7 +22,6 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/jest": "^24.0.22",
-    "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.7",
     "jest": "^24.9.0",
     "jest-config": "^24.9.0",
