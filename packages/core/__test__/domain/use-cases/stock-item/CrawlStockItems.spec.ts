@@ -4,7 +4,7 @@ import mockNaverStockItemRepository, { mockCrawlStockItems } from '../../../../_
 import { KOSPI } from '../../../../lib/constant/market';
 import { queue } from 'rxjs/internal/scheduler/queue';
 
-describe('CrawlStockItems', () => {
+describe('CrawlStockItems UseCase', () => {
   beforeEach(() => {
     mockNaverStockItemRepository.mockClear();
     mockCrawlStockItems.mockClear();

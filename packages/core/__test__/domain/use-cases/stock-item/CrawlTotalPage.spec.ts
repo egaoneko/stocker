@@ -4,7 +4,7 @@ import mockNaverStockItemRepository, { mockCrawlTotalPage } from '../../../../__
 import { KOSPI } from '../../../../lib/constant/market';
 import { queue } from 'rxjs/internal/scheduler/queue';
 
-describe('CrawlTotalPage', () => {
+describe('CrawlTotalPage UseCase', () => {
   beforeEach(() => {
     mockNaverStockItemRepository.mockClear();
     mockCrawlTotalPage.mockClear();
