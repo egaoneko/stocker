@@ -49,7 +49,7 @@ export default class NaverApiProvider extends HttpProvider {
   }
 
   crawlStockItems(market: CodeMarket, page: number): Observable<StockItem[]> {
-    return this.request<string>({
+    return this.request<Buffer>({
       params: {
         sosok: market.code,
         page: page,
