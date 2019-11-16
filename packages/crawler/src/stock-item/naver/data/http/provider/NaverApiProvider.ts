@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import HttpProvider from '@stocker/core/lib/data/http/providers/HttpProvider';
 import * as cheerio from 'cheerio';
-import StockItemMapper from '../mappers/StockItemMapper';
+import NaverStockItemMapper from '../mappers/NaverStockItemMapper';
 import { KOSPI } from '../../../constant';
 import CodeMarket from '../../../../data/entities/market/CodeMarket';
 import { convertEucKrToUtf8 } from '../../../../utils';
@@ -49,7 +49,7 @@ export default class NaverApiProvider extends HttpProvider {
   }
 
   crawlStockItems(market: CodeMarket, page: number): Observable<StockItem[]> {
-    return this.request<string>({
+    return this.request<Buffer>({
       params: {
         sosok: market.code,
         page: page,
@@ -63,7 +63,7 @@ export default class NaverApiProvider extends HttpProvider {
           const $bodyList: Cheerio = $('div.box_type_l table tbody').children('tr[onmouseover]');
           let items: StockItem[] = [];
           $bodyList.each((i, element): any => {
-            const stockItem: StockItem | null = new StockItemMapper().toEntity($, element, KOSPI);
+            const stockItem: StockItem | null = new NaverStockItemMapper().toEntity($, element, KOSPI);
 
             if (!stockItem) {
               return;

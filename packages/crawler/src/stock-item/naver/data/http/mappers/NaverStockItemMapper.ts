@@ -2,7 +2,7 @@ import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import CodeMarket from '../../../../data/entities/market/CodeMarket';
 import CheerioMapper from '../../../../data/http/mappers/CheerioMapper';
 
-export default class StockItemMapper implements CheerioMapper<StockItem> {
+export default class NaverStockItemMapper implements CheerioMapper<StockItem> {
   toEntity($: CheerioStatic, element: CheerioElement, market: CodeMarket): StockItem | null {
     const tds: Cheerio = $(element).children();
 
