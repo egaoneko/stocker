@@ -1,6 +1,10 @@
 import { AxiosRequestConfig } from 'axios';
 import data from './assets/naverSiseMarketSum';
-import { convertUtf8ToEucKr } from '../src/stock-item/utils';
+import * as iconv from 'iconv-lite';
+
+function convertUtf8ToEucKr(html: string): Buffer {
+  return iconv.encode(html, 'euc-kr');
+}
 
 const mockAxiosInstance = jest.fn().mockImplementation((config: AxiosRequestConfig) => {
   return new Promise((resolve => {
