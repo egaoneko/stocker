@@ -1,22 +1,22 @@
 import { of } from 'rxjs';
 import { KOSPI } from '../src/stock-item/naver/constant';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
-
-export const mockCrawlStockItems = jest.fn().mockImplementation(() => {
-  return of([
-    new StockItem('0000', 'Test1', KOSPI),
-    new StockItem('0000', 'Test2', KOSPI),
-  ]);
-});
+import Market from '@stocker/core/lib/domain/entities/market/Market';
 
 export const mockCrawlTotalPage = jest.fn().mockImplementation(() => {
   return of(32);
 });
 
+export const mockCrawlStockItemsByPage = jest.fn().mockImplementation((market: Market, page: number) => {
+  return of([
+    new StockItem(page.toString(), 'Test' + page, KOSPI),
+  ]);
+});
+
 const mockNaverApiProvider = jest.fn().mockImplementation(() => {
   return {
-    crawlStockItems: mockCrawlStockItems,
-    crawlTotalPage: mockCrawlTotalPage
+    crawlTotalPage: mockCrawlTotalPage,
+    crawlStockItemsByPage: mockCrawlStockItemsByPage,
   };
 });
 

@@ -1,8 +1,15 @@
-import { Observable } from 'rxjs';
+import {
+  forkJoin,
+  Observable
+} from 'rxjs';
 import StockItemRepository from '@stocker/core/lib/domain/repositories/stock-item/StockItemRepository';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import NaverApiProvider from '../../http/provider/NaverApiProvider';
 import CodeMarket from '../../../../data/entities/market/CodeMarket';
+import {
+  map,
+  switchMap
+} from 'rxjs/operators';
 
 export default class NaverStockItemRepository implements StockItemRepository {
   constructor(
@@ -10,11 +17,31 @@ export default class NaverStockItemRepository implements StockItemRepository {
   ) {
   }
 
-  crawlTotalPage(market: CodeMarket): Observable<number> {
+  crawlStockItems(market: CodeMarket): Observable<StockItem[]> {
+    return this.crawlTotalPage(market)
+      .pipe(
+        switchMap<number, Observable<StockItem[]>>((total: number): Observable<StockItem[]> => {
+          const obsList: Observable<StockItem[]>[] = [];
+          for (let page: number = 1; page <= total; page++) {
+            obsList.push(
+              this.crawlStockItemsByPage(market, page),
+            )
+          }
+          return forkJoin<Observable<StockItem[]>[]>(obsList)
+            .pipe(
+              map<StockItem[][], StockItem[]>((list: StockItem[][]): StockItem[] =>
+                list.reduce((acc: StockItem[], value: StockItem[]) => acc.concat(value), [])
+              )
+            );
+        })
+      );
+  }
+
+  private crawlTotalPage(market: CodeMarket): Observable<number> {
     return this.naverApi.crawlTotalPage(market);
   }
 
-  crawlStockItems(market: CodeMarket, page: number): Observable<StockItem[]> {
-    return this.naverApi.crawlStockItems(market, page);
+  private crawlStockItemsByPage(market: CodeMarket, page: number): Observable<StockItem[]> {
+    return this.naverApi.crawlStockItemsByPage(market, page);
   }
 }

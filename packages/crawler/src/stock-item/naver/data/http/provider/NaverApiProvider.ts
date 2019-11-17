@@ -48,7 +48,7 @@ export default class NaverApiProvider extends HttpProvider {
       );
   }
 
-  crawlStockItems(market: CodeMarket, page: number): Observable<StockItem[]> {
+  crawlStockItemsByPage(market: CodeMarket, page: number): Observable<StockItem[]> {
     return this.request<Buffer>({
       params: {
         sosok: market.code,
