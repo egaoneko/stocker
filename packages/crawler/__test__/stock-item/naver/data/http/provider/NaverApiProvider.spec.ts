@@ -38,10 +38,10 @@ describe('NaverApiProvider', () => {
       });
   });
 
-  test('crawlStockItems with KOSPI', (done) => {
+  test('crawlStockItemsByPage with KOSPI', (done) => {
     forkJoin<Observable<StockItem[]>[]>([
-      naverApiProvider.crawlStockItems(KOSPI, 1),
-      naverApiProvider.crawlStockItems(KOSPI, 2),
+      naverApiProvider.crawlStockItemsByPage(KOSPI, 1),
+      naverApiProvider.crawlStockItemsByPage(KOSPI, 2),
     ])
       .subscribe((list: StockItem[][]) => {
         expect(list[0][0].name).toEqual('삼성전자');
@@ -52,10 +52,10 @@ describe('NaverApiProvider', () => {
       });
   });
 
-  test('crawlStockItems with KOSDAQ', (done) => {
+  test('crawlStockItemsByPage with KOSDAQ', (done) => {
     forkJoin<Observable<StockItem[]>[]>([
-      naverApiProvider.crawlStockItems(KOSDAQ, 1),
-      naverApiProvider.crawlStockItems(KOSDAQ, 2),
+      naverApiProvider.crawlStockItemsByPage(KOSDAQ, 1),
+      naverApiProvider.crawlStockItemsByPage(KOSDAQ, 2),
     ])
       .subscribe((list: StockItem[][]) => {
         expect(list[0][0].name).toEqual('셀트리온헬스케어');

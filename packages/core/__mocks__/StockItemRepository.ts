@@ -9,14 +9,9 @@ export const mockCrawlStockItems = jest.fn().mockImplementation(() => {
   ]);
 });
 
-export const mockCrawlTotalPage = jest.fn().mockImplementation(() => {
-  return of(3);
-});
-
 const mockNaverStockItemRepository = jest.fn().mockImplementation(() => {
   return {
     crawlStockItems: mockCrawlStockItems,
-    crawlTotalPage: mockCrawlTotalPage
   };
 });
 

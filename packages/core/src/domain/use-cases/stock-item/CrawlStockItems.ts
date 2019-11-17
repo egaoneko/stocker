@@ -6,7 +6,6 @@ import Market from '../../entities/market/Market';
 
 export default class CrawlStockItems extends UseCase<StockItem[]> {
   public market: Market | null = null;
-  public page: number = 1;
 
   constructor(
     private repository: StockItemRepository
@@ -15,10 +14,10 @@ export default class CrawlStockItems extends UseCase<StockItem[]> {
   }
 
   protected build(): Observable<StockItem[]> {
-    return this.repository.crawlStockItems(this.market as Market, this.page);
+    return this.repository.crawlStockItems(this.market as Market);
   }
 
   protected validate(): boolean {
-    return this.market !== null && this.page > 0;
+    return this.market !== null;
   }
 }
