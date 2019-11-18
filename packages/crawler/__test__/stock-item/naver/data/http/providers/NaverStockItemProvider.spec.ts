@@ -1,5 +1,5 @@
 import mockAxiosInstance from '../../../../../../__mocks__/AxiosInstance';
-import NaverApiProvider from '../../../../../../src/stock-item/naver/data/http/provider/NaverApiProvider';
+import NaverStockItemProvider from '../../../../../../src/stock-item/naver/data/http/providers/NaverStockItemProvider';
 import {
   KOSDAQ,
   KOSPI
@@ -11,11 +11,11 @@ import {
 } from 'rxjs';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 
-describe('NaverApiProvider', () => {
-  const naverApiProvider: NaverApiProvider = new NaverApiProvider(mockAxiosInstance as any);
+describe('NaverStockItemProvider', () => {
+  const provider: NaverStockItemProvider = new NaverStockItemProvider(mockAxiosInstance as any);
 
   test('crawlTotalPage with KOSPI', (done) => {
-    naverApiProvider.crawlTotalPage(KOSPI)
+    provider.crawlTotalPage(KOSPI)
       .subscribe((total: number) => {
         expect(total).toBe(32);
         done();
@@ -23,7 +23,7 @@ describe('NaverApiProvider', () => {
   });
 
   test('crawlTotalPage with KOSDAQ', (done) => {
-    naverApiProvider.crawlTotalPage(KOSDAQ)
+    provider.crawlTotalPage(KOSDAQ)
       .subscribe((total: number) => {
         expect(total).toBe(28);
         done();
@@ -31,7 +31,7 @@ describe('NaverApiProvider', () => {
   });
 
   test('crawlTotalPage with wrong', (done) => {
-    naverApiProvider.crawlTotalPage({code: '3'} as CodeMarket)
+    provider.crawlTotalPage({code: '3'} as CodeMarket)
       .subscribe((total: number) => {
         expect(total).toBe(0);
         done();
@@ -40,8 +40,8 @@ describe('NaverApiProvider', () => {
 
   test('crawlStockItemsByPage with KOSPI', (done) => {
     forkJoin<Observable<StockItem[]>[]>([
-      naverApiProvider.crawlStockItemsByPage(KOSPI, 1),
-      naverApiProvider.crawlStockItemsByPage(KOSPI, 2),
+      provider.crawlStockItemsByPage(KOSPI, 1),
+      provider.crawlStockItemsByPage(KOSPI, 2),
     ])
       .subscribe((list: StockItem[][]) => {
         expect(list[0][0].name).toEqual('삼성전자');
@@ -54,8 +54,8 @@ describe('NaverApiProvider', () => {
 
   test('crawlStockItemsByPage with KOSDAQ', (done) => {
     forkJoin<Observable<StockItem[]>[]>([
-      naverApiProvider.crawlStockItemsByPage(KOSDAQ, 1),
-      naverApiProvider.crawlStockItemsByPage(KOSDAQ, 2),
+      provider.crawlStockItemsByPage(KOSDAQ, 1),
+      provider.crawlStockItemsByPage(KOSDAQ, 2),
     ])
       .subscribe((list: StockItem[][]) => {
         expect(list[0][0].name).toEqual('셀트리온헬스케어');
