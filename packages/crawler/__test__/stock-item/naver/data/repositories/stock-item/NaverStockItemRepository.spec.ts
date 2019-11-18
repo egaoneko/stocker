@@ -3,14 +3,14 @@ import {
 } from '../../../../../../src/stock-item/naver/constant';
 import NaverStockItemRepository
   from '../../../../../../src/stock-item/naver/data/repositories/stock-item/NaverStockItemRepository';
-import mockNaverApiProvider, {
+import mockNaverStockItemProvider, {
   mockCrawlTotalPage,
   mockCrawlStockItemsByPage
-} from '../../../../../../__mocks__/NaverApiProivider';
+} from '../../../../../../__mocks__/NaverStockItemProivider';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 
 describe('NaverStockItemRepository', () => {
-  const repository: NaverStockItemRepository = new NaverStockItemRepository((new mockNaverApiProvider()) as any);
+  const repository: NaverStockItemRepository = new NaverStockItemRepository((new mockNaverStockItemProvider()) as any);
 
   test('crawlStockItems', (done) => {
     repository.crawlStockItems(KOSPI)

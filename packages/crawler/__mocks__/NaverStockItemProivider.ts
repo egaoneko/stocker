@@ -13,11 +13,11 @@ export const mockCrawlStockItemsByPage = jest.fn().mockImplementation((market: M
   ]);
 });
 
-const mockNaverApiProvider = jest.fn().mockImplementation(() => {
+const mockNaverStockItemProvider = jest.fn().mockImplementation(() => {
   return {
     crawlTotalPage: mockCrawlTotalPage,
     crawlStockItemsByPage: mockCrawlStockItemsByPage,
   };
 });
 
-export default mockNaverApiProvider;
+export default mockNaverStockItemProvider;

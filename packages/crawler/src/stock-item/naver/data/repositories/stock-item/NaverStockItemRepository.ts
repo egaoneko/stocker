@@ -4,7 +4,7 @@ import {
 } from 'rxjs';
 import StockItemRepository from '@stocker/core/lib/domain/repositories/stock-item/StockItemRepository';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
-import NaverApiProvider from '../../http/provider/NaverApiProvider';
+import NaverStockItemProvider from '../../http/providers/NaverStockItemProvider';
 import CodeMarket from '../../../../data/entities/market/CodeMarket';
 import {
   map,
@@ -13,7 +13,7 @@ import {
 
 export default class NaverStockItemRepository implements StockItemRepository {
   constructor(
-    private naverApi: NaverApiProvider,
+    private provider: NaverStockItemProvider,
   ) {
   }
 
@@ -38,10 +38,10 @@ export default class NaverStockItemRepository implements StockItemRepository {
   }
 
   private crawlTotalPage(market: CodeMarket): Observable<number> {
-    return this.naverApi.crawlTotalPage(market);
+    return this.provider.crawlTotalPage(market);
   }
 
   private crawlStockItemsByPage(market: CodeMarket, page: number): Observable<StockItem[]> {
-    return this.naverApi.crawlStockItemsByPage(market, page);
+    return this.provider.crawlStockItemsByPage(market, page);
   }
 }

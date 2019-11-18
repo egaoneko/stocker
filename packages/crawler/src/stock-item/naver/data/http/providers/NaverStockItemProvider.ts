@@ -9,7 +9,7 @@ import { KOSPI } from '../../../constant';
 import CodeMarket from '../../../../data/entities/market/CodeMarket';
 import { convertEucKrToUtf8 } from '../../../../utils';
 
-export default class NaverApiProvider extends HttpProvider {
+export default class NaverStockItemProvider extends HttpProvider {
 
   constructor(instance: AxiosInstance) {
     super(instance);
