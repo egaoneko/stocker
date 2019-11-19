@@ -5,7 +5,10 @@ import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import HttpProvider from '@stocker/core/lib/data/http/providers/HttpProvider';
 import * as cheerio from 'cheerio';
 import NaverStockItemMapper from '../mappers/NaverStockItemMapper';
-import { KOSPI } from '../../../constant';
+import {
+  KOSPI,
+  MARKET_CAPITALIZATION_URL
+} from '../../../constant';
 import CodeMarket from '../../../../data/entities/market/CodeMarket';
 import { convertEucKrToUtf8 } from '../../../../utils';
 
@@ -17,6 +20,8 @@ export default class NaverStockItemProvider extends HttpProvider {
 
   crawlTotalPage(market: CodeMarket): Observable<number> {
     return this.request<string>({
+      method: 'GET',
+      url: MARKET_CAPITALIZATION_URL,
       params: {
         sosok: market.code,
         page: 1,
@@ -50,6 +55,8 @@ export default class NaverStockItemProvider extends HttpProvider {
 
   crawlStockItemsByPage(market: CodeMarket, page: number): Observable<StockItem[]> {
     return this.request<Buffer>({
+      method: 'GET',
+      url: MARKET_CAPITALIZATION_URL,
       params: {
         sosok: market.code,
         page: page,

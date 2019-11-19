@@ -4,9 +4,6 @@ import {
 } from 'rxjs';
 import { async } from 'rxjs/internal/scheduler/async';
 import { queue } from 'rxjs/internal/scheduler/queue';
-import {
-  MARKET_CAPITALIZATION_URL,
-} from './constant';
 import { TIMEOUT } from '../../constant';
 import NaverStockItemContext from './NaverStockItemContext';
 import { apply } from '@stocker/core/lib/utils/common';
@@ -15,7 +12,6 @@ import CrawlStockItems from '@stocker/core/lib/domain/use-cases/stock-item/Crawl
 import CodeMarket from '../data/entities/market/CodeMarket';
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: MARKET_CAPITALIZATION_URL,
   timeout: TIMEOUT,
 });
 
