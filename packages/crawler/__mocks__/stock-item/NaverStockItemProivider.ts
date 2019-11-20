@@ -1,7 +1,7 @@
 import { of } from 'rxjs';
-import { KOSPI } from '../src/stock-item/naver/constant';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import Market from '@stocker/core/lib/domain/entities/market/Market';
+import { KOSPI } from '../../src/stock-item/naver/constant';
 
 export const mockCrawlTotalPage = jest.fn().mockImplementation(() => {
   return of(32);

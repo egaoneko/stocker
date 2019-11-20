@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import data from './assets/naverSiseMarketSum';
+import data from '../assets/naverSiseMarketSum';
 import * as iconv from 'iconv-lite';
 
 function convertUtf8ToEucKr(html: string): Buffer {

@@ -1,4 +1,4 @@
-import mockAxiosInstance from '../../../../../../__mocks__/AxiosInstance';
+import mockAxiosInstance from '../../../../../../__mocks__/stock-item/NaverAxiosInstance';
 import NaverStockItemProvider from '../../../../../../src/stock-item/naver/data/http/providers/NaverStockItemProvider';
 import {
   KOSDAQ,
@@ -14,10 +14,15 @@ import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 describe('NaverStockItemProvider', () => {
   const provider: NaverStockItemProvider = new NaverStockItemProvider(mockAxiosInstance as any);
 
+  beforeEach(() => {
+    mockAxiosInstance.mockClear();
+  });
+
   test('crawlTotalPage with KOSPI', (done) => {
     provider.crawlTotalPage(KOSPI)
       .subscribe((total: number) => {
         expect(total).toBe(32);
+        expect(mockAxiosInstance).toBeCalledTimes(1);
         done();
       });
   });
@@ -26,6 +31,7 @@ describe('NaverStockItemProvider', () => {
     provider.crawlTotalPage(KOSDAQ)
       .subscribe((total: number) => {
         expect(total).toBe(28);
+        expect(mockAxiosInstance).toBeCalledTimes(1);
         done();
       });
   });
@@ -48,6 +54,7 @@ describe('NaverStockItemProvider', () => {
         expect(list[0][1].name).toEqual('SK하이닉스');
         expect(list[1][0].name).toEqual('GS');
         expect(list[1][1].name).toEqual('한국타이어앤테크놀로지');
+        expect(mockAxiosInstance).toBeCalledTimes(2);
         done();
       });
   });
@@ -62,6 +69,7 @@ describe('NaverStockItemProvider', () => {
         expect(list[0][1].name).toEqual('에이치엘비');
         expect(list[1][0].name).toEqual('디오');
         expect(list[1][1].name).toEqual('매일유업');
+        expect(mockAxiosInstance).toBeCalledTimes(2);
         done();
       });
   });
