@@ -6,7 +6,7 @@ import NaverStockItemRepository
 import mockNaverStockItemProvider, {
   mockCrawlTotalPage,
   mockCrawlStockItemsByPage
-} from '../../../../../../__mocks__/NaverStockItemProivider';
+} from '../../../../../../__mocks__/stock-item/NaverStockItemProivider';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 
 describe('NaverStockItemRepository', () => {
