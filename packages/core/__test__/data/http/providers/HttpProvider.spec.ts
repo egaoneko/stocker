@@ -4,7 +4,7 @@ import {
   AxiosRequestConfig
 } from 'axios';
 import { Observable } from 'rxjs';
-import mockAxiosInstance from '../../../../__mocks__/AxiosInstance';
+import mockAxiosInstance from '../../../../__mocks__/stock-item/AxiosInstance';
 
 describe('HttpProvider', () => {
   class ImplementedHttpProvider extends HttpProvider {
