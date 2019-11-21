@@ -1,6 +1,6 @@
 import { async } from 'rxjs/internal/scheduler/async';
 import CrawlStockItems from '../../../../src/domain/use-cases/stock-item/CrawlStockItems';
-import mockNaverStockItemRepository, { mockCrawlStockItems } from '../../../../__mocks__/StockItemRepository';
+import mockNaverStockItemRepository, { mockCrawlStockItems } from '../../../../__mocks__/stock-item/StockItemRepository';
 import { KOSPI } from '../../../../src/constant/market';
 import { queue } from 'rxjs/internal/scheduler/queue';
 

@@ -1,6 +1,6 @@
 import { of } from 'rxjs';
-import StockItem from '../src/domain/entities/stock-item/StockItem';
-import { KOSPI } from '../lib/constant/market';
+import StockItem from '../../src/domain/entities/stock-item/StockItem';
+import { KOSPI } from '../../lib/constant/market';
 
 export const mockCrawlStockItems = jest.fn().mockImplementation(() => {
   return of([
