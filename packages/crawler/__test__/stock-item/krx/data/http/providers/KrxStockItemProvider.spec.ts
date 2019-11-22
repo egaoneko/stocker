@@ -2,7 +2,7 @@ import mockAxiosInstance from '../../../../../../__mocks__/stock-item/KrxAxiosIn
 import KrxStockItemProvider from '../../../../../../src/stock-item/krx/data/http/providers/KrxStockItemProvider';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import { KOSPI } from '../../../../../../src/stock-item/krx/constant';
-import CodeMarket from '../../../../../../src/stock-item/data/entities/market/CodeMarket';
+import CodeMarket from '../../../../../../src/data/entities/market/CodeMarket';
 
 describe('KrxStockItemProvider', () => {
   const provider: KrxStockItemProvider = new KrxStockItemProvider(mockAxiosInstance as any);

@@ -4,7 +4,7 @@ import {
   KOSDAQ,
   KOSPI
 } from '../../../../../../src/stock-item/naver/constant';
-import CodeMarket from '../../../../../../src/stock-item/data/entities/market/CodeMarket';
+import CodeMarket from '../../../../../../src/data/entities/market/CodeMarket';
 import {
   forkJoin,
   Observable

@@ -6,7 +6,7 @@ import crawlStockItemsFromNaver from './naver';
 import Market from '@stocker/core/lib/domain/entities/market/Market';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import NaverMarketMapper from './naver/data/http/mappers/NaverMarketMapper';
-import CodeMarket from './data/entities/market/CodeMarket';
+import CodeMarket from '../data/entities/market/CodeMarket';
 import { StockItemCrawlerType } from './constant';
 import KrxMarketMapper from './krx/data/http/mappers/KrxMarketMapper';
 import crawlStockItemsFromKrx from './krx';

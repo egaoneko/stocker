@@ -4,7 +4,7 @@ import {
   KOSDAQ,
   KOSPI
 } from '../../../constant';
-import CodeMarket from '../../../../data/entities/market/CodeMarket';
+import CodeMarket from '../../../../../data/entities/market/CodeMarket';
 
 export default class NaverMarketMapper implements ValueMapper<Market, CodeMarket> {
     toEntity(entity: Market): CodeMarket | null {

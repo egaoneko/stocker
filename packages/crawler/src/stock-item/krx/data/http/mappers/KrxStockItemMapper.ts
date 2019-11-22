@@ -1,4 +1,4 @@
-import CSVMapper from '../../../../data/http/mappers/CSVMapper';
+import CSVMapper from '../../../../../data/http/mappers/CSVMapper';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import Market from '@stocker/core/lib/domain/entities/market/Market';
 

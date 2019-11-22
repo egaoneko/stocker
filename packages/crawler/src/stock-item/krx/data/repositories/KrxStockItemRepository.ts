@@ -4,7 +4,7 @@ import {
 import StockItemRepository from '@stocker/core/lib/domain/repositories/stock-item/StockItemRepository';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import KrxStockItemProvider from '../http/providers/KrxStockItemProvider';
-import CodeMarket from '../../../data/entities/market/CodeMarket';
+import CodeMarket from '../../../../data/entities/market/CodeMarket';
 
 export default class KrxStockItemRepository implements StockItemRepository {
   constructor(

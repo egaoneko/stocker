@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import CodeMarket from '../data/entities/market/CodeMarket';
+import CodeMarket from '../../data/entities/market/CodeMarket';
 import { Observable } from 'rxjs';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import { apply } from '@stocker/core/lib/utils/common';

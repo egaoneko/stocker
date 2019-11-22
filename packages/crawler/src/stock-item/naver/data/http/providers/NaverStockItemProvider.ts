@@ -9,8 +9,8 @@ import {
   KOSPI,
   MARKET_CAPITALIZATION_URL
 } from '../../../constant';
-import CodeMarket from '../../../../data/entities/market/CodeMarket';
-import { convertEucKrToUtf8 } from '../../../../utils';
+import CodeMarket from '../../../../../data/entities/market/CodeMarket';
+import { convertEucKrToUtf8 } from '../../../../../utils';
 
 export default class NaverStockItemProvider extends HttpProvider {
 

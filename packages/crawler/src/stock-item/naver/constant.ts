@@ -1,5 +1,5 @@
 import { KOR } from '@stocker/core/lib/constant/nation';
-import CodeMarket from '../data/entities/market/CodeMarket';
+import CodeMarket from '../../data/entities/market/CodeMarket';
 
 export const MARKET_CAPITALIZATION_URL: string = 'https://finance.naver.com/sise/sise_market_sum.nhn';
 

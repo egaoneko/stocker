@@ -1,6 +1,6 @@
 import ValueMapper from '@stocker/core/lib/data/http/mappers/ValueMapper';
 import Market from '@stocker/core/lib/domain/entities/market/Market';
-import CodeMarket from '../../../../data/entities/market/CodeMarket';
+import CodeMarket from '../../../../../data/entities/market/CodeMarket';
 import {
   KOSDAQ,
   KOSPI

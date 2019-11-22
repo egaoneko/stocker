@@ -8,7 +8,7 @@ import {
 } from 'rxjs/operators';
 import * as Papa from 'papaparse';
 import HttpProvider from '@stocker/core/lib/data/http/providers/HttpProvider';
-import CodeMarket from '../../../../data/entities/market/CodeMarket';
+import CodeMarket from '../../../../../data/entities/market/CodeMarket';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import {
   DOWNLOAD_URL,

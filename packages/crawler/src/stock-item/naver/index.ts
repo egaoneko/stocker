@@ -9,7 +9,7 @@ import NaverStockItemContext from './NaverStockItemContext';
 import { apply } from '@stocker/core/lib/utils/common';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import CrawlStockItems from '@stocker/core/lib/domain/use-cases/stock-item/CrawlStockItems';
-import CodeMarket from '../data/entities/market/CodeMarket';
+import CodeMarket from '../../data/entities/market/CodeMarket';
 
 const axiosInstance: AxiosInstance = axios.create({
   timeout: TIMEOUT,

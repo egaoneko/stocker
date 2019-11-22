@@ -5,7 +5,7 @@ import {
 import StockItemRepository from '@stocker/core/lib/domain/repositories/stock-item/StockItemRepository';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import NaverStockItemProvider from '../../http/providers/NaverStockItemProvider';
-import CodeMarket from '../../../../data/entities/market/CodeMarket';
+import CodeMarket from '../../../../../data/entities/market/CodeMarket';
 import {
   map,
   switchMap
