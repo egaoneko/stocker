@@ -5,9 +5,8 @@ import { queue } from 'rxjs/internal/scheduler/queue';
 import { DEFAULT_AXIOS_INSTANCE } from '../constant';
 import NaverStockContext from './contexts/NaverStockContext';
 
-const NaverStockApplication: NaverStockContext = new NaverStockContext(DEFAULT_AXIOS_INSTANCE);
-
 export function crawlLastBusinessDay(): Observable<LastBusinessDay> {
+  const NaverStockApplication: NaverStockContext = new NaverStockContext(DEFAULT_AXIOS_INSTANCE);
   return NaverStockApplication.useCases.crawlLastBusinessDay
     .run(async, queue);
 }

@@ -37,9 +37,8 @@ export function crawlStockItems(type: StockItemCrawlerType, market: Market): Obs
   return of([]);
 }
 
-const KrxStockItemApplication: KrxStockItemContext = new KrxStockItemContext(DEFAULT_AXIOS_INSTANCE);
-
 function crawlStockItemsFromKrx(market: CodeMarket): Observable<StockItem[]> {
+  const KrxStockItemApplication: KrxStockItemContext = new KrxStockItemContext(DEFAULT_AXIOS_INSTANCE);
   return apply<CrawlStockItems>(
     KrxStockItemApplication.useCases.crawlStockItems,
     (it: CrawlStockItems) => {
@@ -49,9 +48,8 @@ function crawlStockItemsFromKrx(market: CodeMarket): Observable<StockItem[]> {
     .run(async, queue);
 }
 
-const NaverStockItemApplication: NaverStockItemContext = new NaverStockItemContext(DEFAULT_AXIOS_INSTANCE);
-
 function crawlStockItemsFromNaver(market: CodeMarket): Observable<StockItem[]> {
+  const NaverStockItemApplication: NaverStockItemContext = new NaverStockItemContext(DEFAULT_AXIOS_INSTANCE);
   return apply<CrawlStockItems>(
     NaverStockItemApplication.useCases.crawlStockItems,
     (it: CrawlStockItems) => {
