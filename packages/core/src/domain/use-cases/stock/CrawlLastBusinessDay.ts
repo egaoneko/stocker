@@ -13,8 +13,4 @@ export default class CrawlLastBusinessDay extends UseCase<LastBusinessDay> {
   protected build(): Observable<LastBusinessDay> {
     return this.repository.crawlLastBusinessDay();
   }
-
-  protected validate(): boolean {
-    return true;
-  }
 }

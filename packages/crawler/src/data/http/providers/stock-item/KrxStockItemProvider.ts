@@ -8,7 +8,6 @@ import {
 } from 'rxjs/operators';
 import * as Papa from 'papaparse';
 import HttpProvider from '@stocker/core/lib/data/http/providers/HttpProvider';
-import CodeMarket from '../../../entities/market/CodeMarket';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import applicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 import ErrorType from '@stocker/core/lib/error/ErrorType';
@@ -16,8 +15,6 @@ import KrxStockItemMapper from '../../mappers/stock-item/KrxStockItemMapper';
 import {
   DOWNLOAD_URL,
   GENERATE_OTP_URL,
-  KrxKOSDAQ,
-  KrxKOSPI
 } from '../../../../stock-item/constant';
 import { crawlLastBusinessDay } from '../../../../index';
 import LastBusinessDay from '@stocker/core/lib/domain/entities/stock/LastBusinessDay';
@@ -29,7 +26,7 @@ export default class KrxStockItemProvider extends HttpProvider {
     super(instance);
   }
 
-  crawlStockItems(market: CodeMarket): Observable<StockItem[]> {
+  crawlStockItems(): Observable<StockItem[]> {
     return KrxStockItemProvider.getLastBusinessDay()
       .pipe(
         switchMap<LastBusinessDay, Observable<string>>((businessDay: LastBusinessDay): Observable<string> => {
@@ -41,7 +38,7 @@ export default class KrxStockItemProvider extends HttpProvider {
               name: 'fileDown',
               filetype: 'csv',
               url: 'MKD/03/0303/03030103/mkd03030103',
-              tp_cd: KrxStockItemProvider.getTpCdFromMarket(market),
+              tp_cd: 'ALL',
               date: date,
               lang: 'ko',
               pagePath: '/contents/MKD/13/1302/13020401/MKD13020401.jsp'
@@ -76,19 +73,9 @@ export default class KrxStockItemProvider extends HttpProvider {
 
           return result
             .slice(1)
-            .map((row: string[]) => new KrxStockItemMapper().toEntity(row, market));
+            .map((row: string[]) => new KrxStockItemMapper().toEntity(row));
         })
       );
-  }
-
-  private static getTpCdFromMarket(market: CodeMarket): string {
-    switch (market) {
-      case KrxKOSPI:
-        return 'STK';
-      case KrxKOSDAQ:
-        return 'KSQ';
-    }
-    throw applicationErrorFactory.getError(ErrorType.GENERAL, 'Unsupported market.');
   }
 
   private static getLastBusinessDay(): Observable<LastBusinessDay> {

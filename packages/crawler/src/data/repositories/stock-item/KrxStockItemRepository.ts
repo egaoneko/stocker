@@ -12,7 +12,7 @@ export default class KrxStockItemRepository implements StockItemRepository {
   ) {
   }
 
-  crawlStockItems(market: CodeMarket): Observable<StockItem[]> {
-    return this.provider.crawlStockItems(market);
+  crawlStockItems(): Observable<StockItem[]> {
+    return this.provider.crawlStockItems();
   }
 }
