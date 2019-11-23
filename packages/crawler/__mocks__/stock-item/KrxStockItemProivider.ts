@@ -1,13 +1,13 @@
 import Market from '@stocker/core/lib/domain/entities/market/Market';
 import { of } from 'rxjs';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
-import { KOSPI } from '../../src/stock-item/krx/constant';
+import { KrxKOSPI } from '../../src/stock-item/constant';
 
 export const mockCrawlStockItems = jest.fn().mockImplementation((market: Market) => {
   return of([
-    new StockItem('0', 'Test1', KOSPI),
-    new StockItem('1', 'Test2', KOSPI),
-    new StockItem('2', 'Test3', KOSPI),
+    new StockItem('0', 'Test1', KrxKOSPI),
+    new StockItem('1', 'Test2', KrxKOSPI),
+    new StockItem('2', 'Test3', KrxKOSPI),
   ]);
 });
 

@@ -1,1 +1,0 @@
-export const SISE_DEPOSIT_URL: string = 'https://finance.naver.com/sise/sise_deposit.nhn';
