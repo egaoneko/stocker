@@ -30,7 +30,7 @@ export default class KrxStockItemProvider extends HttpProvider {
   }
 
   crawlStockItems(market: CodeMarket): Observable<StockItem[]> {
-    return crawlLastBusinessDay()
+    return KrxStockItemProvider.getLastBusinessDay()
       .pipe(
         switchMap<LastBusinessDay, Observable<string>>((businessDay: LastBusinessDay): Observable<string> => {
           const date: string = moment.tz(businessDay.date, 'Asia/Seoul').format('YYYYMMDD');
@@ -89,5 +89,9 @@ export default class KrxStockItemProvider extends HttpProvider {
         return 'KSQ';
     }
     throw applicationErrorFactory.getError(ErrorType.GENERAL, 'Unsupported market.');
+  }
+
+  private static getLastBusinessDay(): Observable<LastBusinessDay> {
+    return crawlLastBusinessDay();
   }
 }
