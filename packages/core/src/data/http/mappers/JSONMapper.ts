@@ -1,6 +1,7 @@
 import Entity from '../../../domain/entities/Entity';
 
-export default interface JSONMapper<T extends Entity> {
-  toJSON(entity: T): any;
-  toEntity(json: any): T;
+export default interface JSONMapper<S, T extends Entity> {
+  toJSON(entity: T): object;
+
+  toEntity(json: object): T;
 }

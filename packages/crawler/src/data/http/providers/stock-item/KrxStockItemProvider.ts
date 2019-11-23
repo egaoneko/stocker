@@ -26,7 +26,7 @@ export default class KrxStockItemProvider extends HttpProvider {
     super(instance);
   }
 
-  crawlStockItems(): Observable<StockItem[]> {
+  public crawlStockItems(): Observable<StockItem[]> {
     return KrxStockItemProvider.getLastBusinessDay()
       .pipe(
         switchMap<LastBusinessDay, Observable<string>>((businessDay: LastBusinessDay): Observable<string> => {
@@ -60,7 +60,7 @@ export default class KrxStockItemProvider extends HttpProvider {
             data: `code=${code}`,
           });
         }),
-        map((data: string) => {
+        map<string, StockItem[]>((data: string) => {
           if (!data) {
             throw applicationErrorFactory.getError(ErrorType.GENERAL, 'Can not download KRX market data index.');
           }

@@ -5,13 +5,13 @@ import StockRepository from '@stocker/core/lib/domain/repositories/stock/StockRe
 import NaverStockProvider from '../../http/providers/stock/NaverStockProvider';
 import LastBusinessDay from '@stocker/core/lib/domain/entities/stock/LastBusinessDay';
 
-export default class NaverStockRepository implements StockRepository {
+export default class CrawlStockRepository implements StockRepository {
   constructor(
     private provider: NaverStockProvider,
   ) {
   }
 
-  crawlLastBusinessDay(): Observable<LastBusinessDay> {
+  public crawlLastBusinessDay(): Observable<LastBusinessDay> {
     return this.provider.crawlLastBusinessDay();
   }
 }

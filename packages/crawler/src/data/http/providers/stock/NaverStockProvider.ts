@@ -15,7 +15,7 @@ export default class NaverStockProvider extends HttpProvider {
     super(instance);
   }
 
-  crawlLastBusinessDay(): Observable<LastBusinessDay> {
+  public crawlLastBusinessDay(): Observable<LastBusinessDay> {
     return this.request<string>({
       method: 'GET',
       url: SISE_DEPOSIT_URL,
