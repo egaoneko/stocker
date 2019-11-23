@@ -3,10 +3,10 @@ import LastBusinessDay from '@stocker/core/lib/domain/entities/stock/LastBusines
 import { async } from 'rxjs/internal/scheduler/async';
 import { queue } from 'rxjs/internal/scheduler/queue';
 import { DEFAULT_AXIOS_INSTANCE } from '../constant';
-import NaverStockContext from './contexts/NaverStockContext';
+import StockContext from './StockContext';
 
 export function crawlLastBusinessDay(): Observable<LastBusinessDay> {
-  const NaverStockApplication: NaverStockContext = new NaverStockContext(DEFAULT_AXIOS_INSTANCE);
-  return NaverStockApplication.useCases.crawlLastBusinessDay
+  const StockApplication: StockContext = new StockContext(DEFAULT_AXIOS_INSTANCE);
+  return StockApplication.useCases.crawlLastBusinessDay
     .run(async, queue);
 }

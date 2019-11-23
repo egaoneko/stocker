@@ -1,6 +1,6 @@
 import Entity from '@stocker/core/lib/domain/entities/Entity';
-import Market from '@stocker/core/lib/domain/entities/market/Market';
+import ValueMapper from '@stocker/core/lib/data/http/mappers/ValueMapper';
 
-export default interface CSVMapper<T extends Entity> {
-  toEntity(row: string[], market: Market): T;
+export default interface CSVMapper <T extends Entity> extends ValueMapper<string[], T> {
+  toEntity(row: string[]): T;
 }

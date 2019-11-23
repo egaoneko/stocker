@@ -7,7 +7,7 @@ export default class GeneralError extends CustomError {
     super();
   }
 
-  toString(): string {
+  public toString(): string {
     return `[${this.name}]:${this.message}
     ${this.data}`;
   }

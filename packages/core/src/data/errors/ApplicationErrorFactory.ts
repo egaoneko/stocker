@@ -4,7 +4,7 @@ import CustomError, { ErrorDataType } from '../../error/CustomError';
 import ErrorType from '../../error/ErrorType';
 
 export class ApplicationErrorFactory implements ErrorFactory {
-  getError(name: ErrorType, message: string, data?: ErrorDataType): CustomError {
+  public getError(name: ErrorType, message: string, data?: ErrorDataType): CustomError {
     const error: CustomError = ERRORS[name as keyof typeof ERRORS] || ERRORS['general'];
     const params: ErrorDataType = data || {};
 

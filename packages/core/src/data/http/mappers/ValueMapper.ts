@@ -1,5 +1,5 @@
 import Entity from '../../../domain/entities/Entity';
 
-export default interface ValueMapper<T extends Entity, S extends T> {
-  toEntity(entity: T): S | null;
+export default interface ValueMapper<S, T extends Entity> {
+  toEntity(value: S): T;
 }

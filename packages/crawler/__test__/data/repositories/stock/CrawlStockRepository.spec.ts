@@ -1,10 +1,10 @@
 import mockNaverStockProvider, { mockCrawlLastBusinessDay } from '../../../../__mocks__/stock/NaverStockProivider';
-import NaverStockRepository from '../../../../src/data/repositories/stock/NaverStockRepository';
+import CrawlStockRepository from '../../../../src/data/repositories/stock/CrawlStockRepository';
 import LastBusinessDay from '@stocker/core/lib/domain/entities/stock/LastBusinessDay';
 import * as moment from 'moment-timezone';
 
-describe('NaverStockRepository', () => {
-  const repository: NaverStockRepository = new NaverStockRepository((new mockNaverStockProvider()) as any);
+describe('CrawlStockRepository', () => {
+  const repository: CrawlStockRepository = new CrawlStockRepository((new mockNaverStockProvider()) as any);
 
   test('crawlStockItems', (done) => {
     repository.crawlLastBusinessDay()

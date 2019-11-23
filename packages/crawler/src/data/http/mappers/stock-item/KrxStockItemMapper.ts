@@ -9,14 +9,14 @@ import ErrorType from '@stocker/core/lib/error/ErrorType';
 import applicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 
 export default class KrxStockItemMapper implements CSVMapper<StockItem> {
-  toEntity(row: string[]): StockItem {
+  public toEntity(row: string[]): StockItem {
     const stockItem: StockItem = new StockItem(
-      KrxStockItemMapper.getMarket(row[0]),
-      row[1],
-      row[2],
+      row[1].trim(),
+      row[2].trim(),
     );
 
-    stockItem.gics = row[3];
+    stockItem.market = KrxStockItemMapper.getMarket(row[0]);
+    stockItem.gics = row[3].trim();
     return stockItem;
   }
 

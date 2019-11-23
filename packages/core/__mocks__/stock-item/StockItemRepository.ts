@@ -4,8 +4,8 @@ import { KOSPI } from '../../lib/constant/market';
 
 export const mockCrawlStockItems = jest.fn().mockImplementation(() => {
   return of([
-    new StockItem(KOSPI, '0000', 'Test1'),
-    new StockItem(KOSPI, '0000', 'Test2'),
+    new StockItem('0000', 'Test1'),
+    new StockItem('0000', 'Test2'),
   ]);
 });
 
