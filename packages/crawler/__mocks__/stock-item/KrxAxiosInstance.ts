@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import data from '../assets/krxMarketDataIndex';
-import { GENERATE_OTP_URL } from '../../src/stock-item/krx/constant';
+import { GENERATE_OTP_URL } from '../../src/stock-item/constant';
 
 const mockAxiosInstance = jest.fn().mockImplementation((config: AxiosRequestConfig) => {
   return new Promise((resolve => {
