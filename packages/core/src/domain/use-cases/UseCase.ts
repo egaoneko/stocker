@@ -12,8 +12,6 @@ import ErrorType from '../../error/ErrorType';
 export default abstract class UseCase<T> {
   protected abstract build(): Observable<T>;
 
-  protected abstract validate(): boolean;
-
   public run(
     executorScheduler: SchedulerLike,
     postExecutionScheduler: SchedulerLike
@@ -27,5 +25,9 @@ export default abstract class UseCase<T> {
         subscribeOn(executorScheduler),
         observeOn(postExecutionScheduler)
       );
+  }
+
+  protected validate(): boolean {
+    return true;
   }
 }

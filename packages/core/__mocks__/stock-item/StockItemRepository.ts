@@ -4,15 +4,15 @@ import { KOSPI } from '../../lib/constant/market';
 
 export const mockCrawlStockItems = jest.fn().mockImplementation(() => {
   return of([
-    new StockItem('0000', 'Test1', KOSPI),
-    new StockItem('0000', 'Test2', KOSPI),
+    new StockItem(KOSPI, '0000', 'Test1'),
+    new StockItem(KOSPI, '0000', 'Test2'),
   ]);
 });
 
-const mockNaverStockItemRepository = jest.fn().mockImplementation(() => {
+const mockStockItemRepository = jest.fn().mockImplementation(() => {
   return {
     crawlStockItems: mockCrawlStockItems,
   };
 });
 
-export default mockNaverStockItemRepository;
+export default mockStockItemRepository;

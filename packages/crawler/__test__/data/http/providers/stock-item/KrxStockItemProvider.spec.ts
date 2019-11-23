@@ -2,7 +2,6 @@ import mockAxiosInstance from '../../../../../__mocks__/stock-item/KrxAxiosInsta
 import KrxStockItemProvider from '../../../../../src/data/http/providers/stock-item/KrxStockItemProvider';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import CodeMarket from '../../../../../src/data/entities/market/CodeMarket';
-import { KrxKOSPI } from '../../../../../src/stock-item/constant';
 import {
   Observable,
   of
@@ -25,7 +24,7 @@ describe('KrxStockItemProvider', () => {
   });
 
   test('crawlStockItems', (done) => {
-    provider.crawlStockItems(KrxKOSPI)
+    provider.crawlStockItems()
       .subscribe((list: StockItem[]) => {
         expect(list[0].name).toEqual('동원수산');
         expect(list.length).toEqual(5);
@@ -33,17 +32,5 @@ describe('KrxStockItemProvider', () => {
         expect(mockGetLastBusinessDay).toBeCalledTimes(1);
         done();
       });
-  });
-
-  test('crawlStockItems with wrong', (done) => {
-    provider.crawlStockItems({} as CodeMarket)
-      .pipe(
-        catchError((err: any): Observable<any> => {
-          expect(err.message).toBe('Unsupported market.');
-          done();
-          return of(err);
-        }),
-      )
-      .subscribe();
   });
 });
