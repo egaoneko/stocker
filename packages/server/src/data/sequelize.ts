@@ -20,7 +20,8 @@ const sequelize: Sequelize = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD
     min: 0,
     acquire: 30000,
     idle: 10000
-  }
+  },
+  models: [__dirname + '/models/**/*.ts']
 });
 
 export default sequelize;
