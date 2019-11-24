@@ -1,5 +1,5 @@
 import * as Router from 'koa-router';
-import { ping } from '@controllers/common';
+import { ping } from '../controllers/common';
 
 const router = new Router();
 

@@ -1,13 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@database/*": ["src/database/*"],
-      "@controllers/*": ["src/controllers/*"],
-      "@routes/*": ["src/routes/*"],
-      "@models/*": ["src/database/models/*"]
-    }
+    "baseUrl": "."
   },
   "include": [
     "src/**/*"
