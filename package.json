@@ -6,9 +6,9 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "build:core": "lerna run build --scope @stocker/core",
-    "start:crawler": "lerna run start --scope @stocker/crawler",
     "start:client": "lerna run dev --stream --scope @stocker/client",
     "start:server": "lerna run start --stream --scope @stocker/server",
+    "migrate:local": "lerna run migrate:local --stream --scope @stocker/server",
     "test:core": "lerna run test --stream --scope @stocker/core",
     "test:crawler": "lerna run test --stream --scope @stocker/crawler",
     "test:server": "lerna run test --stream --scope @stocker/server"

@@ -22,14 +22,6 @@ export default function FullLayout({ children }: PropsType): JSX.Element {
       <Global
         styles={global}
       />
-      <style global jsx>{`
-      html,
-      body,
-      body > div:first-child,
-      div#__next {
-        height: 100%;
-      }
-    `}</style>
       <style dangerouslySetInnerHTML={{ __html: stylesheet }}/>
       {children}
     </Layout>
