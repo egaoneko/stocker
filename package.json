@@ -12,6 +12,6 @@
     "test:crawler": "lerna run test --stream --scope @stocker/crawler"
   },
   "devDependencies": {
-    "lerna": "^3.16.4"
+    "lerna": "^3.19.0"
   }
 }

@@ -26,16 +26,16 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
-    "@types/cheerio": "^0.22.13",
+    "@types/cheerio": "^0.22.14",
     "@types/iconv-lite": "^0.0.1",
-    "@types/jest": "^24.0.22",
+    "@types/jest": "^24.0.23",
     "@types/moment-timezone": "^0.5.12",
-    "@types/node": "^12.12.7",
-    "@types/papaparse": "^5.0.1",
+    "@types/node": "^12.12.12",
+    "@types/papaparse": "^5.0.2",
     "jest": "^24.9.0",
     "jest-config": "^24.9.0",
     "supertest": "^4.0.2",
-    "ts-jest": "^24.1.0",
+    "ts-jest": "^24.2.0",
     "typescript": "~3.7.2"
   }
 }
