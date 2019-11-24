@@ -1,10 +1,10 @@
-import { Model } from 'sequelize';
 import {
   Table,
   DataType,
   Column,
   PrimaryKey,
   Default,
+  Model,
 } from 'sequelize-typescript';
 
 @Table({

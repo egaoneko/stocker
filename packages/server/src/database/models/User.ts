@@ -1,5 +1,4 @@
-import { Model } from 'sequelize';
-import Profile from '@database/models/Profile';
+import Profile from './Profile';
 import {
   Table,
   DataType,
@@ -7,6 +6,7 @@ import {
   PrimaryKey,
   Default,
   Unique,
+  Model,
 } from 'sequelize-typescript';
 
 @Table({

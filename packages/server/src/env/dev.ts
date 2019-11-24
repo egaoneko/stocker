@@ -1,4 +1,4 @@
-import { Env } from "../interfaces/env";
+import { Env } from '../interfaces/env';
 
 const env: Env = {
 };

@@ -5,8 +5,8 @@ import * as Koa from 'koa';
 import * as logger from 'koa-logger';
 import * as koaBody from 'koa-body';
 import { Server as HttpServer } from 'http';
-import sequelize from '@database/sequelize';
-import common from '@routes/common';
+import sequelize from './database/sequelize';
+import common from './routes/common';
 
 // load environment variables from .env file
 

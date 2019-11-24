@@ -71,6 +71,9 @@ typings/
 # dotenv environment variables file
 .env.local
 .env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # OSX
 .DS_Store
@@ -81,3 +84,17 @@ typings/
 # build
 dist
 lib
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# next
+.next

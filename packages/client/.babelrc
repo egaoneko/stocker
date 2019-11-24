@@ -1,0 +1,22 @@
+{
+  "env": {
+    "development": {
+      "compact": false,
+      "presets": ["next/babel"]
+    },
+    "production": {
+      "compact": false,
+      "presets": ["next/babel"]
+    },
+    "test": {
+      "presets": [
+        ["next/babel", { "preset-env": { "modules": "commonjs" } }]
+      ]
+    }
+  },
+  "plugins": [
+    ["inline-import", { "extensions": [".css"] }],
+    ["import", { "libraryName": "antd" }],
+    ["emotion"]
+  ]
+}
