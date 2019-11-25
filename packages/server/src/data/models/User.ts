@@ -12,16 +12,8 @@ import { Role } from '@stocker/core/lib/constant/account';
 import { Model } from '@stocker/core/lib/data/models/Model';
 import UserEntity from '@stocker/core/lib/domain/entities/account/User';
 import {
-  FindOrCreateOptions,
   Transaction
 } from 'sequelize';
-
-interface Properties {
-  email: string;
-  name: string;
-  password?: string;
-  role?: Role;
-}
 
 @Table({
   tableName: 'user'
@@ -47,18 +39,11 @@ export default class User extends DBModel<User> implements Model {
   @Column(DataType.STRING)
   public role!: Role;
 
-  public static createUser(
-    {
-      email,
-      name,
-      password,
-      role
-    }: Properties,
-    transaction?: Transaction
-  ): Promise<{ success: boolean, data: User }> {
+  public static createUser(user: UserEntity, transaction?: Transaction): Promise<[User, boolean]> {
+    const { email, name, password, role }: UserEntity = user;
     return User.findOrCreate({
       where: {
-        email
+        email: email
       },
       defaults: {
         email,
@@ -67,23 +52,14 @@ export default class User extends DBModel<User> implements Model {
         role,
       },
       transaction,
-    })
-      .then(([user, created]) => {
-        if (created) {
-          return {
-            success: created,
-            data: user,
-          }
-        } else {
-          return {
-            success: created,
-            data: user,
-          }
-        }
-      });
+    });
   }
 
   public toEntity(): UserEntity {
-    return new UserEntity(this.id, this.email, this.name, this.role);
+    const user: UserEntity = new UserEntity(this.id, this.email, this.name, this.role);
+
+    user.password = this.password;
+
+    return user;
   }
 }

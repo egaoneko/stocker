@@ -13,6 +13,7 @@ describe('User Model', () => {
     userModel.email = 'test@test.com';
     userModel.name = 'test';
     userModel.role = Role.ADMIN;
+    userModel.password = '1234';
 
     const userEntity: UserEntity = userModel.toEntity();
 
@@ -20,19 +21,18 @@ describe('User Model', () => {
     expect(userModel.email).toEqual(userEntity.email);
     expect(userModel.name).toEqual(userEntity.name);
     expect(userModel.role).toEqual(userEntity.role);
+    expect(userModel.password).toEqual(userEntity.password);
   });
 
   test('createUser', async () => {
     await rollback(async (transaction: Transaction) => {
-      const { success } = await User.createUser({
-        email: 'test@test.com',
-        name: 'test',
-        role: Role.ADMIN,
-      }, transaction);
+      const user: UserEntity = new UserEntity(null, 'test@test.com', 'test', Role.USER);
+      user.password = '1234';
 
-      expect(success).toBeTruthy();
+      const [result, created] = await User.createUser(user, transaction);
+
+      expect(created).toBeTruthy();
     });
-
   });
 });
 

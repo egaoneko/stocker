@@ -1,16 +1,16 @@
 import { async } from 'rxjs/internal/scheduler/async';
 import { queue } from 'rxjs/internal/scheduler/queue';
 import CrawlLastBusinessDay from '../../../../src/domain/use-cases/stock/CrawlLastBusinessDay';
-import mockNaverStockRepository, { mockCrawlLastBusinessDay } from '../../../../__mocks__/stock/StockItemRepository';
+import mockStockRepository, { mockCrawlLastBusinessDay } from '../../../../__mocks__/stock/StockRepository';
 
 describe('CrawlLastBusinessDay UseCase', () => {
   beforeEach(() => {
-    mockNaverStockRepository.mockClear();
+    mockStockRepository.mockClear();
     mockCrawlLastBusinessDay.mockClear();
   });
 
   test('crawlLastBusinessDay is called', () => {
-    const repository = new mockNaverStockRepository();
+    const repository = new mockStockRepository();
     const useCase: CrawlLastBusinessDay = new CrawlLastBusinessDay(repository);
     useCase.run(async, queue);
     expect(mockCrawlLastBusinessDay).toHaveBeenCalledTimes(1);
