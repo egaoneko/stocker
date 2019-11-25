@@ -21,7 +21,7 @@ const sequelize: Sequelize = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD
     acquire: 30000,
     idle: 10000
   },
-  models: [__dirname + '/models/**/*.ts']
+  models: [__dirname + '/../data/models/**/*.ts']
 });
 
 export default sequelize;

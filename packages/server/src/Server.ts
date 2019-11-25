@@ -11,9 +11,9 @@ import {
   Context,
   Next
 } from 'koa';
-import sequelize from './data/sequelize';
+import sequelize from './db/sequelize';
 import common from './routes/common';
-import { associate } from './data/sync';
+import { associate } from './db/sync';
 
 export default class Server {
   public get httpServer(): HttpServer {

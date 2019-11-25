@@ -1,8 +1,10 @@
-import { of } from 'rxjs';
+import {
+  Observable,
+  of
+} from 'rxjs';
 import StockItem from '../../src/domain/entities/stock-item/StockItem';
-import { KOSPI } from '../../lib/constant/market';
 
-export const mockCrawlStockItems = jest.fn().mockImplementation(() => {
+export const mockCrawlStockItems = jest.fn().mockImplementation((): Observable<StockItem[]> => {
   return of([
     new StockItem('0000', 'Test1'),
     new StockItem('0000', 'Test2'),

@@ -1,7 +1,10 @@
-import { of } from 'rxjs';
+import {
+  Observable,
+  of
+} from 'rxjs';
 import LastBusinessDay from '../../src/domain/entities/stock/LastBusinessDay';
 
-export const mockCrawlLastBusinessDay = jest.fn().mockImplementation(() => {
+export const mockCrawlLastBusinessDay = jest.fn().mockImplementation((): Observable<LastBusinessDay> => {
   const date: Date = new Date();
   date.setHours(0);
   date.setMinutes(0);
@@ -10,10 +13,10 @@ export const mockCrawlLastBusinessDay = jest.fn().mockImplementation(() => {
   return of(new LastBusinessDay(date));
 });
 
-const mockNaverStockRepository = jest.fn().mockImplementation(() => {
+const mockStockRepository = jest.fn().mockImplementation(() => {
   return {
     crawlLastBusinessDay: mockCrawlLastBusinessDay,
   };
 });
 
-export default mockNaverStockRepository;
+export default mockStockRepository;

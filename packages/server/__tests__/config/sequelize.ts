@@ -1,4 +1,4 @@
 import './dotenv';
-import sequelize from '../../src/data/sequelize';
+import sequelize from '../../src/db/sequelize';
 
 export default sequelize;
