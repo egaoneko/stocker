@@ -12,7 +12,7 @@ import {
   map,
   switchMap
 } from 'rxjs/operators';
-import applicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
+import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 import ErrorType from '@stocker/core/lib/error/ErrorType';
 import WiseStockItemMapper from '../../mappers/stock-item/WiseStockItemMapper';
 import LastBusinessDay from '@stocker/core/lib/domain/entities/stock/LastBusinessDay';
@@ -120,7 +120,7 @@ export default class WiseStockItemProvider extends HttpProvider {
       map<WiseIndexComponents, StockItem[]>((data: WiseIndexComponents): StockItem[] => {
 
         if (!data) {
-          throw applicationErrorFactory.getError(ErrorType.GENERAL, 'Wise sector index is something wrong.');
+          throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'Wise sector index is something wrong.');
         }
 
         return data.list.map(

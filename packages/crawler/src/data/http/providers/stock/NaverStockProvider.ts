@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import HttpProvider from '@stocker/core/lib/data/http/providers/HttpProvider';
 import * as cheerio from 'cheerio';
 import LastBusinessDay from '@stocker/core/lib/domain/entities/stock/LastBusinessDay';
-import applicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
+import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 import ErrorType from '@stocker/core/lib/error/ErrorType';
 import * as moment from 'moment-timezone';
 import { SISE_DEPOSIT_URL } from '../../../../stock/constant';
@@ -28,7 +28,7 @@ export default class NaverStockProvider extends HttpProvider {
             .match(/[0-9]+.[0-9]+.[0-9]+/);
 
           if (!date) {
-            throw applicationErrorFactory.getError(ErrorType.GENERAL, 'Can not find the date.');
+            throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'Can not find the date.');
           }
 
           return new LastBusinessDay(moment.tz(date[0], 'YYYY.MM.DD', 'Asia/Seoul').toDate());

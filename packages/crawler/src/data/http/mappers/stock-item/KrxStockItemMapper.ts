@@ -6,7 +6,7 @@ import {
   KOSPI
 } from '@stocker/core/lib/constant/market';
 import ErrorType from '@stocker/core/lib/error/ErrorType';
-import applicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
+import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 
 export default class KrxStockItemMapper implements CSVMapper<StockItem> {
   public toEntity(row: string[]): StockItem {
@@ -28,6 +28,6 @@ export default class KrxStockItemMapper implements CSVMapper<StockItem> {
         return KOSDAQ;
       }
     }
-    throw applicationErrorFactory.getError(ErrorType.GENERAL, 'Unsupported market.');
+    throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'Unsupported market.');
   }
 }

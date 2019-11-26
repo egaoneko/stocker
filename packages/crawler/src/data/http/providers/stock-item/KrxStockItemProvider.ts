@@ -9,7 +9,7 @@ import {
 import * as Papa from 'papaparse';
 import HttpProvider from '@stocker/core/lib/data/http/providers/HttpProvider';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
-import applicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
+import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 import ErrorType from '@stocker/core/lib/error/ErrorType';
 import KrxStockItemMapper from '../../mappers/stock-item/KrxStockItemMapper';
 import {
@@ -47,7 +47,7 @@ export default class KrxStockItemProvider extends HttpProvider {
         }),
         switchMap<string, Observable<string>>((code: string): Observable<string> => {
           if (!code) {
-            throw applicationErrorFactory.getError(ErrorType.GENERAL, 'Can not generate OTP.');
+            throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'Can not generate OTP.');
           }
 
           return this.request<string>({
@@ -62,13 +62,13 @@ export default class KrxStockItemProvider extends HttpProvider {
         }),
         map<string, StockItem[]>((data: string) => {
           if (!data) {
-            throw applicationErrorFactory.getError(ErrorType.GENERAL, 'Can not download KRX market data index.');
+            throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'Can not download KRX market data index.');
           }
 
           const result: string[][] = Papa.parse(data, { header: false, }).data;
 
           if (result.length < 2) {
-            throw applicationErrorFactory.getError(ErrorType.GENERAL, 'KRX market data index is something wrong.');
+            throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'KRX market data index is something wrong.');
           }
 
           return result
