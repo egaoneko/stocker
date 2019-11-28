@@ -6,7 +6,7 @@ server.listen(3000);
 
 const request: supertest.SuperTest<supertest.Test> = supertest.agent(server.httpServer);
 
-describe('Common Route', () => {
+describe('Ping Route', () => {
   afterAll(() => server.close());
 
   test('ping', async () => {
