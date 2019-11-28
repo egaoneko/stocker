@@ -1,19 +1,32 @@
 // load environment variables from .env file
-import * as dotenvFlow from 'dotenv-flow';
+import dotenvFlow from 'dotenv-flow';
 
 dotenvFlow.config();
 
-import * as Koa from 'koa';
-import * as logger from 'koa-logger';
-import * as koaBody from 'koa-body';
+import Koa from 'koa';
+import logger from 'koa-logger';
+import koaBody from 'koa-body';
+import passport from 'koa-passport';
 import { Server as HttpServer } from 'http';
 import {
   Context,
   Next
 } from 'koa';
 import sequelize from './db/sequelize';
-import common from './routes/common';
 import { associate } from './db/sync';
+
+// config
+import './config/passport';
+
+// routes
+import ping from './routes/ping';
+import oauth from './routes/oauth';
+
+export interface IState {
+}
+
+export interface ICustom {
+}
 
 export default class Server {
   public get httpServer(): HttpServer {
@@ -25,7 +38,7 @@ export default class Server {
 
   constructor() {
     associate();
-    this.app = new Koa();
+    this.app = new Koa<IState, ICustom>();
     this.middleware();
     this.route();
     this.initializeDb();
@@ -93,9 +106,11 @@ export default class Server {
       }
     });
     this.app.use(koaBody());
+    this.app.use(passport.initialize());
   }
 
   private route(): void {
-    this.app.use(common.routes());
+    this.app.use(ping.routes());
+    this.app.use(oauth.routes());
   }
 }
