@@ -1,5 +1,5 @@
-import SequelizeUserProvider from './db/providers/SequelizeUserProvider';
-import SquelizeUserRepository from './repositories/SquelizeUserRepository';
+import SequelizeUserProvider from './data/db/providers/SequelizeUserProvider';
+import SquelizeUserRepository from './data/repositories/SquelizeUserRepository';
 import CreateUser from '@stocker/core/lib/domain/use-cases/account/CreateUser';
 
 interface ProviderDependencies {

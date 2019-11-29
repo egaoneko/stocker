@@ -1,10 +1,8 @@
 import React from 'react';
-import FullPage from '../components/templates/layout/FullPage';
+import HeaderLayoutTemplate from '../components/templates/layout/HeaderLayoutTemplate';
 
-function Home() {
+export default function Home(): JSX.Element {
   return (
-    <FullPage/>
+    <HeaderLayoutTemplate/>
   );
 }
-
-export default Home;

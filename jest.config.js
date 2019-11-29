@@ -3,14 +3,15 @@ module.exports = {
     ".(ts|tsx)": "ts-jest"
   },
   "testEnvironment": "node",
-  "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
+  "testRegex": "/__tests__/.*\\.(test|spec)\\.(t|j)sx?$",
   "moduleFileExtensions": [
     "ts",
     "js"
   ],
   "coveragePathIgnorePatterns": [
     "/node_modules/",
-    "/test/"
+    "/__tests__/",
+    "/__mocks__/",
   ],
   "globals": {
     "ts-jest": {

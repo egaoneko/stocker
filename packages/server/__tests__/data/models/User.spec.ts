@@ -1,4 +1,4 @@
-import '../../config/sequelize';
+import '../../__config__/sequelize';
 import { Role } from '@stocker/core/lib/constant/account';
 import UserEntity from '@stocker/core/lib/domain/entities/account/User';
 import User from '../../../src/data/models/User';

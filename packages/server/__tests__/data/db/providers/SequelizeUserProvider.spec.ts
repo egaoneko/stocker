@@ -1,4 +1,4 @@
-import '../../../config/sequelize';
+import '../../../__config__/sequelize';
 import SequelizeUserProvider from '../../../../src/data/db/providers/SequelizeUserProvider';
 import { rollback } from '../../../__utils__/db';
 import { Transaction } from 'sequelize';

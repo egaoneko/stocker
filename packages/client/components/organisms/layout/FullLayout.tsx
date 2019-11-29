@@ -1,5 +1,3 @@
-// @ts-ignore
-import stylesheet from 'antd/dist/antd.min.css';
 import React from 'react';
 /** @jsx jsx */
 import {
@@ -8,9 +6,7 @@ import {
   SerializedStyles,
   Global,
 } from '@emotion/core';
-import {
-  Layout,
-} from 'antd';
+import BaseContainer from './BaseContainer';
 
 interface PropsType {
   children?: React.ReactNode;
@@ -18,13 +14,12 @@ interface PropsType {
 
 export default function FullLayout({ children }: PropsType): JSX.Element {
   return (
-    <Layout css={layout}>
+    <BaseContainer>
       <Global
         styles={global}
       />
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }}/>
       {children}
-    </Layout>
+    </BaseContainer>
   );
 }
 
@@ -35,8 +30,4 @@ const global: SerializedStyles = css`
   div#__next {
     height: 100%;
   }
-`;
-
-const layout: SerializedStyles = css`
-  height: 100%;
 `;

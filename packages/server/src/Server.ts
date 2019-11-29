@@ -3,6 +3,7 @@ import dotenvFlow from 'dotenv-flow';
 
 dotenvFlow.config();
 
+// koa
 import Koa from 'koa';
 import logger from 'koa-logger';
 import koaBody from 'koa-body';
@@ -12,8 +13,9 @@ import {
   Context,
   Next
 } from 'koa';
-import sequelize from './db/sequelize';
-import { associate } from './db/sync';
+
+// db
+import sequelize, { associate } from './sequelize';
 
 // config
 import './config/passport';
@@ -41,7 +43,7 @@ export default class Server {
     this.app = new Koa<IState, ICustom>();
     this.middleware();
     this.route();
-    this.initializeDb();
+    this.initialize();
   }
 
   public listen(port: number): HttpServer {
@@ -63,15 +65,27 @@ export default class Server {
     // return serverless(this.app);
   }
 
-  private initializeDb(): void {
-    sequelize.authenticate().then(
-      () => {
-        console.info('DB Connection has been established');
-      },
-      (err: any) => {
-        console.error('Unable to connect to the DB:', err);
+  private initialize(): void {
+    this.initializeDb();
+  }
+
+  private middleware(): void {
+    this.app.use(logger());
+    this.app.use(async (context: Context, next: Next) => {
+      try {
+        await this.ensureDb();
+        return await next();
+      } catch (e) {
+        context.throw(e);
       }
-    );
+    });
+    this.app.use(koaBody());
+    this.app.use(passport.initialize());
+  }
+
+  private route(): void {
+    this.app.use(ping.routes());
+    this.app.use(oauth.routes());
   }
 
   private async ensureDb(): Promise<void> {
@@ -95,22 +109,14 @@ export default class Server {
     });
   }
 
-  private middleware(): void {
-    this.app.use(logger());
-    this.app.use(async (context: Context, next: Next) => {
-      try {
-        await this.ensureDb();
-        return await next();
-      } catch (e) {
-        context.throw(e);
+  private initializeDb(): void {
+    sequelize.authenticate().then(
+      () => {
+        console.info('DB Connection has been established');
+      },
+      (err: any) => {
+        console.error('Unable to connect to the DB:', err);
       }
-    });
-    this.app.use(koaBody());
-    this.app.use(passport.initialize());
-  }
-
-  private route(): void {
-    this.app.use(ping.routes());
-    this.app.use(oauth.routes());
+    );
   }
 }

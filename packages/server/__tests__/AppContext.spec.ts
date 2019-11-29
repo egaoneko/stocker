@@ -1,6 +1,6 @@
-import AppContext from '../../src/data/AppContext';
-import SequelizeUserProvider from '../../src/data/db/providers/SequelizeUserProvider';
-import SquelizeUserRepository from '../../src/data/repositories/SquelizeUserRepository';
+import AppContext from '../src/AppContext';
+import SequelizeUserProvider from '../src/data/db/providers/SequelizeUserProvider';
+import SquelizeUserRepository from '../src/data/repositories/SquelizeUserRepository';
 import CreateUser from '@stocker/core/lib/domain/use-cases/account/CreateUser';
 
 describe('AppContext', () => {

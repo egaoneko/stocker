@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=local nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/local.ts",
     "migrate:local": "cross-env NODE_ENV=local ts-node ./scripts/migrate.ts",
-    "test": "jest"
+    "test": "cross-env NODE_ENV=test jest"
   },
   "dependencies": {
     "@stocker/core": "^0.0.1",

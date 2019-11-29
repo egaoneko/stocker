@@ -3,8 +3,7 @@ import * as dotenvFlow from 'dotenv-flow';
 
 dotenvFlow.config();
 
-import sequelize from '../src/db/sequelize';
-import sync from '../src/db/sync';
+import sequelize, { sync } from '../src/sequelize';
 
 const migrate = async () => {
   await sequelize.authenticate();

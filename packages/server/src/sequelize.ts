@@ -24,4 +24,14 @@ const sequelize: Sequelize = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD
   models: [__dirname + '/../data/models/**/*.ts']
 });
 
+
+export function associate() {
+  // configure relations
+}
+
+export function sync() {
+  associate();
+  sequelize.sync();
+}
+
 export default sequelize;
