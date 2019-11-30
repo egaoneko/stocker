@@ -3,29 +3,42 @@
   "version": "0.0.1",
   "description": "client",
   "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.22",
+    "@stocker/core": "^0.0.1",
+    "antd": "^3.25.2",
+    "firebase": "^7.5.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-firebaseui": "^4.0.0",
+    "react-scripts": "3.2.0",
+    "rxjs": "^6.5.3"
+  },
+  "devDependencies": {
     "@types/jest": "24.0.23",
     "@types/node": "12.12.12",
     "@types/react": "16.9.13",
     "@types/react-dom": "16.9.4",
-    "antd": "^3.25.2",
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-less": "^1.0.1",
     "babel-plugin-emotion": "^10.0.23",
     "babel-plugin-import": "^1.12.2",
     "babel-plugin-inline-import": "^3.0.0",
+    "less": "^3.10.3",
+    "jest": "^24.9.0",
+    "jest-config": "^24.9.0",
     "next": "^9.1.4",
     "next-compose-plugins": "^2.2.0",
     "next-images": "^1.2.0",
     "next-transpile-modules": "^2.3.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0",
+    "ts-jest": "^24.2.0",
     "typescript": "3.7.2"
-  },
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -3,24 +3,24 @@ import dotenvFlow from 'dotenv-flow';
 
 dotenvFlow.config();
 
+// koa
 import Koa from 'koa';
 import logger from 'koa-logger';
 import koaBody from 'koa-body';
-import passport from 'koa-passport';
 import { Server as HttpServer } from 'http';
 import {
   Context,
   Next
 } from 'koa';
-import sequelize from './db/sequelize';
-import { associate } from './db/sync';
 
-// config
-import './config/passport';
+// db
+import sequelize, { associate } from './libs/sequelize';
 
 // routes
 import ping from './routes/ping';
-import oauth from './routes/oauth';
+
+// firebase
+import firebase from './libs/firebase';
 
 export interface IState {
 }
@@ -41,7 +41,7 @@ export default class Server {
     this.app = new Koa<IState, ICustom>();
     this.middleware();
     this.route();
-    this.initializeDb();
+    this.initialize();
   }
 
   public listen(port: number): HttpServer {
@@ -63,15 +63,26 @@ export default class Server {
     // return serverless(this.app);
   }
 
-  private initializeDb(): void {
-    sequelize.authenticate().then(
-      () => {
-        console.info('DB Connection has been established');
-      },
-      (err: any) => {
-        console.error('Unable to connect to the DB:', err);
+  private async initialize(): Promise<void> {
+    await this.initializeDb();
+    await this.initializeFirebase();
+  }
+
+  private middleware(): void {
+    this.app.use(logger());
+    this.app.use(async (context: Context, next: Next) => {
+      try {
+        await this.ensureDb();
+        return await next();
+      } catch (e) {
+        context.throw(e);
       }
-    );
+    });
+    this.app.use(koaBody());
+  }
+
+  private route(): void {
+    this.app.use(ping.routes());
   }
 
   private async ensureDb(): Promise<void> {
@@ -95,22 +106,17 @@ export default class Server {
     });
   }
 
-  private middleware(): void {
-    this.app.use(logger());
-    this.app.use(async (context: Context, next: Next) => {
-      try {
-        await this.ensureDb();
-        return await next();
-      } catch (e) {
-        context.throw(e);
+  private async initializeDb(): Promise<void> {
+    return sequelize.authenticate().then(
+      () => {
+        console.info('DB Connection has been established');
+      },
+      (err: any) => {
+        console.error('Unable to connect to the DB:', err);
       }
-    });
-    this.app.use(koaBody());
-    this.app.use(passport.initialize());
+    );
   }
 
-  private route(): void {
-    this.app.use(ping.routes());
-    this.app.use(oauth.routes());
+  private async initializeFirebase(): Promise<void> {
   }
 }
