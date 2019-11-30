@@ -10,28 +10,35 @@ import {
   Layout,
   Menu,
 } from 'antd';
-import Router from 'next/router';
+import Logo from '../../molecules/logo/Logo';
+import {
+  login,
+  main
+} from '../../../utils/router';
 
 const { Header } = Layout;
-const navHeight: number = 46;
+const logoWidth: number = 118;
+const navHeight: number = 42;
+const logoImageUrl: string = 'images/header.png';
 
 interface PropsType {
   selectedKey: string;
 }
 
 export default function HeaderNav({ selectedKey }: PropsType): JSX.Element {
-
-  const login: () => void = () => {
-    Router.push('/login');
-  };
-
   return (
     <Header
       className="header"
       style={styles.header}>
-      <div css={logo}></div>
+      <Logo
+        width={logoWidth}
+        height={navHeight - 2}
+        imageUrl={logoImageUrl}
+        style={styles.logo}
+        onClick={main}
+      />
       <div css={avatar} onClick={login}>
-        <Avatar icon="user" />
+        <Avatar icon="user"/>
       </div>
       <Menu
         mode="horizontal"
@@ -43,17 +50,6 @@ export default function HeaderNav({ selectedKey }: PropsType): JSX.Element {
     </Header>
   );
 }
-
-const logo: SerializedStyles = css`
-  width: 80px;
-  height: ${navHeight}px;
-  margin: 0 14px 0 0;
-  float: left;
-  background-image: url("images/header.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
 
 const avatar: SerializedStyles = css`
   cursor: pointer;
@@ -67,6 +63,10 @@ const styles: { [key: string]: CSSProperties } = {
     backgroundColor: '#fff',
     boxShadow: '0 1px 4px rgba(0,21,41,.08)',
     padding: '0 10px',
+  },
+  logo: {
+    margin: '2px 10px 2px 0',
+    float: 'left',
   },
   menu: {
     lineHeight: `${navHeight}px`,

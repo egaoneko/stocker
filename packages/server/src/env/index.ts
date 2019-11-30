@@ -1,4 +1,4 @@
-import { ENVIRONMENT } from '../const';
+import { ENVIRONMENT } from '../constant';
 import { Env } from '../interfaces/env';
 import real from './real';
 import dev from './dev';

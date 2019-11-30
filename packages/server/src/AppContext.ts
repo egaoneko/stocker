@@ -1,17 +1,25 @@
-import SequelizeUserProvider from './data/db/providers/SequelizeUserProvider';
-import SquelizeUserRepository from './data/repositories/SquelizeUserRepository';
-import CreateUser from '@stocker/core/lib/domain/use-cases/account/CreateUser';
+import FirebaseUserProvider from './data/db/providers/account/FirebaseUserProvider';
+import UserRepository from './data/repositories/account/UserRepository';
+import FindUserById from '@stocker/core/lib/domain/use-cases/account/FindUserById';
+import FirebaseAuthProvider from './data/db/providers/auth/FirebaseAuthProvider';
+import AuthRepository from './data/repositories/auth/AuthRepository';
+import VerifyToken from '@stocker/core/lib/domain/use-cases/auth/VerifyToken';
+import DecodeToken from '@stocker/core/lib/domain/use-cases/auth/DecodeToken';
 
 interface ProviderDependencies {
-  user: SequelizeUserProvider;
+  user: FirebaseUserProvider;
+  auth: FirebaseAuthProvider;
 }
 
 interface RepositoryDependencies {
-  user: SquelizeUserRepository;
+  user: UserRepository;
+  auth: AuthRepository;
 }
 
 interface UseCaseDependencies {
-  createUser: CreateUser;
+  findUserById: FindUserById;
+  verifyToken: VerifyToken;
+  decodeToken: DecodeToken;
 }
 
 export default class AppContext {
@@ -21,13 +29,17 @@ export default class AppContext {
 
   constructor() {
     this.providers = {
-      user: new SequelizeUserProvider(),
+      user: new FirebaseUserProvider(),
+      auth: new FirebaseAuthProvider(),
     };
     this.repositories = {
-      user: new SquelizeUserRepository(this.providers.user),
+      user: new UserRepository(this.providers.user),
+      auth: new AuthRepository(this.providers.auth),
     };
     this.useCases = {
-      createUser: new CreateUser(this.repositories.user),
+      findUserById: new FindUserById(this.repositories.user),
+      verifyToken: new VerifyToken(this.repositories.auth),
+      decodeToken: new DecodeToken(this.repositories.auth),
     }
   }
 }

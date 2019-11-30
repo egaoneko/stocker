@@ -7,7 +7,6 @@ dotenvFlow.config();
 import Koa from 'koa';
 import logger from 'koa-logger';
 import koaBody from 'koa-body';
-import passport from 'koa-passport';
 import { Server as HttpServer } from 'http';
 import {
   Context,
@@ -15,14 +14,13 @@ import {
 } from 'koa';
 
 // db
-import sequelize, { associate } from './sequelize';
-
-// config
-import './config/passport';
+import sequelize, { associate } from './libs/sequelize';
 
 // routes
 import ping from './routes/ping';
-import oauth from './routes/oauth';
+
+// firebase
+import firebase from './libs/firebase';
 
 export interface IState {
 }
@@ -65,8 +63,9 @@ export default class Server {
     // return serverless(this.app);
   }
 
-  private initialize(): void {
-    this.initializeDb();
+  private async initialize(): Promise<void> {
+    await this.initializeDb();
+    await this.initializeFirebase();
   }
 
   private middleware(): void {
@@ -80,12 +79,10 @@ export default class Server {
       }
     });
     this.app.use(koaBody());
-    this.app.use(passport.initialize());
   }
 
   private route(): void {
     this.app.use(ping.routes());
-    this.app.use(oauth.routes());
   }
 
   private async ensureDb(): Promise<void> {
@@ -109,8 +106,8 @@ export default class Server {
     });
   }
 
-  private initializeDb(): void {
-    sequelize.authenticate().then(
+  private async initializeDb(): Promise<void> {
+    return sequelize.authenticate().then(
       () => {
         console.info('DB Connection has been established');
       },
@@ -118,5 +115,8 @@ export default class Server {
         console.error('Unable to connect to the DB:', err);
       }
     );
+  }
+
+  private async initializeFirebase(): Promise<void> {
   }
 }

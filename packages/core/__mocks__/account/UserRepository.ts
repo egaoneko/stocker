@@ -3,29 +3,39 @@ import {
   of
 } from 'rxjs';
 import User from '../../src/domain/entities/account/User';
+import { DEFAULT_USER } from '../constant';
 
 const cache: Map<string, User> = new Map();
-let id: number = 0;
+reset();
 
 export function reset(): void {
-  id = 0;
   cache.clear();
+
+  const user: User = DEFAULT_USER;
+  cache.set(user.id, user)
 }
 
-export const mockCreateUser = jest.fn().mockImplementation((user: User): Observable<[User, boolean]> => {
-  if (cache.has(user.email)) {
-    return of([cache.get(user.email) as User, false]);
-  } else {
-    user.id = id.toString();
-    id += 1;
-    cache.set(user.email, user);
-    return of([user, true]);
+let currentUser: User | null;
+
+export function setCurrentUser(user: User | null): void {
+  currentUser = user
+}
+
+export const mockFindUserById = jest.fn().mockImplementation((id: string): Observable<User | null> => {
+  if (!cache.has(id)) {
+    return of(null);
   }
+  return of(cache.get(id) as User);
+});
+
+export const mockGetCurrentUser = jest.fn().mockImplementation((): Observable<User | null> => {
+  return of(currentUser);
 });
 
 const mockUserRepository = jest.fn().mockImplementation(() => {
   return {
-    createUser: mockCreateUser,
+    findUserById: mockFindUserById,
+    getCurrentUser: mockGetCurrentUser,
   };
 });
 

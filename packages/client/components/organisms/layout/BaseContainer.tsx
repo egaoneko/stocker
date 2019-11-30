@@ -1,4 +1,4 @@
-import '../../../styles/antd.less';
+import '../../../styled/antd.less';
 import React from 'react';
 /** @jsx jsx */
 import {

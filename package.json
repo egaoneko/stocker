@@ -9,9 +9,11 @@
     "start:client": "lerna run dev --stream --scope @stocker/client",
     "start:server": "lerna run start --stream --scope @stocker/server",
     "migrate:local": "lerna run migrate:local --stream --scope @stocker/server",
+    "test": "lerna run test --stream",
     "test:core": "lerna run test --stream --scope @stocker/core",
     "test:crawler": "lerna run test --stream --scope @stocker/crawler",
-    "test:server": "lerna run test --stream --scope @stocker/server"
+    "test:server": "lerna run test --stream --scope @stocker/server",
+    "test:client": "lerna run test --stream --scope @stocker/client"
   },
   "devDependencies": {
     "lerna": "^3.19.0"
