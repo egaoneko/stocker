@@ -44,4 +44,10 @@ describe('UserRepository', () => {
       repository.getCurrentUser().subscribe()
     }).toThrowError('getCurrentUser is not supported.');
   });
+
+  test('throw exception without getCurrentUserToken', () => {
+    expect(() => {
+      repository.getCurrentUserToken().subscribe()
+    }).toThrowError('getCurrentUserToken is not supported.');
+  });
 });

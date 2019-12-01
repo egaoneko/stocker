@@ -6,7 +6,7 @@ interface PropsType {
   children?: React.ReactNode;
 }
 
-export default function FullLayoutTemplate({ children }: PropsType): JSX.Element {
+const FullLayoutTemplate: (props: PropsType) => JSX.Element = ({ children }: PropsType): JSX.Element => {
   return (
     <FullLayout>
       <FullContent>
@@ -14,4 +14,6 @@ export default function FullLayoutTemplate({ children }: PropsType): JSX.Element
       </FullContent>
     </FullLayout>
   );
-}
+};
+
+export default FullLayoutTemplate;

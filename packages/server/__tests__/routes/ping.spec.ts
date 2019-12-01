@@ -1,12 +1,16 @@
 import * as supertest from 'supertest';
 import Server from '../../src/Server';
 
-const server: Server = new Server();
-server.listen(8080);
 
-const request: supertest.SuperTest<supertest.Test> = supertest.agent(server.httpServer);
+const server: Server = new Server();
+let request: supertest.SuperTest<supertest.Test>;
 
 describe('Ping Route', () => {
+  beforeAll(async () => {
+    await server.listen(8080);
+    request = supertest.agent(server.httpServer);
+  });
+
   afterAll(() => server.close());
 
   test('ping', async () => {

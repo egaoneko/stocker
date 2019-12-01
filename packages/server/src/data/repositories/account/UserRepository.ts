@@ -20,4 +20,8 @@ export default class UserRepository implements UserRepositoryInterface {
   public getCurrentUser(): Observable<User | null> {
     throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'getCurrentUser is not supported.');
   }
+
+  public getCurrentUserToken(): Observable<string | null> {
+    throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'getCurrentUserToken is not supported.');
+  }
 }

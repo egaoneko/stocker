@@ -1,10 +1,11 @@
 import mockFirebaseUserProvider, {
   mockGetCurrentUser,
-  setCurrentUser
+  setCurrentUser,
+  mockGetCurrentUserToken,
+  setCurrentUserToken
 } from '../../../../__mocks__/account/FirebaseUserProivider';
 import UserRepository from '../../../../data/repositories/account/UserRepository';
 import User from '@stocker/core/lib/domain/entities/account/User';
-import { Role } from '@stocker/core/lib/constant/account';
 import { DEFAULT_USER } from '../../../../__mocks__/constant';
 
 describe('UserRepository', () => {
@@ -12,6 +13,13 @@ describe('UserRepository', () => {
 
   beforeEach(() => {
     mockGetCurrentUser.mockClear();
+    mockGetCurrentUserToken.mockClear();
+  });
+
+  test('throw exception without findUserById', () => {
+    expect(() => {
+      repository.findUserById('').subscribe()
+    }).toThrowError('findUserById is not supported.');
   });
 
   test('getCurrentUser', (done) => {
@@ -43,9 +51,29 @@ describe('UserRepository', () => {
       });
   });
 
-  test('throw exception without findUserById', () => {
-    expect(() => {
-      repository.findUserById('').subscribe()
-    }).toThrowError('findUserById is not supported.');
+  test('getCurrentUserToken', (done) => {
+    setCurrentUserToken('1234');
+
+    repository.getCurrentUserToken()
+      .subscribe((token: string | null) => {
+        if (!token) {
+          throw 'Invalid Token';
+        }
+
+        expect(mockGetCurrentUserToken).toHaveBeenCalledTimes(1);
+        expect(token).toEqual('1234');
+        done();
+      });
+  });
+
+  test('getCurrentUserToken with empty', (done) => {
+    setCurrentUserToken(null);
+
+    repository.getCurrentUserToken()
+      .subscribe((token: string | null) => {
+        expect(mockGetCurrentUserToken).toHaveBeenCalledTimes(1);
+        expect(token).toBeNull();
+        done();
+      });
   });
 });

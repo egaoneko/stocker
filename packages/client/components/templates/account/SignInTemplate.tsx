@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 /** @jsx jsx */
 import {
   jsx,
@@ -21,7 +21,7 @@ const logoImageUrl: string = 'images/logo_transparent.png';
 interface PropsType {
 }
 
-export default function SignInTemplate(): JSX.Element {
+const SignInTemplate: (props: PropsType) => JSX.Element = (): JSX.Element => {
   const uiConfig: firebaseui.auth.Config = {
     signInFlow: 'popup',
     signInSuccessUrl: '/',
@@ -52,7 +52,7 @@ export default function SignInTemplate(): JSX.Element {
       </CenterTemplate>
     </FullLayoutTemplate>
   );
-}
+};
 
 const container: SerializedStyles = css`
   width: 435px;
@@ -67,3 +67,5 @@ const logoContainer: SerializedStyles = css`
 const btnContainer: SerializedStyles = css`
   height: 95px;
 `;
+
+export default SignInTemplate;

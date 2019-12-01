@@ -11,9 +11,20 @@ export const mockGetCurrentUser = jest.fn().mockImplementation((): Observable<Us
   return of(currentUser);
 });
 
+let currentUserToken: string | null;
+
+export function setCurrentUserToken(token: string | null): void {
+  currentUserToken = token
+}
+
+export const mockGetCurrentUserToken = jest.fn().mockImplementation((): Observable<string | null> => {
+  return of(currentUserToken);
+});
+
 const mockFirebaseUserProvider = jest.fn().mockImplementation(() => {
   return {
     getCurrentUser: mockGetCurrentUser,
+    getCurrentUserToken: mockGetCurrentUserToken,
   };
 });
 

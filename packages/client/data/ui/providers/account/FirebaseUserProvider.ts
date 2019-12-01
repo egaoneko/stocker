@@ -4,7 +4,8 @@ import {
 } from 'rxjs';
 import User from '@stocker/core/lib/domain/entities/account/User';
 import firebase from '../../../../libs/firebase';
-import FirebaseUserMapper  from '../../mappers/account/FirebaseUserMapper';
+import FirebaseUserMapper from '../../mappers/account/FirebaseUserMapper';
+import { fromPromise } from 'rxjs/internal-compatibility';
 
 export default class FirebaseUserProvider {
   public getCurrentUser(): Observable<User | null> {
@@ -15,5 +16,15 @@ export default class FirebaseUserProvider {
     }
 
     return of(new FirebaseUserMapper().toEntity(user));
+  }
+
+  public getCurrentUserToken(): Observable<string | null> {
+    const user: firebase.User | null = firebase.auth().currentUser;
+
+    if (!user) {
+      return of(null);
+    }
+
+    return fromPromise(user.getIdToken().then((token: string): string => token));
   }
 }

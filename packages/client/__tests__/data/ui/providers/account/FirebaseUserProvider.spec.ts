@@ -22,4 +22,20 @@ describe('FirebaseUserProvider', () => {
       expect(user).toBeNull();
     }
   });
+
+  test('getCurrentUserToken', async () => {
+    const token: string | null = await provider.getCurrentUserToken().toPromise();
+
+    const user: firebase.User | null = firebase.auth().currentUser;
+    if (user) {
+      if (!token) {
+        throw 'Invalid token';
+      }
+
+      const t: string = await user.getIdToken();
+      expect(token).toEqual(t);
+    } else {
+      expect(token).toBeNull();
+    }
+  });
 });

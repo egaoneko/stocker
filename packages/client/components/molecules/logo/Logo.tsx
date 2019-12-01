@@ -2,7 +2,6 @@ import React, { CSSProperties } from 'react';
 /** @jsx jsx */
 import {
   jsx,
-  SerializedStyles,
 } from '@emotion/core';
 
 interface PropsType {
@@ -13,7 +12,7 @@ interface PropsType {
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export default function Logo(props: PropsType): JSX.Element {
+const Logo: (props: PropsType) => JSX.Element = (props: PropsType): JSX.Element => {
   const {
     width,
     height,
@@ -35,4 +34,6 @@ export default function Logo(props: PropsType): JSX.Element {
       }}
       onClick={onClick}/>
   );
-}
+};
+
+export default Logo;

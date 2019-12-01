@@ -6,22 +6,22 @@ import {
   SerializedStyles,
   Global,
 } from '@emotion/core';
-import BaseContainer from './BaseContainer';
+import BaseLayout from './BaseLayout';
 
 interface PropsType {
   children?: React.ReactNode;
 }
 
-export default function FullLayout({ children }: PropsType): JSX.Element {
+const FullLayout: (props: PropsType) => JSX.Element = ({ children }: PropsType): JSX.Element => {
   return (
-    <BaseContainer>
+    <BaseLayout>
       <Global
         styles={global}
       />
       {children}
-    </BaseContainer>
+    </BaseLayout>
   );
-}
+};
 
 const global: SerializedStyles = css`
   html,
@@ -31,3 +31,5 @@ const global: SerializedStyles = css`
     height: 100%;
   }
 `;
+
+export default FullLayout;
