@@ -20,4 +20,8 @@ export default class UserRepository implements UserRepositoryInterface {
   public getCurrentUser(): Observable<User | null> {
     return this.provider.getCurrentUser();
   }
+
+  public getCurrentUserToken(): Observable<string | null> {
+    return this.provider.getCurrentUserToken();
+  }
 }

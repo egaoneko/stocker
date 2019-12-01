@@ -8,11 +8,13 @@ interface PropsType {
 }
 
 const { Content } = Layout;
-export default function FullContent({ children }: PropsType): JSX.Element {
+const FullContent: (props: PropsType) => JSX.Element = ({ children }: PropsType): JSX.Element => {
 
   return (
     <Content>
       {children}
     </Content>
   );
-}
+};
+
+export default FullContent;

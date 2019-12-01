@@ -1,8 +1,14 @@
 import React from 'react';
 import SignInTemplate from '../components/templates/account/SignInTemplate';
 
-export default function SignIn(): JSX.Element {
+interface PropsType {
+}
+
+
+const SignIn: (props: PropsType) => JSX.Element = (): JSX.Element => {
   return (
     <SignInTemplate/>
   );
-}
+};
+
+export default SignIn;

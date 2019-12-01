@@ -12,7 +12,7 @@ import {
 } from 'antd';
 import Logo from '../../molecules/logo/Logo';
 import {
-  login,
+  signIn,
   main
 } from '../../../utils/router';
 
@@ -25,7 +25,7 @@ interface PropsType {
   selectedKey: string;
 }
 
-export default function HeaderNav({ selectedKey }: PropsType): JSX.Element {
+const HeaderNav: (props: PropsType) => JSX.Element = ({ selectedKey }: PropsType): JSX.Element => {
   return (
     <Header
       className="header"
@@ -37,7 +37,7 @@ export default function HeaderNav({ selectedKey }: PropsType): JSX.Element {
         style={styles.logo}
         onClick={main}
       />
-      <div css={avatar} onClick={login}>
+      <div css={avatar} onClick={signIn}>
         <Avatar icon="user"/>
       </div>
       <Menu
@@ -49,7 +49,7 @@ export default function HeaderNav({ selectedKey }: PropsType): JSX.Element {
       </Menu>
     </Header>
   );
-}
+};
 
 const avatar: SerializedStyles = css`
   cursor: pointer;
@@ -73,3 +73,5 @@ const styles: { [key: string]: CSSProperties } = {
     backgroundColor: '#fff',
   },
 };
+
+export default HeaderNav;

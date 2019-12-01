@@ -4,6 +4,6 @@ export const main: () => void = () => {
   Router.push('/');
 };
 
-export const login: () => void = () => {
+export const signIn: () => void = () => {
   Router.push('/sign-in');
 };

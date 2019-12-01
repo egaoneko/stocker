@@ -11,13 +11,13 @@ interface PropsType {
   children?: React.ReactNode;
 }
 
-export default function CenterContainer({ children }: PropsType): JSX.Element {
+const CenterContainer: (props: PropsType) => JSX.Element = ({ children }: PropsType): JSX.Element => {
   return (
     <div css={container}>
       {children}
     </div>
   );
-}
+};
 
 const container: SerializedStyles = css`
   width: 100%;
@@ -26,3 +26,5 @@ const container: SerializedStyles = css`
   justify-content: center;
   align-items: center;
 `;
+
+export default CenterContainer;

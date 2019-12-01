@@ -4,14 +4,13 @@ import dotenvFlow from 'dotenv-flow';
 dotenvFlow.config();
 
 // koa
-import Koa from 'koa';
-import logger from 'koa-logger';
-import koaBody from 'koa-body';
-import { Server as HttpServer } from 'http';
-import {
+import Koa, {
   Context,
   Next
 } from 'koa';
+import logger from 'koa-logger';
+import koaBody from 'koa-body';
+import { Server as HttpServer } from 'http';
 
 // db
 import sequelize, { associate } from './libs/sequelize';
@@ -39,12 +38,10 @@ export default class Server {
   constructor() {
     associate();
     this.app = new Koa<IState, ICustom>();
-    this.middleware();
-    this.route();
-    this.initialize();
   }
 
-  public listen(port: number): HttpServer {
+  public async listen(port: number): Promise<HttpServer> {
+    await this.initialize();
     this._httpServer = this.app.listen(port);
     console.info(`Server is running on port ${port}`);
     return this.httpServer;
@@ -66,9 +63,11 @@ export default class Server {
   private async initialize(): Promise<void> {
     await this.initializeDb();
     await this.initializeFirebase();
+    await this.middleware();
+    await this.route();
   }
 
-  private middleware(): void {
+  private async middleware(): Promise<void> {
     this.app.use(logger());
     this.app.use(async (context: Context, next: Next) => {
       try {
@@ -81,7 +80,7 @@ export default class Server {
     this.app.use(koaBody());
   }
 
-  private route(): void {
+  private async route(): Promise<void> {
     this.app.use(ping.routes());
   }
 

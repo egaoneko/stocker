@@ -2,12 +2,13 @@ import React from 'react';
 import FullLayout from '../../organisms/layout/FullLayout';
 import HeaderNav from '../../organisms/layout/HeaderNav';
 import FullContent from '../../organisms/layout/FullContent';
+import { observer } from 'mobx-react';
 
 interface PropsType {
   children?: React.ReactNode;
 }
 
-export default function HeaderLayoutTemplate({ children }: PropsType): JSX.Element {
+const HeaderLayoutTemplate: (props: PropsType) => JSX.Element = observer(({ children }: PropsType): JSX.Element => {
   return (
     <FullLayout>
       <HeaderNav selectedKey={'stocker'}/>
@@ -16,4 +17,6 @@ export default function HeaderLayoutTemplate({ children }: PropsType): JSX.Eleme
       </FullContent>
     </FullLayout>
   );
-}
+});
+
+export default HeaderLayoutTemplate;

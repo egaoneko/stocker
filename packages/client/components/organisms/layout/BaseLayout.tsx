@@ -14,14 +14,16 @@ interface PropsType {
   children?: React.ReactNode;
 }
 
-export default function BaseContainer({ children }: PropsType): JSX.Element {
+const BaseLayout: (props: PropsType) => JSX.Element = ({ children }: PropsType): JSX.Element => {
   return (
     <Layout css={layout}>
       {children}
     </Layout>
   );
-}
+};
 
 const layout: SerializedStyles = css`
   height: 100%;
 `;
+
+export default BaseLayout;

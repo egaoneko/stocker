@@ -1,12 +1,10 @@
 import { async } from 'rxjs/internal/scheduler/async';
 import mockUserRepository, {
   mockGetCurrentUser,
-  reset,
   setCurrentUser
 } from '../../../../__mocks__/account/UserRepository';
 import { queue } from 'rxjs/internal/scheduler/queue';
 import User from '../../../../src/domain/entities/account/User';
-import { Role } from '../../../../src/constant/account';
 import GetCurrentUser from '../../../../src/domain/use-cases/account/GetCurrentUser';
 import { DEFAULT_USER } from '../../../../__mocks__/constant';
 
@@ -14,7 +12,6 @@ describe('GetCurrentUser UseCase', () => {
   beforeEach(() => {
     mockUserRepository.mockClear();
     mockGetCurrentUser.mockClear();
-    reset();
   });
 
   test('GetCurrentUser is called', (done) => {
