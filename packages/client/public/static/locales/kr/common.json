@@ -1,0 +1,5 @@
+{
+  "greet": "안녕, 세계!",
+  "error-with-status": "{{statusCode}} 오류가 서버에서 발생하였습니다.",
+  "error-without-status": "오류가 서버에서 발생하였습니다."
+}

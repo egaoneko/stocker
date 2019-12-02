@@ -1,14 +1,14 @@
 // koa
-import Koa, {
-  Context,
-} from 'koa';
-import logger from 'koa-logger';
-import koaBody from 'koa-body';
-import mount from 'koa-mount';
+import express, { Express } from 'express';
+import bodyParser from 'body-parser';
 import { Server as HttpServer } from 'http';
 
 // next
 import next from 'next';
+
+// i18n
+import nextI18NextMiddleware from 'next-i18next/middleware';
+import nextI18Next from './i18n';
 
 export interface IState {
 }
@@ -21,11 +21,11 @@ export default class Server {
     return this._httpServer;
   }
 
-  private app: Koa;
+  private app: Express;
   private _httpServer!: HttpServer;
 
   constructor() {
-    this.app = new Koa<IState, ICustom>();
+    this.app = express();
   }
 
   public async listen(port: number): Promise<HttpServer> {
@@ -46,28 +46,23 @@ export default class Server {
 
   private async initialize(): Promise<void> {
     await this.middleware();
-    await this.route();
   }
 
   private async middleware(): Promise<void> {
-    this.app.use(logger());
-    this.app.use(koaBody());
-  }
+    this.app.use(bodyParser());
 
-  private async route(): Promise<void> {
-    await this.mountNext();
-  }
-
-  private async mountNext(): Promise<void> {
+    // next
     const isDev: boolean = process.env.SERVER_ENV !== 'production';
     const nextApp = next({ dev: isDev });
 
     await nextApp.prepare();
     const handle = nextApp.getRequestHandler();
 
-    this.app.use(mount('/', async (ctx: Context) => {
-      await handle(ctx.req, ctx.res);
-      ctx.respond = false;
-    }));
+    // i18n
+    this.app.use(nextI18NextMiddleware(nextI18Next));
+
+    this.app.get('*', (req, res) => {
+      return handle(req, res)
+    });
   }
 }

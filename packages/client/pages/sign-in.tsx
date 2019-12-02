@@ -4,7 +4,6 @@ import SignInTemplate from '../components/templates/account/SignInTemplate';
 interface PropsType {
 }
 
-
 const SignIn: (props: PropsType) => JSX.Element = (): JSX.Element => {
   return (
     <SignInTemplate/>

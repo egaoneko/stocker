@@ -16,6 +16,7 @@ import {
 } from '../utils/auth';
 import FirebaseUserMapper from '../data/ui/mappers/account/FirebaseUserMapper';
 import { IS_SERVER } from '../constant/common';
+import { appWithTranslation } from '../i18n';
 
 export interface MyAppProps extends AppInitialProps {
   initialRootStoreState: object;
@@ -28,7 +29,7 @@ export interface MyAppState {
   rootStore: RootStore;
 }
 
-export default class MyApp
+class MyApp
   extends App<MyAppProps, MyAppContextProps, MyAppState> {
 
   state: MyAppState = {
@@ -83,3 +84,5 @@ export default class MyApp
     });
   }
 }
+
+export default appWithTranslation(MyApp);

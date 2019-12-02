@@ -8,7 +8,7 @@ interface PropsType {
   children?: React.ReactNode;
 }
 
-const HeaderLayoutTemplate: (props: PropsType) => JSX.Element = observer(({ children }: PropsType): JSX.Element => {
+const HeaderLayoutTemplate: (props: PropsType) => JSX.Element = ({ children }: PropsType): JSX.Element => {
   return (
     <FullLayout>
       <HeaderNav selectedKey={'stocker'}/>
@@ -17,6 +17,6 @@ const HeaderLayoutTemplate: (props: PropsType) => JSX.Element = observer(({ chil
       </FullContent>
     </FullLayout>
   );
-});
+};
 
-export default HeaderLayoutTemplate;
+export default observer(HeaderLayoutTemplate);

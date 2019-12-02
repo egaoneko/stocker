@@ -36,7 +36,7 @@ export const auth = (ctx: NextPageContext): string | null => {
 };
 
 export interface AuthProps {
-  token: string | null;
+  token?: string | null;
 }
 
 export function withAuthSync<T = {}>(WrappedComponent: NextPage<T>): NextPage<T & AuthProps> {
