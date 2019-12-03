@@ -1,4 +1,5 @@
 import mockFirebaseUserProvider, {
+  mockCreateUser,
   mockGetCurrentUser,
   setCurrentUser,
   mockGetCurrentUserToken,
@@ -12,6 +13,7 @@ describe('UserRepository', () => {
   const repository: UserRepository = new UserRepository((new mockFirebaseUserProvider()) as any);
 
   beforeEach(() => {
+    mockCreateUser.mockClear();
     mockGetCurrentUser.mockClear();
     mockGetCurrentUserToken.mockClear();
   });
@@ -20,6 +22,16 @@ describe('UserRepository', () => {
     expect(() => {
       repository.findUserById('').subscribe()
     }).toThrowError('findUserById is not supported.');
+  });
+
+  test('createUser', (done) => {
+    repository.createUser(DEFAULT_USER)
+      .subscribe((success: boolean) => {
+        expect(mockCreateUser).toHaveBeenCalledTimes(1);
+        expect(mockCreateUser).toBeCalledWith(DEFAULT_USER);
+        expect(success).toBeTruthy();
+        done();
+      });
   });
 
   test('getCurrentUser', (done) => {

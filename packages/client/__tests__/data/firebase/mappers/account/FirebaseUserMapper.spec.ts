@@ -1,6 +1,6 @@
 import firebase from '../../../../../libs/firebase';
 import User from '@stocker/core/lib/domain/entities/account/User';
-import FirebaseUserMapper from '../../../../../data/ui/mappers/account/FirebaseUserMapper';
+import FirebaseUserMapper from '../../../../../data/firebase/mappers/account/FirebaseUserMapper';
 import { DEFAULT_USER } from '../../../../../__mocks__/constant';
 
 describe('FirebaseUserMapper', () => {

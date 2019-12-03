@@ -39,6 +39,12 @@ describe('UserRepository', () => {
       });
   });
 
+  test('throw exception without createUser', () => {
+    expect(() => {
+      repository.createUser(DEFAULT_USER).subscribe()
+    }).toThrowError('createUser is not supported.');
+  });
+
   test('throw exception without getCurrentUser', () => {
     expect(() => {
       repository.getCurrentUser().subscribe()

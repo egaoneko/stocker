@@ -14,7 +14,7 @@ import {
   signedIn,
   signedOut
 } from '../utils/auth';
-import FirebaseUserMapper from '../data/ui/mappers/account/FirebaseUserMapper';
+import FirebaseUserMapper from '../data/firebase/mappers/account/FirebaseUserMapper';
 import { IS_SERVER } from '../constant/common';
 import { appWithTranslation } from '../i18n';
 

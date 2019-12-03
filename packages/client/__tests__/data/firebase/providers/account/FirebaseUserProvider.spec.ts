@@ -1,10 +1,24 @@
 import User from '@stocker/core/lib/domain/entities/account/User';
-import FirebaseUserProvider from '../../../../../data/ui/providers/account/FirebaseUserProvider';
-import { DEFAULT_USER } from '../../../../../__mocks__/constant';
+import FirebaseUserProvider from '../../../../../data/firebase/providers/account/FirebaseUserProvider';
+import {
+  DEFAULT_USER,
+} from '../../../../../__mocks__/constant';
 import firebase from '../../../../../libs/firebase';
 
 describe('FirebaseUserProvider', () => {
   const provider: FirebaseUserProvider = new FirebaseUserProvider();
+
+  test('createUser', async () => {
+    const success: boolean = await provider.createUser(DEFAULT_USER).toPromise();
+    expect(success).toBeTruthy();
+
+    const userRef: firebase.database.Reference = firebase.database().ref('users/' + DEFAULT_USER.id);
+    const dataSnapShot: firebase.database.DataSnapshot = await userRef.once('value');
+    expect(dataSnapShot.hasChildren()).toBeTruthy();
+    const err: any = await userRef.remove();
+    expect(err).toBeFalsy();
+  });
+
 
   test('getCurrentUser', async () => {
     const user: User | null = await provider.getCurrentUser().toPromise();
