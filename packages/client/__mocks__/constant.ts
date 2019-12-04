@@ -12,3 +12,6 @@ export const DEFAULT_USER: User = new User(
   DEFAULT_NAME,
   DEFAULT_ROLE
 );
+
+DEFAULT_USER.photo = 'https://lh3.googleusercontent.com/a-/AAuE7mByJpaRDgD3vePPsPY7_Em67lncziXtxobBNGvQ';
+DEFAULT_USER.provider = 'google.com';

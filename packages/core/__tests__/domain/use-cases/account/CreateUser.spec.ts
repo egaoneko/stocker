@@ -22,7 +22,7 @@ describe('CreateUser UseCase', () => {
     const user: User = new User('1234', 'test@test.com', 'test', Role.USER);
 
     apply(useCase, (it: CreateUser) => it.user = user)
-      .run(async, queue)
+      .runOnce(async, queue)
       .subscribe((success: boolean) => {
         expect(mockCreateUser).toHaveBeenCalledTimes(1);
         expect(success).toBeTruthy();
@@ -36,7 +36,7 @@ describe('CreateUser UseCase', () => {
 
     expect(() => {
       apply(useCase, () => {})
-        .run(async, queue)
+        .runOnce(async, queue)
     }).toThrowError('Invalid params in UseCase');
   });
 
@@ -47,7 +47,7 @@ describe('CreateUser UseCase', () => {
 
     expect(() => {
       apply(useCase, (it: CreateUser) => it.user = user)
-        .run(async, queue)
+        .runOnce(async, queue)
     }).toThrowError('Invalid params in UseCase');
   });
 
@@ -58,7 +58,7 @@ describe('CreateUser UseCase', () => {
 
     expect(() => {
       apply(useCase, (it: CreateUser) => it.user = user)
-        .run(async, queue)
+        .runOnce(async, queue)
     }).toThrowError('Invalid params in UseCase');
   });
 
@@ -69,18 +69,18 @@ describe('CreateUser UseCase', () => {
 
     expect(() => {
       apply(useCase, (it: CreateUser) => it.user = user)
-        .run(async, queue)
+        .runOnce(async, queue)
     }).toThrowError('Invalid params in UseCase');
   });
 
   test('throw exception without invalid role', () => {
     const repository = new mockUserRepository();
     const useCase: CreateUser = new CreateUser(repository);
-    const user: User = new User('1234', 'test@test.com', 'test', -1);
+    const user: User = new User('1234', 'test@test.com', 'test', '' as any);
 
     expect(() => {
       apply(useCase, (it: CreateUser) => it.user = user)
-        .run(async, queue)
+        .runOnce(async, queue)
     }).toThrowError('Invalid params in UseCase');
   });
 });

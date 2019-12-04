@@ -11,9 +11,13 @@ describe('FirebaseUserMapper', () => {
       uid: DEFAULT_USER.id,
       email: DEFAULT_USER.email,
       displayName: DEFAULT_USER.name,
-    } as firebase.User);
+      photoURL: DEFAULT_USER.photo,
+      providerId: DEFAULT_USER.provider,
+    } as any);
     expect(user.id).toEqual(DEFAULT_USER.id);
     expect(user.email).toEqual(DEFAULT_USER.email);
     expect(user.name).toEqual(DEFAULT_USER.name);
+    expect(user.photo).toEqual(DEFAULT_USER.photo);
+    expect(user.provider).toEqual(DEFAULT_USER.provider);
   });
 });

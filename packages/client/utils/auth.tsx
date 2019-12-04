@@ -8,6 +8,10 @@ import {
   NextPageContext
 } from 'next';
 import { IS_SERVER } from '../constant/common';
+import { CONTEXT } from '../constant';
+import { async } from 'rxjs/internal/scheduler/async';
+import { queue } from 'rxjs/internal/scheduler/queue';
+import User from '@stocker/core/lib/domain/entities/account/User';
 
 export const signedIn: (token: string) => void = (token: string): void => {
   cookie.set('S_TOKEN', token, { expires: 1 });
@@ -50,6 +54,14 @@ export function withAuthSync<T = {}>(WrappedComponent: NextPage<T>): NextPage<T 
 
     useEffect(() => {
       window.addEventListener('storage', syncSignOut);
+      CONTEXT.useCases.getCurrentUser
+        .runOnce(async, queue)
+        .subscribe((user: User | null) => {
+          if (user) {
+            return;
+          }
+          Router.push('/sign-in');
+        });
 
       return () => {
         window.removeEventListener('storage', syncSignOut);

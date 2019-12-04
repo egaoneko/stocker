@@ -75,7 +75,9 @@ class MyApp
 
       if (fbUser) {
         user = new FirebaseUserMapper().toEntity(fbUser);
-        CONTEXT.useCases.getCurrentUserToken.run(async, queue).subscribe((token: string | null) => token && signedIn(token));
+        CONTEXT.useCases.getCurrentUserToken
+          .runOnce(async, queue)
+          .subscribe((token: string | null) => token && signedIn(token));
       } else {
         signedOut();
       }

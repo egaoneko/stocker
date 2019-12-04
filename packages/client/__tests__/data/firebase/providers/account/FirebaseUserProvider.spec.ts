@@ -8,7 +8,7 @@ import firebase from '../../../../../libs/firebase';
 describe('FirebaseUserProvider', () => {
   const provider: FirebaseUserProvider = new FirebaseUserProvider();
 
-  test('createUser', async () => {
+  test.skip('createUser', async () => {
     const success: boolean = await provider.createUser(DEFAULT_USER).toPromise();
     expect(success).toBeTruthy();
 
@@ -32,6 +32,8 @@ describe('FirebaseUserProvider', () => {
       expect(user.email).toEqual(DEFAULT_USER.email);
       expect(user.name).toEqual(DEFAULT_USER.name);
       expect(user.role).toEqual(DEFAULT_USER.role);
+      expect(user.photo).toEqual(DEFAULT_USER.photo);
+      expect(user.provider).toEqual(DEFAULT_USER.provider);
     } else {
       expect(user).toBeNull();
     }

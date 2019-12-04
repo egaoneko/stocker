@@ -1,4 +1,5 @@
 import {
+  AsyncSubject,
   Observable,
   of
 } from 'rxjs';
@@ -26,6 +27,8 @@ export default class FirebaseUserProvider {
                     email: user.email,
                     name: user.name,
                     role: user.role,
+                    photo: user.photo,
+                    provider: user.provider,
                   })
                   .then((err: any): boolean => {
                     if (err) {
@@ -42,13 +45,16 @@ export default class FirebaseUserProvider {
   }
 
   public getCurrentUser(): Observable<User | null> {
-    const user: firebase.User | null = firebase.auth().currentUser;
-
-    if (!user) {
-      return of(null);
-    }
-
-    return of(new FirebaseUserMapper().toEntity(user));
+    const subject: AsyncSubject<User | null> = new AsyncSubject();
+    firebase.auth().onAuthStateChanged((user: firebase.User | null) => {
+      if (!user) {
+        subject.next(null);
+      } else {
+        subject.next(new FirebaseUserMapper().toEntity(user));
+      }
+      subject.complete();
+    });
+    return subject;
   }
 
   public getCurrentUserToken(): Observable<string | null> {

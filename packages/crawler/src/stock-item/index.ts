@@ -10,5 +10,5 @@ import { DEFAULT_AXIOS_INSTANCE } from '../constant';
 
 export function crawlStockItems(): Observable<StockItem[]> {
   const StockItemApplication: StockItemContext = new StockItemContext(DEFAULT_AXIOS_INSTANCE);
-  return StockItemApplication.useCases.crawlStockItems.run(async, queue);
+  return StockItemApplication.useCases.crawlStockItems.runOnce(async, queue);
 }

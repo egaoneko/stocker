@@ -26,7 +26,7 @@ const SignIn: (props: PropsType) => JSX.Element = (): JSX.Element => {
           apply<CreateUser>(
             CONTEXT.useCases.createUser,
             (it: CreateUser) => it.user = new FirebaseUserMapper().toEntity(credential.user as firebase.User)
-          ).run(async, queue).subscribe(() => {
+          ).runOnce(async, queue).subscribe(() => {
             Router.push('/');
           });
         }

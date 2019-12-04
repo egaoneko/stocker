@@ -20,7 +20,7 @@ describe('GetCurrentUser UseCase', () => {
 
     setCurrentUser(DEFAULT_USER);
 
-    useCase.run(async, queue)
+    useCase.runOnce(async, queue)
       .subscribe((user: User | null) => {
         if (!user) {
           throw 'Can not find user';
@@ -41,7 +41,7 @@ describe('GetCurrentUser UseCase', () => {
 
     setCurrentUser(null);
 
-    useCase.run(async, queue)
+    useCase.runOnce(async, queue)
       .subscribe((user: User | null) => {
         expect(mockGetCurrentUser).toHaveBeenCalledTimes(1);
         expect(user).toBeNull();
