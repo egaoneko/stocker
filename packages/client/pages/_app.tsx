@@ -14,7 +14,7 @@ import {
   signedIn,
   signedOut
 } from '../utils/auth';
-import FirebaseUserMapper from '../data/ui/mappers/account/FirebaseUserMapper';
+import FirebaseUserMapper from '../data/firebase/mappers/account/FirebaseUserMapper';
 import { IS_SERVER } from '../constant/common';
 import { appWithTranslation } from '../i18n';
 
@@ -75,7 +75,9 @@ class MyApp
 
       if (fbUser) {
         user = new FirebaseUserMapper().toEntity(fbUser);
-        CONTEXT.useCases.getCurrentUserToken.run(async, queue).subscribe((token: string | null) => token && signedIn(token));
+        CONTEXT.useCases.getCurrentUserToken
+          .runOnce(async, queue)
+          .subscribe((token: string | null) => token && signedIn(token));
       } else {
         signedOut();
       }

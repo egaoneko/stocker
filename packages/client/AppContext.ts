@@ -1,7 +1,8 @@
-import FirebaseUserProvider from './data/ui/providers/account/FirebaseUserProvider';
+import FirebaseUserProvider from './data/firebase/providers/account/FirebaseUserProvider';
 import UserRepository from './data/repositories/account/UserRepository';
 import GetCurrentUser from '@stocker/core/lib/domain/use-cases/account/GetCurrentUser';
 import GetCurrentUserToken from '@stocker/core/lib/domain/use-cases/account/GetCurrentUserToken';
+import CreateUser from '@stocker/core/lib/domain/use-cases/account/CreateUser';
 
 interface ProviderDependencies {
   user: FirebaseUserProvider;
@@ -12,6 +13,7 @@ interface RepositoryDependencies {
 }
 
 interface UseCaseDependencies {
+  createUser: CreateUser;
   getCurrentUser: GetCurrentUser;
   getCurrentUserToken: GetCurrentUserToken;
 }
@@ -29,6 +31,7 @@ export default class AppContext {
       user: new UserRepository(this.providers.user),
     };
     this.useCases = {
+      createUser: new CreateUser(this.repositories.user),
       getCurrentUser: new GetCurrentUser(this.repositories.user),
       getCurrentUserToken: new GetCurrentUserToken(this.repositories.user),
     }

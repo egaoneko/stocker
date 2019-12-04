@@ -18,7 +18,7 @@ describe('GetCurrentUserToken UseCase', () => {
 
     setCurrentUserToken('1234');
 
-    useCase.run(async, queue)
+    useCase.runOnce(async, queue)
       .subscribe((token: string | null) => {
         if (!token) {
           throw 'Can not find user token';
@@ -36,7 +36,7 @@ describe('GetCurrentUserToken UseCase', () => {
 
     setCurrentUserToken(null);
 
-    useCase.run(async, queue)
+    useCase.runOnce(async, queue)
       .subscribe((token: string | null) => {
         expect(mockGetCurrentUserToken).toHaveBeenCalledTimes(1);
         expect(token).toBeNull();

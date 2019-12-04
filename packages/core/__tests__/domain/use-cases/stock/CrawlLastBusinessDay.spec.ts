@@ -12,7 +12,7 @@ describe('CrawlLastBusinessDay UseCase', () => {
   test('crawlLastBusinessDay is called', () => {
     const repository = new mockStockRepository();
     const useCase: CrawlLastBusinessDay = new CrawlLastBusinessDay(repository);
-    useCase.run(async, queue);
+    useCase.runOnce(async, queue);
     expect(mockCrawlLastBusinessDay).toHaveBeenCalledTimes(1);
   });
 });

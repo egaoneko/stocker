@@ -19,18 +19,10 @@ import { main } from '../../../utils/router';
 const logoImageUrl: string = 'images/logo_transparent.png';
 
 interface PropsType {
+  uiConfig: firebaseui.auth.Config;
 }
 
-const SignInTemplate: (props: PropsType) => JSX.Element = (): JSX.Element => {
-  const uiConfig: firebaseui.auth.Config = {
-    signInFlow: 'popup',
-    signInSuccessUrl: '/',
-    signInOptions: [
-      firebase.auth.EmailAuthProvider.PROVIDER_ID,
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    ]
-  };
-
+const SignInTemplate: (props: PropsType) => JSX.Element = ({uiConfig}: PropsType): JSX.Element => {
   return (
     <FullLayoutTemplate>
       <CenterTemplate>

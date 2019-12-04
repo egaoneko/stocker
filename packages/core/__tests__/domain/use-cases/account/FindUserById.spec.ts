@@ -21,7 +21,7 @@ describe('FindUserById UseCase', () => {
     const useCase: FindUserById = new FindUserById(repository);
 
     apply(useCase, (it: FindUserById) => it.id = DEFAULT_USER.id)
-      .run(async, queue)
+      .runOnce(async, queue)
       .subscribe((user: User | null) => {
         if (!user) {
           throw 'Can not find user';
@@ -41,7 +41,7 @@ describe('FindUserById UseCase', () => {
     const useCase: FindUserById = new FindUserById(repository);
 
     apply(useCase, (it: FindUserById) => it.id = '0')
-      .run(async, queue)
+      .runOnce(async, queue)
       .subscribe((user: User | null) => {
         expect(mockFindUserById).toHaveBeenCalledTimes(1);
         expect(user).toBeNull();
@@ -56,7 +56,7 @@ describe('FindUserById UseCase', () => {
     expect(() => {
       apply(useCase, () => {
       })
-        .run(async, queue)
+        .runOnce(async, queue)
     }).toThrowError('Invalid params in UseCase');
   });
 });

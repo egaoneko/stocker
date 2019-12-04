@@ -8,7 +8,10 @@ export const DEFAULT_ROLE: Role = Role.USER;
 
 export const DEFAULT_USER: User = new User(
   DEFAULT_ID,
-  DEFAULT_NAME,
   DEFAULT_EMAIL,
+  DEFAULT_NAME,
   DEFAULT_ROLE
 );
+
+DEFAULT_USER.photo = 'https://lh3.googleusercontent.com/a-/AAuE7mByJpaRDgD3vePPsPY7_Em67lncziXtxobBNGvQ';
+DEFAULT_USER.provider = 'google.com';

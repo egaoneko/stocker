@@ -12,7 +12,7 @@ describe('CrawlStockItems UseCase', () => {
   test('crawlStockItems is called', () => {
     const repository = new mockStockItemRepository();
     const useCase: CrawlStockItems = new CrawlStockItems(repository);
-    useCase.run(async, queue);
+    useCase.runOnce(async, queue);
     expect(mockCrawlStockItems).toHaveBeenCalledTimes(1);
   });
 });

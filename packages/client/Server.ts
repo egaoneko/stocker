@@ -1,5 +1,9 @@
 // koa
-import express, { Express } from 'express';
+import express, {
+  Express,
+  Request,
+  Response
+} from 'express';
 import bodyParser from 'body-parser';
 import { Server as HttpServer } from 'http';
 
@@ -61,7 +65,7 @@ export default class Server {
     // i18n
     this.app.use(nextI18NextMiddleware(nextI18Next));
 
-    this.app.get('*', (req, res) => {
+    this.app.get('*', (req: Request, res: Response) => {
       return handle(req, res)
     });
   }

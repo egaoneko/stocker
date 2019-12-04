@@ -8,5 +8,5 @@ import StockContext from './StockContext';
 export function crawlLastBusinessDay(): Observable<LastBusinessDay> {
   const StockApplication: StockContext = new StockContext(DEFAULT_AXIOS_INSTANCE);
   return StockApplication.useCases.crawlLastBusinessDay
-    .run(async, queue);
+    .runOnce(async, queue);
 }

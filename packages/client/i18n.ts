@@ -3,7 +3,7 @@ import { IS_SERVER } from './constant/common';
 
 const NextI18NextInstance: NextI18Next = new NextI18Next({
   localePath: IS_SERVER ? 'public/static/locales' : 'static/locales',
-  // lng: 'kr',
+  lng: 'kr',
   preload: ['kr'],
   defaultLanguage: 'kr',
   otherLanguages: ['en'],

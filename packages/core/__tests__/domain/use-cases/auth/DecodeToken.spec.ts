@@ -17,7 +17,7 @@ describe('DecodeToken UseCase', () => {
     const useCase: DecodeToken = new DecodeToken(repository);
 
     apply(useCase, (it: DecodeToken) => it.token = 'valid')
-      .run(async, queue)
+      .runOnce(async, queue)
       .subscribe((decodedToken: {} | null) => {
         if (!decodedToken) {
           throw 'Token is invalid';
@@ -34,7 +34,7 @@ describe('DecodeToken UseCase', () => {
     const useCase: DecodeToken = new DecodeToken(repository);
 
     apply(useCase, (it: DecodeToken) => it.token = 'invalid')
-      .run(async, queue)
+      .runOnce(async, queue)
       .subscribe((decodedToken: {} | null) => {
         expect(mockDecodeToken).toHaveBeenCalledTimes(1);
         expect(decodedToken).toBeNull();
@@ -49,7 +49,7 @@ describe('DecodeToken UseCase', () => {
     expect(() => {
       apply(useCase, () => {
       })
-        .run(async, queue)
+        .runOnce(async, queue)
     }).toThrowError('Invalid params in UseCase');
   });
 });

@@ -17,7 +17,7 @@ describe('VerifyToken UseCase', () => {
     const useCase: VerifyToken = new VerifyToken(repository);
 
     apply(useCase, (it: VerifyToken) => it.token = 'valid')
-      .run(async, queue)
+      .runOnce(async, queue)
       .subscribe((valid: boolean) => {
         expect(mockVerifyToken).toHaveBeenCalledTimes(1);
         expect(valid).toBeTruthy();
@@ -30,7 +30,7 @@ describe('VerifyToken UseCase', () => {
     const useCase: VerifyToken = new VerifyToken(repository);
 
     apply(useCase, (it: VerifyToken) => it.token = 'invalid')
-      .run(async, queue)
+      .runOnce(async, queue)
       .subscribe((valid: boolean) => {
         expect(mockVerifyToken).toHaveBeenCalledTimes(1);
         expect(valid).toBeFalsy();
@@ -45,7 +45,7 @@ describe('VerifyToken UseCase', () => {
     expect(() => {
       apply(useCase, () => {
       })
-        .run(async, queue)
+        .runOnce(async, queue)
     }).toThrowError('Invalid params in UseCase');
   });
 });
