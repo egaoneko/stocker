@@ -1,10 +1,13 @@
 import Entity from '../Entity';
 import Market from '../market/Market';
+import { StockItemState } from '../../../enums/stock-item';
 
 export default class StockItem implements Entity {
+  public id?: string;
   public market?: Market;
   public gics?: string;
   public wics?: string;
+  public state: StockItemState = StockItemState.NONE;
 
   constructor(
     public code: string,

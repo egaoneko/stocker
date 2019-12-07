@@ -1,6 +1,6 @@
 import '../../../../__config__/firebase';
 import FirebaseAuthProvider from '../../../../../src/data/db/providers/auth/FirebaseAuthProvider';
-import { DEFAULT_USER } from '../../../../../__mocks__/constant';
+import { DEFAULT_USER } from '../../../../../__mocks__/account/constant';
 
 describe('FirebaseAuthProvider', () => {
   const provider: FirebaseAuthProvider = new FirebaseAuthProvider();

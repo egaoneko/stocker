@@ -7,7 +7,7 @@ import mockFirebaseUserProvider, {
 } from '../../../../__mocks__/account/FirebaseUserProivider';
 import UserRepository from '../../../../data/repositories/account/UserRepository';
 import User from '@stocker/core/lib/domain/entities/account/User';
-import { DEFAULT_USER } from '../../../../__mocks__/constant';
+import { DEFAULT_USER } from '../../../../__mocks__/account/constant';
 
 describe('UserRepository', () => {
   const repository: UserRepository = new UserRepository((new mockFirebaseUserProvider()) as any);
@@ -26,10 +26,16 @@ describe('UserRepository', () => {
 
   test('createUser', (done) => {
     repository.createUser(DEFAULT_USER)
-      .subscribe((success: boolean) => {
+      .subscribe(([user, success]: [User, boolean]) => {
         expect(mockCreateUser).toHaveBeenCalledTimes(1);
         expect(mockCreateUser).toBeCalledWith(DEFAULT_USER);
         expect(success).toBeTruthy();
+        expect(user.id).toBe(DEFAULT_USER.id);
+        expect(user.email).toBe(DEFAULT_USER.email);
+        expect(user.name).toBe(DEFAULT_USER.name);
+        expect(user.role).toBe(DEFAULT_USER.role);
+        expect(user.photo).toBe(DEFAULT_USER.photo);
+        expect(user.provider).toBe(DEFAULT_USER.provider);
         done();
       });
   });

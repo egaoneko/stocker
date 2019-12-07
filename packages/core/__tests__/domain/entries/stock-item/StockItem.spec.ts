@@ -1,5 +1,5 @@
 import StockItem from '../../../../src/domain/entities/stock-item/StockItem';
-import { KOSPI } from '../../../../src/constant/market';
+import { KOSPI } from '../../../../src/constants/market';
 
 describe('StockItem', () => {
   test('equal', () => {

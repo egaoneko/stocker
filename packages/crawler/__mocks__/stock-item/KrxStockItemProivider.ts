@@ -3,7 +3,7 @@ import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import {
   KOSPI,
   KOSDAQ
-} from '@stocker/core/lib/constant/market';
+} from '@stocker/core/lib/constants/market';
 
 export const mockKrxCrawlStockItems = jest.fn().mockImplementation(() => {
   const item1: StockItem = new StockItem('096770', 'SK이노베이션');

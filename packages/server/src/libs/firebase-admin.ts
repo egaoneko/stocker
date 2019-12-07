@@ -1,4 +1,4 @@
-import firebase from 'firebase-admin';
+import admin from 'firebase-admin';
 
 const {
   FIREBASE_DATABASE_URL,
@@ -7,8 +7,8 @@ const {
   FIREBASE_CLIENT_EMAIL,
 } = process.env as { [key: string]: string };
 
-firebase.initializeApp({
-  credential: firebase.credential.cert({
+admin.initializeApp({
+  credential: admin.credential.cert({
     projectId: FIREBASE_PROJECT_ID,
     clientEmail: FIREBASE_CLIENT_EMAIL,
     privateKey: FIREBASE_PRIVATE_KEY,
@@ -16,4 +16,4 @@ firebase.initializeApp({
   databaseURL: FIREBASE_DATABASE_URL,
 });
 
-export default firebase;
+export default admin;

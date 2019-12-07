@@ -5,7 +5,7 @@ import User from '../../entities/account/User';
 export default interface UserRepository extends Repository {
   findUserById(id: string): Observable<User | null>;
 
-  createUser(user: User): Observable<boolean>;
+  createUser(user: User): Observable<[User, boolean]>;
 
   getCurrentUser(): Observable<User | null>;
 

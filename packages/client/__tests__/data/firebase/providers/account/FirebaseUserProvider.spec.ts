@@ -2,14 +2,14 @@ import User from '@stocker/core/lib/domain/entities/account/User';
 import FirebaseUserProvider from '../../../../../data/firebase/providers/account/FirebaseUserProvider';
 import {
   DEFAULT_USER,
-} from '../../../../../__mocks__/constant';
+} from '../../../../../__mocks__/account/constant';
 import firebase from '../../../../../libs/firebase';
 
 describe('FirebaseUserProvider', () => {
   const provider: FirebaseUserProvider = new FirebaseUserProvider();
 
   test.skip('createUser', async () => {
-    const success: boolean = await provider.createUser(DEFAULT_USER).toPromise();
+    const [_, success]: [User, boolean] = await provider.createUser(DEFAULT_USER).toPromise();
     expect(success).toBeTruthy();
 
     const userRef: firebase.database.Reference = firebase.database().ref('users/' + DEFAULT_USER.id);

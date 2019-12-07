@@ -1,6 +1,6 @@
-import { KOSPI } from '../../src/constant/market';
-import { KOSDAQ } from '../../src/constant/market';
-import { KOR } from '../../src/constant/nation';
+import { KOSPI } from '../../src/constants/market';
+import { KOSDAQ } from '../../src/constants/market';
+import { KOR } from '../../src/constants/nation';
 
 describe('market constant', () => {
   test('KOSPI', () => {

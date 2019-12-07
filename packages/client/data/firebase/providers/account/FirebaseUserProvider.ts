@@ -14,12 +14,12 @@ import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationEr
 import ErrorType from '@stocker/core/lib/error/ErrorType';
 
 export default class FirebaseUserProvider {
-  public createUser(user: User): Observable<boolean> {
+  public createUser(user: User): Observable<[User, boolean]> {
     const userRef: firebase.database.Reference = firebase.database().ref('users/' + user.id);
     return fromPromise(userRef.once('value'))
       .pipe(
-        switchMap<firebase.database.DataSnapshot, Observable<boolean>>(
-          (dataSnapShot: firebase.database.DataSnapshot): Observable<boolean> => {
+        switchMap<firebase.database.DataSnapshot, Observable<[User, boolean]>>(
+          (dataSnapShot: firebase.database.DataSnapshot): Observable<[User, boolean]> => {
             if (!dataSnapShot.hasChildren()) {
               return fromPromise(
                 userRef
@@ -30,15 +30,15 @@ export default class FirebaseUserProvider {
                     photo: user.photo,
                     provider: user.provider,
                   })
-                  .then((err: any): boolean => {
+                  .then((err: any): [User, boolean] => {
                     if (err) {
                       throw ApplicationErrorFactory.getError(ErrorType.GENERAL, `Fail create user: ${err}`);
                     }
-                    return true;
+                    return [user, true];
                   })
               );
             }
-            return fromPromise(Promise.resolve(false));
+            return fromPromise(Promise.resolve([user, false]));
           }
         )
       );

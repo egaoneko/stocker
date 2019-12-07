@@ -5,7 +5,11 @@ import CrawlStockItemRepository from '../../../../src/data/repositories/stock-it
 import {
   KOSDAQ,
   KOSPI
-} from '@stocker/core/lib/constant/market';
+} from '@stocker/core/lib/constants/market';
+import {
+  DEFAULT_FIND_OPTIONS,
+  DEFAULT_STOCK_ITEM
+} from '../../../../__mocks__/stock-item/constant';
 
 describe('CrawlStockItemRepository', () => {
   const repository: CrawlStockItemRepository = new CrawlStockItemRepository(
@@ -33,5 +37,35 @@ describe('CrawlStockItemRepository', () => {
         expect(items[1].wics).toBe('에너지');
         done();
       });
+  });
+
+  test('throw exception without createStockItem', () => {
+    expect(() => {
+      repository.createStockItem(DEFAULT_STOCK_ITEM).subscribe()
+    }).toThrowError('createStockItem is not supported.');
+  });
+
+  test('throw exception without updateStockItem', () => {
+    expect(() => {
+      repository.updateStockItem(DEFAULT_STOCK_ITEM).subscribe()
+    }).toThrowError('updateStockItem is not supported.');
+  });
+
+  test('throw exception without deleteStockItem', () => {
+    expect(() => {
+      repository.deleteStockItem(DEFAULT_STOCK_ITEM).subscribe()
+    }).toThrowError('deleteStockItem is not supported.');
+  });
+
+  test('throw exception without findStockItemsBy', () => {
+    expect(() => {
+      repository.findStockItemsBy(DEFAULT_FIND_OPTIONS).subscribe()
+    }).toThrowError('findStockItemsBy is not supported.');
+  });
+
+  test('throw exception without countStockItems', () => {
+    expect(() => {
+      repository.countStockItems(DEFAULT_FIND_OPTIONS).subscribe()
+    }).toThrowError('countStockItems is not supported.');
   });
 });

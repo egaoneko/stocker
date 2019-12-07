@@ -1,5 +1,5 @@
 import Entity from '../Entity';
-import { Role } from '../../../constant/account';
+import { Role } from '../../../enums/account';
 
 export default class User implements Entity {
   public photo?: string;

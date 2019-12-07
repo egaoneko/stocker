@@ -3,7 +3,7 @@ import {
   of
 } from 'rxjs';
 import User from '../../src/domain/entities/account/User';
-import { DEFAULT_USER } from '../constant';
+import { DEFAULT_USER } from './constant';
 
 const cache: Map<string, User> = new Map();
 reset();
@@ -15,8 +15,8 @@ export function reset(): void {
   cache.set(user.id, user)
 }
 
-export const mockCreateUser = jest.fn().mockImplementation((user: User): Observable<boolean> => {
-  return of(true);
+export const mockCreateUser = jest.fn().mockImplementation((user: User): Observable<[User, boolean]> => {
+  return of([user, true]);
 });
 
 export const mockFindUserById = jest.fn().mockImplementation((id: string): Observable<User | null> => {
