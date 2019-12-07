@@ -7,6 +7,9 @@ import StockItemRepository from '@stocker/core/lib/domain/repositories/stock-ite
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import KrxStockItemProvider from '../../http/providers/stock-item/KrxStockItemProvider';
 import WiseStockItemProvider from '../../http/providers/stock-item/WiseStockItemProvider';
+import { Options } from '@stocker/core/lib/interfaces/repository/options';
+import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
+import ErrorType from '@stocker/core/lib/error/ErrorType';
 
 export default class CrawlStockItemRepository implements StockItemRepository {
   constructor(
@@ -40,5 +43,25 @@ export default class CrawlStockItemRepository implements StockItemRepository {
           return Array.from(stockItemMap.values());
         })
       );
+  }
+
+  public createStockItem(stockItem: StockItem): Observable<[StockItem, boolean]> {
+    throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'createStockItem is not supported.');
+  }
+
+  public updateStockItem(stockItem: StockItem): Observable<[StockItem, boolean]> {
+    throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'updateStockItem is not supported.');
+  }
+
+  public deleteStockItem(stockItem: StockItem): Observable<[StockItem, boolean]> {
+    throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'deleteStockItem is not supported.');
+  }
+
+  public findStockItemsBy(options: Options): Observable<StockItem[] | null> {
+    throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'findStockItemsBy is not supported.');
+  }
+
+  public countStockItems(options: Options): Observable<number> {
+    throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'countStockItems is not supported.');
   }
 }

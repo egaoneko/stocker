@@ -6,8 +6,9 @@ import mockUserRepository, {
 import { queue } from 'rxjs/internal/scheduler/queue';
 import CreateUser from '../../../../src/domain/use-cases/account/CreateUser';
 import User from '../../../../src/domain/entities/account/User';
-import { Role } from '../../../../src/constant/account';
+import { Role } from '../../../../src/enums/account';
 import { apply } from '../../../../src/utils/common';
+import { DEFAULT_USER } from '../../../../__mocks__/account/constant';
 
 describe('CreateUser UseCase', () => {
   beforeEach(() => {
@@ -19,13 +20,13 @@ describe('CreateUser UseCase', () => {
   test('CreateUser is called', (done) => {
     const repository = new mockUserRepository();
     const useCase: CreateUser = new CreateUser(repository);
-    const user: User = new User('1234', 'test@test.com', 'test', Role.USER);
 
-    apply(useCase, (it: CreateUser) => it.user = user)
+    apply(useCase, (it: CreateUser) => it.user = DEFAULT_USER)
       .runOnce(async, queue)
-      .subscribe((success: boolean) => {
+      .subscribe(([user, success]: [User, boolean]) => {
         expect(mockCreateUser).toHaveBeenCalledTimes(1);
         expect(success).toBeTruthy();
+        expect(user).toBe(DEFAULT_USER);
         done();
       });
   });
@@ -35,12 +36,13 @@ describe('CreateUser UseCase', () => {
     const useCase: CreateUser = new CreateUser(repository);
 
     expect(() => {
-      apply(useCase, () => {})
+      apply(useCase, () => {
+      })
         .runOnce(async, queue)
     }).toThrowError('Invalid params in UseCase');
   });
 
-  test('throw exception without invalid id', () => {
+  test('throw exception with invalid id', () => {
     const repository = new mockUserRepository();
     const useCase: CreateUser = new CreateUser(repository);
     const user: User = new User('', 'test@test.com', 'test', Role.USER);
@@ -51,7 +53,7 @@ describe('CreateUser UseCase', () => {
     }).toThrowError('Invalid params in UseCase');
   });
 
-  test('throw exception without invalid email', () => {
+  test('throw exception with invalid email', () => {
     const repository = new mockUserRepository();
     const useCase: CreateUser = new CreateUser(repository);
     const user: User = new User('1234', '', 'test', Role.USER);
@@ -62,7 +64,7 @@ describe('CreateUser UseCase', () => {
     }).toThrowError('Invalid params in UseCase');
   });
 
-  test('throw exception without invalid name', () => {
+  test('throw exception with invalid name', () => {
     const repository = new mockUserRepository();
     const useCase: CreateUser = new CreateUser(repository);
     const user: User = new User('1234', 'test@test.com', '', Role.USER);
@@ -73,7 +75,7 @@ describe('CreateUser UseCase', () => {
     }).toThrowError('Invalid params in UseCase');
   });
 
-  test('throw exception without invalid role', () => {
+  test('throw exception with invalid role', () => {
     const repository = new mockUserRepository();
     const useCase: CreateUser = new CreateUser(repository);
     const user: User = new User('1234', 'test@test.com', 'test', '' as any);

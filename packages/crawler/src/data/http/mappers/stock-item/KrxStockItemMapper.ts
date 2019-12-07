@@ -4,7 +4,7 @@ import Market from '@stocker/core/lib/domain/entities/market/Market';
 import {
   KOSDAQ,
   KOSPI
-} from '@stocker/core/lib/constant/market';
+} from '@stocker/core/lib/constants/market';
 import ErrorType from '@stocker/core/lib/error/ErrorType';
 import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 

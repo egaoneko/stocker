@@ -17,7 +17,7 @@ export default class UserRepository implements UserRepositoryInterface {
     return this.provider.findUserById(id);
   }
 
-  public createUser(user: User): Observable<boolean> {
+  public createUser(user: User): Observable<[User, boolean]> {
     throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'createUser is not supported.');
   }
 

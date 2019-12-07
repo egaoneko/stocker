@@ -7,7 +7,7 @@ import { queue } from 'rxjs/internal/scheduler/queue';
 import User from '../../../../src/domain/entities/account/User';
 import { apply } from '../../../../src/utils/common';
 import FindUserById from '../../../../src/domain/use-cases/account/FindUserById';
-import { DEFAULT_USER } from '../../../../__mocks__/constant';
+import { DEFAULT_USER } from '../../../../__mocks__/account/constant';
 
 describe('FindUserById UseCase', () => {
   beforeEach(() => {
@@ -29,9 +29,6 @@ describe('FindUserById UseCase', () => {
 
         expect(mockFindUserById).toHaveBeenCalledTimes(1);
         expect(user.id).toBe(DEFAULT_USER.id);
-        expect(user.email).toBe(DEFAULT_USER.email);
-        expect(user.name).toBe(DEFAULT_USER.name);
-        expect(user.role).toBe(DEFAULT_USER.role);
         done();
       });
   });

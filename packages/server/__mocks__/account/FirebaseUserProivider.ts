@@ -1,6 +1,6 @@
 import { of } from 'rxjs';
 import User from '@stocker/core/lib/domain/entities/account/User';
-import { DEFAULT_USER } from '../constant';
+import { DEFAULT_USER } from './constant';
 
 const cache: Map<string, User> = new Map();
 reset();

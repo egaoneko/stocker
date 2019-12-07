@@ -2,7 +2,7 @@ import KrxStockItemMapper from '../../../../../src/data/http/mappers/stock-item/
 import {
   KOSDAQ,
   KOSPI
-} from '@stocker/core/lib/constant/market';
+} from '@stocker/core/lib/constants/market';
 
 describe('KrxStockItemMapper', () => {
   const mapper: KrxStockItemMapper = new KrxStockItemMapper();

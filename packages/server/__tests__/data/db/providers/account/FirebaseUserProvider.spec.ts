@@ -1,8 +1,7 @@
 import '../../../../__config__/firebase';
 import User from '@stocker/core/lib/domain/entities/account/User';
-import { Role } from '@stocker/core/lib/constant/account';
 import FirebaseUserProvider from '../../../../../src/data/db/providers/account/FirebaseUserProvider';
-import { DEFAULT_USER } from '../../../../../__mocks__/constant';
+import { DEFAULT_USER } from '../../../../../__mocks__/account/constant';
 
 describe('FirebaseUserProvider', () => {
   const provider: FirebaseUserProvider = new FirebaseUserProvider();

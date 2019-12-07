@@ -6,7 +6,7 @@ import mockUserRepository, {
 import { queue } from 'rxjs/internal/scheduler/queue';
 import User from '../../../../src/domain/entities/account/User';
 import GetCurrentUser from '../../../../src/domain/use-cases/account/GetCurrentUser';
-import { DEFAULT_USER } from '../../../../__mocks__/constant';
+import { DEFAULT_USER } from '../../../../__mocks__/account/constant';
 
 describe('GetCurrentUser UseCase', () => {
   beforeEach(() => {

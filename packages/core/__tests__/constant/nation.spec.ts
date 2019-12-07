@@ -1,4 +1,4 @@
-import { KOR } from '../../src/constant/nation';
+import { KOR } from '../../src/constants/nation';
 
 describe('nation constant', () => {
   test('KOR', () => {

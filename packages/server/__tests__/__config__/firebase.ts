@@ -1,4 +1,4 @@
 import './dotenv';
-import firebase from '../../src/libs/firebase';
+import admin from '../../src/libs/firebase-admin';
 
-export default firebase;
+export default admin;

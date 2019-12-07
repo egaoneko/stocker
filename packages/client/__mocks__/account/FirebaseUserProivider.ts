@@ -1,8 +1,8 @@
 import { of, Observable } from 'rxjs';
 import User from '@stocker/core/lib/domain/entities/account/User';
 
-export const mockCreateUser = jest.fn().mockImplementation((user: User) => {
-  return of(true);
+export const mockCreateUser = jest.fn().mockImplementation((user: User): Observable<[User, boolean]> => {
+  return of([user, true]);
 });
 
 let currentUser: User | null;

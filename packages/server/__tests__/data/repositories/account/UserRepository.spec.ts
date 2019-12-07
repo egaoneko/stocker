@@ -1,7 +1,7 @@
 import mockFirebaseUserProvider, { mockFindUserById } from '../../../../__mocks__/account/FirebaseUserProivider';
 import UserRepository from '../../../../src/data/repositories/account/UserRepository';
 import User from '@stocker/core/lib/domain/entities/account/User';
-import { DEFAULT_USER } from '../../../../__mocks__/constant';
+import { DEFAULT_USER } from '../../../../__mocks__/account/constant';
 
 describe('UserRepository', () => {
   const repository: UserRepository = new UserRepository((new mockFirebaseUserProvider()) as any);

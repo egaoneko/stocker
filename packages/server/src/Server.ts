@@ -19,7 +19,7 @@ import sequelize, { associate } from './libs/sequelize';
 import ping from './routes/ping';
 
 // firebase
-import firebase from './libs/firebase';
+import admin from './libs/firebase-admin';
 
 export interface IState {
 }

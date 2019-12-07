@@ -2,7 +2,6 @@ import { Observable } from 'rxjs';
 import UseCase from '../UseCase';
 import User from '../../entities/account/User';
 import UserRepository from '../../repositories/account/UserRepository';
-import { Role } from '../../../constant/account';
 
 export default class FindUserById extends UseCase<User | null> {
   public id: string = '';
