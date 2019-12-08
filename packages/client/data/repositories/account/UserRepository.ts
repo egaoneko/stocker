@@ -3,7 +3,7 @@ import {
 } from 'rxjs';
 import UserRepositoryInterface from '@stocker/core/lib/domain/repositories/account/UserRepository';
 import User from '@stocker/core/lib/domain/entities/account/User';
-import FirebaseUserProvider from '../../firebase/providers/account/FirebaseUserProvider';
+import FirebaseUserProvider from '../../providers/account/FirebaseUserProvider';
 import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 import ErrorType from '@stocker/core/lib/error/ErrorType';
 

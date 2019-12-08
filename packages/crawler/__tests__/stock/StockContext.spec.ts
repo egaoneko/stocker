@@ -1,5 +1,5 @@
 import StockContext from '../../src/stock/StockContext';
-import NaverStockProvider from '../../src/data/http/providers/stock/NaverStockProvider';
+import NaverStockProvider from '../../src/data/providers/stock/NaverStockProvider';
 import CrawlStockRepository from '../../src/data/repositories/stock/CrawlStockRepository';
 import CrawlLastBusinessDay from '@stocker/core/lib/domain/use-cases/stock/CrawlLastBusinessDay';
 

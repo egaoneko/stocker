@@ -1,4 +1,4 @@
-import FirebaseUserProvider from './data/firebase/providers/account/FirebaseUserProvider';
+import FirebaseUserProvider from './data/providers/account/FirebaseUserProvider';
 import UserRepository from './data/repositories/account/UserRepository';
 import GetCurrentUser from '@stocker/core/lib/domain/use-cases/account/GetCurrentUser';
 import GetCurrentUserToken from '@stocker/core/lib/domain/use-cases/account/GetCurrentUserToken';

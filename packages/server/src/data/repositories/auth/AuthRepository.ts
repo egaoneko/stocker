@@ -2,7 +2,7 @@ import {
   Observable
 } from 'rxjs';
 import AuthRepositoryInterface from '@stocker/core/lib/domain/repositories/auth/AuthRepository';
-import FirebaseAuthProvider from '../../db/providers/auth/FirebaseAuthProvider';
+import FirebaseAuthProvider from '../../providers/auth/FirebaseAuthProvider';
 
 export default class AuthRepository implements AuthRepositoryInterface {
   constructor(

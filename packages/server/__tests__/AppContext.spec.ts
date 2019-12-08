@@ -1,9 +1,9 @@
 import './__config__/firebase';
 import AppContext from '../src/AppContext';
-import FirebaseUserProvider from '../src/data/db/providers/account/FirebaseUserProvider';
+import FirebaseUserProvider from '../src/data/providers/account/FirebaseUserProvider';
 import UserRepository from '../src/data/repositories/account/UserRepository';
 import FindUserById from '@stocker/core/lib/domain/use-cases/account/FindUserById';
-import FirebaseAuthProvider from '../src/data/db/providers/auth/FirebaseAuthProvider';
+import FirebaseAuthProvider from '../src/data/providers/auth/FirebaseAuthProvider';
 import AuthRepository from '../src/data/repositories/auth/AuthRepository';
 import VerifyToken from '@stocker/core/lib/domain/use-cases/auth/VerifyToken';
 import DecodeToken from '@stocker/core/lib/domain/use-cases/auth/DecodeToken';
