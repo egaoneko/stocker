@@ -2,7 +2,7 @@ import {
   Observable
 } from 'rxjs';
 import UserRepositoryInterface from '@stocker/core/lib/domain/repositories/account/UserRepository';
-import FirebaseUserProvider from '../../db/providers/account/FirebaseUserProvider';
+import FirebaseUserProvider from '../../providers/account/FirebaseUserProvider';
 import User from '@stocker/core/lib/domain/entities/account/User';
 import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 import ErrorType from '@stocker/core/lib/error/ErrorType';

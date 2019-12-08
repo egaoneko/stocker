@@ -5,8 +5,8 @@ import {
 import { map } from 'rxjs/operators';
 import StockItemRepository from '@stocker/core/lib/domain/repositories/stock-item/StockItemRepository';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
-import KrxStockItemProvider from '../../http/providers/stock-item/KrxStockItemProvider';
-import WiseStockItemProvider from '../../http/providers/stock-item/WiseStockItemProvider';
+import KrxStockItemProvider from '../../providers/stock-item/KrxStockItemProvider';
+import WiseStockItemProvider from '../../providers/stock-item/WiseStockItemProvider';
 import { Options } from '@stocker/core/lib/interfaces/repository/options';
 import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 import ErrorType from '@stocker/core/lib/error/ErrorType';

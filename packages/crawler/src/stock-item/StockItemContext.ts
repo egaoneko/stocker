@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios';
 import CrawlStockItems from '@stocker/core/lib/domain/use-cases/stock-item/CrawlStockItems';
-import KrxStockItemProvider from '../data/http/providers/stock-item/KrxStockItemProvider';
+import KrxStockItemProvider from '../data/providers/stock-item/KrxStockItemProvider';
 import CrawlStockItemRepository from '../data/repositories/stock-item/CrawlStockItemRepository';
-import WiseStockItemProvider from '../data/http/providers/stock-item/WiseStockItemProvider';
+import WiseStockItemProvider from '../data/providers/stock-item/WiseStockItemProvider';
 
 interface ProviderDependencies {
   krxStockItem: KrxStockItemProvider;

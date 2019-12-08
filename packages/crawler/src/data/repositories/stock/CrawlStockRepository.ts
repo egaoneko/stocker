@@ -2,7 +2,7 @@ import {
   Observable
 } from 'rxjs';
 import StockRepository from '@stocker/core/lib/domain/repositories/stock/StockRepository';
-import NaverStockProvider from '../../http/providers/stock/NaverStockProvider';
+import NaverStockProvider from '../../providers/stock/NaverStockProvider';
 import LastBusinessDay from '@stocker/core/lib/domain/entities/stock/LastBusinessDay';
 
 export default class CrawlStockRepository implements StockRepository {

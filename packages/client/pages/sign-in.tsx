@@ -4,7 +4,7 @@ import firebase from '../libs/firebase';
 import { CONTEXT } from '../constant';
 import { apply } from '@stocker/core/lib/utils/common';
 import CreateUser from '@stocker/core/lib/domain/use-cases/account/CreateUser';
-import FirebaseUserMapper from '../data/firebase/mappers/account/FirebaseUserMapper';
+import FirebaseUserMapper from '../data/mappers/account/FirebaseUserMapper';
 import { async } from 'rxjs/internal/scheduler/async';
 import { queue } from 'rxjs/internal/scheduler/queue';
 import Router from 'next/router';

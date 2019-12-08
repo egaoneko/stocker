@@ -1,8 +1,8 @@
 import CrawlStockItems from '@stocker/core/lib/domain/use-cases/stock-item/CrawlStockItems';
 import StockItemContext from '../../src/stock-item/StockItemContext';
-import KrxStockItemProvider from '../../src/data/http/providers/stock-item/KrxStockItemProvider';
+import KrxStockItemProvider from '../../src/data/providers/stock-item/KrxStockItemProvider';
 import CrawlStockItemRepository from '../../src/data/repositories/stock-item/CrawlStockItemRepository';
-import WiseStockItemProvider from '../../src/data/http/providers/stock-item/WiseStockItemProvider';
+import WiseStockItemProvider from '../../src/data/providers/stock-item/WiseStockItemProvider';
 
 describe('StockItemContext', () => {
   test('constructor', () => {

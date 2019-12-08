@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import NaverStockProvider from '../data/http/providers/stock/NaverStockProvider';
+import NaverStockProvider from '../data/providers/stock/NaverStockProvider';
 import CrawlStockRepository from '../data/repositories/stock/CrawlStockRepository';
 import CrawlLastBusinessDay from '@stocker/core/lib/domain/use-cases/stock/CrawlLastBusinessDay';
 
