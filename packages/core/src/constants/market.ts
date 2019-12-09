@@ -1,5 +1,5 @@
 import Market from '../domain/entities/market/Market';
-import { KOR } from './nation';
+import { KR } from './nation';
 
-export const KOSPI: Market = new Market('KOSPI', KOR);
-export const KOSDAQ: Market = new Market('KOSDAQ', KOR);
+export const KOSPI: Market = new Market('KOSPI', KR);
+export const KOSDAQ: Market = new Market('KOSDAQ', KR);

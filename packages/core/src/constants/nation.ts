@@ -1,3 +1,4 @@
 import Nation from '../domain/entities/nation/Nation';
 
-export const KOR: Nation = new Nation('KR', 'KOREA');
+export const KR: Nation = new Nation('KR', 'KOREA');
+export const US: Nation = new Nation('US', 'UNITED STATES');

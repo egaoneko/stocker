@@ -7,4 +7,27 @@ export default class Market implements Entity {
     public nation: Nation,
   ) {
   }
+
+  public equal(other: Market): boolean {
+    if (this.name !== other.name) {
+      return false;
+    }
+
+    if (!this.nation.equal(other.nation)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  public clone(): Market {
+    return new Market(this.name, this.nation);
+  }
+
+  public toString(): string {
+    return [
+      this.name,
+      this.nation,
+    ].join(',');
+  }
 }
