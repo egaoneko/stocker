@@ -1,7 +1,6 @@
-import { SortType } from '../../enums/repository/options';
-
 export interface Options {
   id?: string;
+  limit?: number;
   page?: number;
-  sort?: SortType;
+  sort?: any[];
 }

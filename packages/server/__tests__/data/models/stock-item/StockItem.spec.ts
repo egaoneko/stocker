@@ -32,9 +32,144 @@ describe('StockItem Model', () => {
 
   test('createUser', async () => {
     await rollback(async (transaction: Transaction) => {
-      const [result, created] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM, transaction);
+      const [result, created]: [StockItem, boolean] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM, transaction);
 
       expect(created).toBeTruthy();
     });
+  });
+
+  test('updateStockItem', async () => {
+    await rollback(async (transaction: Transaction) => {
+      const [stockItem, created] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM, transaction);
+
+      if (!created) {
+        throw 'Does not created';
+      }
+
+      const newStockItem: StockItemEntity = stockItem.toEntity().clone();
+
+      const [rows]: [number, StockItem[]] = await StockItem.updateStockItem(newStockItem, transaction);
+
+      expect(rows).toBe(1);
+    });
+  });
+
+  test('updateStockItem without id', () => {
+    expect(() => {
+      const newStockItem: StockItemEntity = DEFAULT_STOCK_ITEM.clone();
+      newStockItem.id = '';
+      StockItem.updateStockItem(newStockItem);
+    }).toThrowError('id is empty.');
+  });
+
+  test('updateStockItem with unknown id', async () => {
+    await rollback(async (transaction: Transaction) => {
+      const newStockItem: StockItemEntity = DEFAULT_STOCK_ITEM.clone();
+      const [rows]: [number, StockItem[]] = await StockItem.updateStockItem(newStockItem, transaction);
+      expect(rows).toBe(0);
+    });
+  });
+
+  test('deleteStockItem', async () => {
+    await rollback(async (transaction: Transaction) => {
+      const [stockItem, created] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM, transaction);
+
+      if (!created) {
+        throw 'Does not created';
+      }
+
+      const newStockItem: StockItemEntity = stockItem.toEntity().clone();
+
+      const rows: number = await StockItem.deleteStockItem(newStockItem, transaction);
+
+      expect(rows).toBe(1);
+    });
+  });
+
+  test('deleteStockItem without id', () => {
+    expect(() => {
+      const newStockItem: StockItemEntity = DEFAULT_STOCK_ITEM.clone();
+      newStockItem.id = '';
+      StockItem.deleteStockItem(newStockItem);
+    }).toThrowError('id is empty.');
+  });
+
+  test('deleteStockItem with unknown id', async () => {
+    await rollback(async (transaction: Transaction) => {
+      const newStockItem: StockItemEntity = DEFAULT_STOCK_ITEM.clone();
+      const rows: number = await StockItem.deleteStockItem(newStockItem, transaction);
+      expect(rows).toBe(0);
+    });
+  });
+
+  test('findStockItemsBy', async () => {
+    const [stockItem, created] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM);
+
+    if (!created) {
+      throw 'Does not created';
+    }
+
+    const stockItems: StockItem[] | null = await StockItem.findStockItemsBy({});
+
+    if (!stockItems) {
+      throw 'Does not created';
+    }
+
+    expect(stockItems.length).toBe(1);
+    expect(stockItems[0].code).toBe(stockItem.code);
+
+    const rows: number = await StockItem.deleteStockItem(stockItem.toEntity());
+    expect(rows).toBe(1);
+  });
+
+  test('findStockItemsBy with unknown id', async () => {
+    const [stockItem, created] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM);
+
+    if (!created) {
+      throw 'Does not created';
+    }
+
+    const stockItems: StockItem[] | null = await StockItem.findStockItemsBy({
+      id: 'ea37d172-cc7b-4c26-be53-47bd02a5e327',
+    });
+
+    if (stockItems) {
+      expect(stockItems.length).toBe(0);
+    } else {
+      expect(stockItems).toBeNull();
+    }
+
+    const rows: number = await StockItem.deleteStockItem(stockItem.toEntity());
+    expect(rows).toBe(1);
+  });
+
+  test('countStockItems', async () => {
+    const [stockItem, created] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM);
+
+    if (!created) {
+      throw 'Does not created';
+    }
+
+    const count: number = await StockItem.countStockItems({});
+    expect(count).toBe(1);
+
+    const rows: number = await StockItem.deleteStockItem(stockItem.toEntity());
+    expect(rows).toBe(1);
+  });
+
+  test('countStockItems with unknown id', async () => {
+    const [stockItem, created] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM);
+
+    if (!created) {
+      throw 'Does not created';
+    }
+
+    const count: number = await StockItem.countStockItems({
+      id: 'ea37d172-cc7b-4c26-be53-47bd02a5e327'
+    });
+    expect(count).toBe(0);
+
+    const rows: number = await StockItem.deleteStockItem(stockItem.toEntity());
+    expect(rows).toBe(1);
   });
 });

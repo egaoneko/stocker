@@ -12,4 +12,28 @@ export default class User implements Entity {
     public role: Role,
   ) {
   }
+
+  public equal(other: User): boolean {
+    if (!this.id || !other.id) {
+      return false;
+    }
+
+    return this.id === other.id;
+  }
+
+  public clone(): User {
+    const clone: User = new User(this.id, this.email, this.name, this.role);
+    clone.photo = this.photo;
+    clone.provider = this.provider;
+    return clone;
+  }
+
+  public toString(): string {
+    return [
+      this.id,
+      this.email,
+      this.name,
+      this.role,
+    ].join(',');
+  }
 }

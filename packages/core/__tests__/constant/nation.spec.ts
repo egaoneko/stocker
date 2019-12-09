@@ -1,8 +1,8 @@
-import { KOR } from '../../src/constants/nation';
+import { KR } from '../../src/constants/nation';
 
 describe('nation constant', () => {
   test('KOR', () => {
-    expect(KOR.name).toEqual('KOREA');
-    expect(KOR.code).toEqual('KR');
+    expect(KR.name).toEqual('KOREA');
+    expect(KR.code).toEqual('KR');
   });
 });
