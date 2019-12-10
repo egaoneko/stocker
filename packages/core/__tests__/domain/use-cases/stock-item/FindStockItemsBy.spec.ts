@@ -9,7 +9,6 @@ import FindStockItemsBy from '../../../../src/domain/use-cases/stock-item/FindSt
 import StockItem from '../../../../src/domain/entities/stock-item/StockItem';
 import {
   DEFAULT_FIND_OPTIONS,
-  DEFAULT_STOCK_ITEM
 } from '../../../../__mocks__/stock-item/constant';
 
 describe('FindStockItemsBy UseCase', () => {

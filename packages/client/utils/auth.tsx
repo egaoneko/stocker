@@ -7,27 +7,34 @@ import {
   NextPage,
   NextPageContext
 } from 'next';
-import { IS_SERVER } from '../constant/common';
+import {
+  IS_SERVER,
+  TOKEN_NAME
+} from '../constant/common';
 import { CONTEXT } from '../constant';
 import { async } from 'rxjs/internal/scheduler/async';
 import { queue } from 'rxjs/internal/scheduler/queue';
 import User from '@stocker/core/lib/domain/entities/account/User';
 
+export const getToken: () => string | null = () => {
+  return cookie.get(TOKEN_NAME) || null;
+};
+
 export const signedIn: (token: string) => void = (token: string): void => {
-  cookie.set('S_TOKEN', token, { expires: 1 });
+  cookie.set(TOKEN_NAME, token, { expires: 1 });
 };
 
 export const signedOut: () => void = () => {
-  cookie.remove('S_TOKEN');
+  cookie.remove(TOKEN_NAME);
   // to support signing out from all windows
   window.localStorage.setItem('sign-out', Date.now().toString());
 };
 
 export const auth = (ctx: NextPageContext): string | null => {
-  const { S_TOKEN } = nextCookie(ctx);
+  const token: string = nextCookie(ctx)[TOKEN_NAME] || '';
 
   // If there's no token, it means the user is not logged in.
-  if (!S_TOKEN) {
+  if (!token) {
     if (IS_SERVER && ctx.res) {
       ctx.res.writeHead(302, { Location: '/sign-in' });
       ctx.res.end();
@@ -36,7 +43,7 @@ export const auth = (ctx: NextPageContext): string | null => {
     }
   }
 
-  return S_TOKEN || null;
+  return token || null;
 };
 
 export interface AuthProps {

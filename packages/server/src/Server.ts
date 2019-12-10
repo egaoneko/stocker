@@ -11,13 +11,13 @@ import Koa, {
 import logger from 'koa-logger';
 import koaBody from 'koa-body';
 import { Server as HttpServer } from 'http';
+import cors from './middlewares/cors';
+import authToken from './middlewares/authToken';
+import router from './routes';
 
 // db
+
 import sequelize, { associate } from './libs/sequelize';
-
-// routes
-import ping from './routes/ping';
-
 // firebase
 import admin from './libs/firebase-admin';
 
@@ -64,11 +64,12 @@ export default class Server {
     await this.initializeDb();
     await this.initializeFirebase();
     await this.middleware();
-    await this.route();
   }
 
   private async middleware(): Promise<void> {
     this.app.use(logger());
+    this.app.use(cors);
+    this.app.use(authToken);
     this.app.use(async (context: Context, next: Next) => {
       try {
         await this.ensureDb();
@@ -78,10 +79,7 @@ export default class Server {
       }
     });
     this.app.use(koaBody());
-  }
-
-  private async route(): Promise<void> {
-    this.app.use(ping.routes());
+    this.app.use(router.routes()).use(router.allowedMethods());
   }
 
   private async ensureDb(): Promise<void> {

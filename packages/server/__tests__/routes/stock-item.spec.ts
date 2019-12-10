@@ -1,11 +1,11 @@
 import * as supertest from 'supertest';
 import Server from '../../src/Server';
 
-
 const server: Server = new Server();
 let request: supertest.SuperTest<supertest.Test>;
+const PREFIX: string = '/stock-item';
 
-describe('Ping Routes', () => {
+describe('StockItem Routes', () => {
   beforeAll(async () => {
     await server.listen(8080);
     request = supertest.agent(server.httpServer);
@@ -13,9 +13,9 @@ describe('Ping Routes', () => {
 
   afterAll(() => server.close());
 
-  test('ping', async () => {
+  test('crawl', async () => {
     await request
-      .get('/ping')
+      .get(PREFIX + '/crawl')
       .expect(200)
       .expect((res: supertest.Response) => {
         expect(res.text).toEqual('ok');
