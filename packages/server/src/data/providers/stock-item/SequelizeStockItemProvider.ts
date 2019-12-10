@@ -55,12 +55,12 @@ export default class SequelizeStockItemProvider {
     )
   }
 
-  public findStockItemsBy(options: Options): Observable<StockItemEntity[] | null> {
+  public findStockItemsBy(options: Options): Observable<StockItemEntity[]> {
     return fromPromise(
       StockItem.findStockItemsBy(options)
-        .then((stockItems: StockItem[] | null): StockItemEntity[] | null => {
+        .then((stockItems: StockItem[] | null): StockItemEntity[] => {
           if (!stockItems) {
-            return stockItems;
+            return [];
           }
 
           return stockItems.map((stockItem: StockItem): StockItemEntity => stockItem.toEntity());

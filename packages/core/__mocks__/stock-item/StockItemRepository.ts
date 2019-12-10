@@ -52,7 +52,7 @@ export const mockDeleteStockItem = jest.fn().mockImplementation((stockItem: Stoc
   }
 });
 
-export const mockFindStockItemsBy = jest.fn().mockImplementation((): Observable<StockItem[] | null> => {
+export const mockFindStockItemsBy = jest.fn().mockImplementation((): Observable<StockItem[]> => {
   return of(Array.from(cache.values()));
 });
 

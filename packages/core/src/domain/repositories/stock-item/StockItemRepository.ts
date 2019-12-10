@@ -12,7 +12,7 @@ export default interface StockItemRepository extends Repository {
 
   deleteStockItem(stockItem: StockItem): Observable<[StockItem, boolean]>;
 
-  findStockItemsBy(options: Options): Observable<StockItem[] | null>;
+  findStockItemsBy(options: Options): Observable<StockItem[]>;
 
   countStockItems(options: Options): Observable<number>;
 }

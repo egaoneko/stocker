@@ -1,1 +1,11 @@
-export const ENVIRONMENT: string | undefined = process.env.NODE_ENV;
+import AppContext from './AppContext';
+
+const {
+  TOKEN_NAME,
+} = process.env as { [key: string]: string };
+
+export {
+  TOKEN_NAME,
+};
+
+export const CONTEXT: AppContext = new AppContext();

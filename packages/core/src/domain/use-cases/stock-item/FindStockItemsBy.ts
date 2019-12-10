@@ -4,7 +4,7 @@ import StockItem from '../../entities/stock-item/StockItem';
 import StockItemRepository from '../../repositories/stock-item/StockItemRepository';
 import { Options } from '../../../interfaces/repository/options';
 
-export default class FindStockItemsBy extends UseCase<StockItem[] | null> {
+export default class FindStockItemsBy extends UseCase<StockItem[]> {
   public options: Options = {};
 
   constructor(
@@ -13,7 +13,7 @@ export default class FindStockItemsBy extends UseCase<StockItem[] | null> {
     super();
   }
 
-  protected build(): Observable<StockItem[] | null> {
+  protected build(): Observable<StockItem[]> {
     return this.repository.findStockItemsBy(this.options);
   }
 }

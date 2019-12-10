@@ -7,7 +7,7 @@
     "dev": "next",
     "build": "next build",
     "build:watch": "cross-env tsc -w --project tsconfig.server.json",
-    "start:local": "cross-env PORT=3000 nodemon --watch dist --exec 'node dist/local.js'",
+    "start:local": "cross-env nodemon --watch dist --exec 'node dist/local.js'",
     "test": "jest"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "antd": "^3.25.2",
     "body-parser": "^1.19.0",
     "cross-env": "^6.0.3",
+    "dotenv-flow": "^3.1.0",
     "express": "^4.17.1",
     "firebase": "^7.5.0",
     "js-cookie": "^2.2.1",

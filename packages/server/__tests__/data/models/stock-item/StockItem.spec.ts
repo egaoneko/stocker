@@ -1,6 +1,4 @@
 import '../../../__config__/sequelize';
-import { rollback } from '../../../__utils__/db';
-import { Transaction } from 'sequelize';
 import StockItem from '../../../../src/data/models/stock-item/StockItem';
 import MarketTypeMapper from '../../../../src/data/mappers/market/MarketTypeMapper';
 import Market from '@stocker/core/lib/domain/entities/market/Market';
@@ -31,27 +29,27 @@ describe('StockItem Model', () => {
   });
 
   test('createUser', async () => {
-    await rollback(async (transaction: Transaction) => {
-      const [result, created]: [StockItem, boolean] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM, transaction);
+    const [stockItem, created]: [StockItem, boolean] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM);
+    expect(created).toBeTruthy();
 
-      expect(created).toBeTruthy();
-    });
+    const deletedRows: number = await StockItem.deleteStockItem(stockItem.toEntity());
+    expect(deletedRows).toBe(1);
   });
 
   test('updateStockItem', async () => {
-    await rollback(async (transaction: Transaction) => {
-      const [stockItem, created] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM, transaction);
+    const [stockItem, created] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM);
 
-      if (!created) {
-        throw 'Does not created';
-      }
+    if (!created) {
+      throw 'Does not created';
+    }
 
-      const newStockItem: StockItemEntity = stockItem.toEntity().clone();
+    const newStockItem: StockItemEntity = stockItem.toEntity().clone();
 
-      const [rows]: [number, StockItem[]] = await StockItem.updateStockItem(newStockItem, transaction);
+    const [rows]: [number, StockItem[]] = await StockItem.updateStockItem(newStockItem);
+    expect(rows).toBe(1);
 
-      expect(rows).toBe(1);
-    });
+    const deletedRows: number = await StockItem.deleteStockItem(stockItem.toEntity());
+    expect(deletedRows).toBe(1);
   });
 
   test('updateStockItem without id', () => {
@@ -63,43 +61,34 @@ describe('StockItem Model', () => {
   });
 
   test('updateStockItem with unknown id', async () => {
-    await rollback(async (transaction: Transaction) => {
-      const newStockItem: StockItemEntity = DEFAULT_STOCK_ITEM.clone();
-      const [rows]: [number, StockItem[]] = await StockItem.updateStockItem(newStockItem, transaction);
-      expect(rows).toBe(0);
-    });
+    const stockItem: StockItemEntity = DEFAULT_STOCK_ITEM.clone();
+    const [rows]: [number, StockItem[]] = await StockItem.updateStockItem(stockItem);
+    expect(rows).toBe(0);
   });
 
   test('deleteStockItem', async () => {
-    await rollback(async (transaction: Transaction) => {
-      const [stockItem, created] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM, transaction);
+    const [stockItem, created] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM);
 
-      if (!created) {
-        throw 'Does not created';
-      }
+    if (!created) {
+      throw 'Does not created';
+    }
 
-      const newStockItem: StockItemEntity = stockItem.toEntity().clone();
-
-      const rows: number = await StockItem.deleteStockItem(newStockItem, transaction);
-
-      expect(rows).toBe(1);
-    });
+    const rows: number = await StockItem.deleteStockItem(stockItem.toEntity());
+    expect(rows).toBe(1);
   });
 
   test('deleteStockItem without id', () => {
     expect(() => {
-      const newStockItem: StockItemEntity = DEFAULT_STOCK_ITEM.clone();
-      newStockItem.id = '';
-      StockItem.deleteStockItem(newStockItem);
+      const stockItem: StockItemEntity = DEFAULT_STOCK_ITEM.clone();
+      stockItem.id = '';
+      StockItem.deleteStockItem(stockItem);
     }).toThrowError('id is empty.');
   });
 
   test('deleteStockItem with unknown id', async () => {
-    await rollback(async (transaction: Transaction) => {
-      const newStockItem: StockItemEntity = DEFAULT_STOCK_ITEM.clone();
-      const rows: number = await StockItem.deleteStockItem(newStockItem, transaction);
-      expect(rows).toBe(0);
-    });
+    const stockItem: StockItemEntity = DEFAULT_STOCK_ITEM.clone();
+    const rows: number = await StockItem.deleteStockItem(stockItem);
+    expect(rows).toBe(0);
   });
 
   test('findStockItemsBy', async () => {
@@ -151,7 +140,7 @@ describe('StockItem Model', () => {
     }
 
     const count: number = await StockItem.countStockItems({});
-    expect(count).toBe(1);
+    expect(count).toBeGreaterThan(0);
 
     const rows: number = await StockItem.deleteStockItem(stockItem.toEntity());
     expect(rows).toBe(1);

@@ -57,7 +57,7 @@ export default class CrawlStockItemRepository implements StockItemRepository {
     throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'deleteStockItem is not supported.');
   }
 
-  public findStockItemsBy(options: Options): Observable<StockItem[] | null> {
+  public findStockItemsBy(options: Options): Observable<StockItem[]> {
     throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'findStockItemsBy is not supported.');
   }
 
