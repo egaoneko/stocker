@@ -18,7 +18,7 @@ describe('Ping Routes', () => {
       .get('/ping')
       .expect(200)
       .expect((res: supertest.Response) => {
-        expect(res.text).toEqual('ok');
+        expect(res.text).toEqual('OK');
       });
   });
 });

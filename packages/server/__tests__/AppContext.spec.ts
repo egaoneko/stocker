@@ -1,4 +1,4 @@
-import './__config__/firebase';
+import './__config__/firebase-admin';
 import AppContext from '../src/AppContext';
 import FirebaseUserProvider from '../src/data/providers/account/FirebaseUserProvider';
 import UserRepository from '../src/data/repositories/account/UserRepository';

@@ -1,4 +1,4 @@
-import '../../../__config__/firebase';
+import '../../../__config__/firebase-admin';
 import FirebaseAuthProvider from '../../../../src/data/providers/auth/FirebaseAuthProvider';
 import { DEFAULT_USER } from '../../../../__mocks__/account/constant';
 
