@@ -1,4 +1,4 @@
-import '../../../__config__/firebase';
+import '../../../__config__/firebase-admin';
 import User from '@stocker/core/lib/domain/entities/account/User';
 import FirebaseUserProvider from '../../../../src/data/providers/account/FirebaseUserProvider';
 import { DEFAULT_USER } from '../../../../__mocks__/account/constant';
