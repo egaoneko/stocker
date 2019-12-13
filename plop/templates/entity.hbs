@@ -1,0 +1,27 @@
+{{#ifEquals package "core"}}
+import Entity from '../{{parent}}';
+{{/ifEquals}}
+{{#ifNotEquals package "core"}}
+import Entity from '@stocker/core/lib/domain/entities/{{parent}}';
+{{/ifNotEquals}}
+
+export default class {{class}} implements {{parent}} {
+  constructor(
+  public prop: any,
+  ) {
+  }
+
+  public equal(other: {{class}}): boolean {
+    return this.prop !== other.prop;
+  }
+
+  public clone(): {{class}} {
+    return new {{class}}(this.prop);
+  }
+
+  public toString(): string {
+    return [
+      this.prop,
+    ].join(',');
+  }
+}

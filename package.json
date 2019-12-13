@@ -17,7 +17,8 @@
     "test:client": "lerna run test --stream --scope @stocker/client"
   },
   "devDependencies": {
-    "lerna": "^3.19.0"
+    "lerna": "^3.19.0",
+    "plop": "^2.5.3"
   },
   "dependencies": {
     "@types/jest": "^24.0.23"
