@@ -17,6 +17,7 @@
     "test:client": "lerna run test --stream --scope @stocker/client"
   },
   "devDependencies": {
+    "camel-case": "^4.1.0",
     "lerna": "^3.19.0",
     "plop": "^2.5.3"
   },

@@ -48,6 +48,12 @@ module.exports = (plop) => {
         templateFile: `${TEMPLATES_PATH}/entity/entity.hbs`,
         abortOnFail: true
       },
+      {
+        type: 'add',
+        path: `packages/{{package}}/__tests__/{{layer}}/entities/{{module}}/{{class}}.spec.ts`,
+        templateFile: `${TEMPLATES_PATH}/entity/entity-spec.hbs`,
+        abortOnFail: true
+      },
     ]
   });
 };
