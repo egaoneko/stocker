@@ -7,7 +7,7 @@ export default class LastBusinessDay implements Entity {
   }
 
   public equal(other: LastBusinessDay): boolean {
-    return this.date !== other.date;
+    return this.date.getTime() === other.date.getTime();
   }
 
   public clone(): LastBusinessDay {

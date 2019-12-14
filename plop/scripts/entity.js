@@ -45,7 +45,7 @@ module.exports = (plop) => {
       {
         type: 'add',
         path: `packages/{{package}}/src/{{layer}}/entities/{{module}}/{{class}}.ts`,
-        templateFile: `${TEMPLATES_PATH}/entity.hbs`,
+        templateFile: `${TEMPLATES_PATH}/entity/entity.hbs`,
         abortOnFail: true
       },
     ]
