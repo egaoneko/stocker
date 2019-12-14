@@ -3,9 +3,15 @@ const {
   PACKAGES
 } = require('./constant');
 module.exports = (plop) => {
-  plop.setGenerator('entity', {
-    description: 'Create entity in package',
+  plop.setGenerator('repository', {
+    description: 'Create repository in package',
     prompts: [
+      {
+        type: 'list',
+        name: 'type',
+        choices: ['interface', 'class'],
+        message: 'Please choice type'
+      },
       {
         type: 'list',
         name: 'package',
@@ -48,25 +54,30 @@ module.exports = (plop) => {
       {
         type: 'input',
         name: 'parentClass',
-        default: 'Entity',
+        default: 'Repository',
         message: 'Please input parent(ex: parent ClassName)'
       },
     ],
-    actions: function () {
-      return [
-        {
+    actions: (data) => {
+      const actions = [];
+
+      actions.push({
+        type: 'add',
+        path: `packages/{{package}}/src/{{layer}}/repositories/{{module}}/{{class}}.ts`,
+        templateFile: `${TEMPLATES_PATH}/repository/repository.hbs`,
+        abortOnFail: true
+      });
+
+      if(data.type === 'class') {
+        actions.push({
           type: 'add',
-          path: `packages/{{package}}/src/{{layer}}/entities/{{module}}/{{class}}.ts`,
-          templateFile: `${TEMPLATES_PATH}/entity/entity.hbs`,
+          path: `packages/{{package}}/__tests__/{{layer}}/repositories/{{module}}/{{class}}.spec.ts`,
+          templateFile: `${TEMPLATES_PATH}/repository/repository-spec.hbs`,
           abortOnFail: true
-        },
-        {
-          type: 'add',
-          path: `packages/{{package}}/__tests__/{{layer}}/entities/{{module}}/{{class}}.spec.ts`,
-          templateFile: `${TEMPLATES_PATH}/entity/entity-spec.hbs`,
-          abortOnFail: true
-        },
-      ];
+        });
+      }
+
+      return actions;
     }
   });
 };
