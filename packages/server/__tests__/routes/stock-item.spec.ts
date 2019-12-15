@@ -31,7 +31,9 @@ describe('StockItem Routes', () => {
       .set('Authorization', `Bearer ${token}`)
       .expect(200)
       .expect((res: supertest.Response) => {
-        expect(res.text).toEqual('OK');
+        console.log(res.body);
+        expect(res.body).toHaveProperty('total');
+        expect(res.body).toHaveProperty('success');
       });
-  });
+  }, 5 * 60 * 1000);
 });
