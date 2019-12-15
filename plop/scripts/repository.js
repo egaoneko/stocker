@@ -68,7 +68,7 @@ module.exports = (plop) => {
         abortOnFail: true
       });
 
-      if(data.type === 'class') {
+      if (data.type === 'class') {
         actions.push({
           type: 'add',
           path: `packages/{{package}}/__tests__/{{layer}}/repositories/{{module}}/{{class}}.spec.ts`,

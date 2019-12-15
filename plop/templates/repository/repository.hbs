@@ -1,4 +1,7 @@
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  of
+} from 'rxjs';
 {{#ifEquals package "core"}}
 import {{parentClass}} from '../{{#if parentModule}}{{parentModule}}/{{/if}}{{parentClass}}';
 {{/ifEquals}}
@@ -6,15 +9,11 @@ import {{parentClass}} from '../{{#if parentModule}}{{parentModule}}/{{/if}}{{pa
 import {{parentClass}}{{#ifEquals type "class"}}Interface{{/ifEquals}} from '@stocker/core/lib/{{parentLayer}}/repositories/{{#if parentModule}}{{parentModule}}/{{/if}}{{parentClass}}';
 {{/ifNotEquals}}
 
-// Do not remove below comment
-// --ADD_DEPENDENCY--
-
 {{#ifEquals type "interface"}}
 export default interface {{class}} extends {{parentClass}} {
 {{/ifEquals}}
 {{#ifEquals type "class"}}
 export default class {{class}} implements {{parentClass}}Interface {
 {{/ifEquals}}
-  // Do not remove below comment
   // --ADD_METHOD--
 }
