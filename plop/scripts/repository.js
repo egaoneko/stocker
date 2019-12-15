@@ -44,18 +44,18 @@ module.exports = (plop) => {
         type: 'list',
         name: 'parentLayer',
         choices: ['domain', 'data'],
-        message: 'Please input parent(ex: parent Layer ClassName)'
+        message: 'Please choice parent Layer'
       },
       {
         type: 'input',
         name: 'parentModule',
-        message: 'Please input module(ex: module-name)',
+        message: 'Please input parent module(ex: module-name)',
       },
       {
         type: 'input',
         name: 'parentClass',
         default: 'Repository',
-        message: 'Please input parent(ex: parent ClassName)'
+        message: 'Please input parent class(ex: ClassName)'
       },
     ],
     actions: (data) => {
