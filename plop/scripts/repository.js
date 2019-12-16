@@ -77,6 +77,15 @@ module.exports = (plop) => {
         });
       }
 
+      if (data.package === 'core') {
+        actions.push({
+          type: 'add',
+          path: `packages/{{package}}/__mocks__/{{module}}/{{class}}.ts`,
+          templateFile: `${TEMPLATES_PATH}/repository/repository-mock.hbs`,
+          abortOnFail: true
+        });
+      }
+
       return actions;
     }
   });

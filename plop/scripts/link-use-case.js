@@ -64,6 +64,27 @@ module.exports = (plop) => {
         abortOnFail: true
       });
 
+      if (data.repositoryPackage === 'core') {
+        actions.push({
+          type: 'modify',
+          path: `packages/{{repositoryPackage}}/__mocks__/{{repositoryModule}}/{{repositoryClass}}.ts`,
+          pattern: /(\/\/ --ADD_METHOD--)/gi,
+          template: `export const mock{{class}} = jest.fn().mockImplementation((prop: any): Observable<any> => {
+  return of(null);
+});
+$1`,
+          abortOnFail: true
+        });
+
+        actions.push({
+          type: 'modify',
+          path: `packages/{{repositoryPackage}}/__mocks__/{{repositoryModule}}/{{repositoryClass}}.ts`,
+          pattern: /(\/\/ --APPLY_METHOD--)/gi,
+          template: `{{camelCase class}}: mock{{class}},\n    $1`,
+          abortOnFail: true
+        });
+      }
+
       return actions;
     }
   });
