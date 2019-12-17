@@ -1,4 +1,19 @@
+const {
+  readDir,
+  getPath,
+} = require('./utils/file');
+
+const ROOT_PATH = getPath('/../../..');
+const PACKAGE_ROOT_PATH = ROOT_PATH + '/packages';
+const TEMPLATES_PATH = 'plop/templates';
+
+const PACKAGES = readDir(PACKAGE_ROOT_PATH);
+const LAYERS = ['domain', 'data'];
+
 module.exports = {
-  TEMPLATES_PATH: 'plop/templates',
-  PACKAGES: ['core', 'server', 'client', 'crawler'],
+  ROOT_PATH,
+  PACKAGE_ROOT_PATH,
+  TEMPLATES_PATH,
+  PACKAGES,
+  LAYERS,
 };

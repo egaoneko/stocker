@@ -1,56 +1,51 @@
 const {
   TEMPLATES_PATH,
-  PACKAGES
+  PACKAGES,
+  LAYERS,
 } = require('./constant');
+const {
+  genAutocompletePrompt,
+  genModuleInputPrompt,
+  genClassInputPrompt,
+} = require('./utils/prompt');
+
 module.exports = (plop) => {
   plop.setGenerator('entity', {
     description: 'Create entity in package',
     prompts: [
-      {
-        type: 'list',
-        name: 'package',
-        choices: PACKAGES,
-        message: 'Please choice package'
-      },
-      {
-        type: 'list',
-        name: 'layer',
-        choices: ['domain', 'data'],
-        message: 'Please choice layer'
-      },
-      {
-        type: 'input',
-        name: 'module',
-        message: 'Please input module(ex: module-name)',
-        validate: (input) => {
-          return !!input || 'module can not be empty'
-        }
-      },
-      {
-        type: 'input',
-        name: 'class',
-        message: 'Please input class(ex: ClassName)',
-        validate: (input) => {
-          return !!input || 'class can not be empty'
-        }
-      },
-      {
-        type: 'list',
-        name: 'parentLayer',
-        choices: ['domain', 'data'],
-        message: 'Please choice parent layer'
-      },
-      {
-        type: 'input',
-        name: 'parentModule',
-        message: 'Please input parent module(ex: module-name)',
-      },
-      {
-        type: 'input',
-        name: 'parentClass',
-        default: 'Entity',
-        message: 'Please input parent class(ex: ClassName)'
-      },
+      genAutocompletePrompt(
+        'package',
+        'Please choice package',
+        PACKAGES,
+      ),
+      genAutocompletePrompt(
+        'layer',
+        'Please choice layer',
+        LAYERS,
+      ),
+      genModuleInputPrompt(
+        'module',
+        'Please input module(ex: module-name)'
+      ),
+      genClassInputPrompt(
+        'class',
+        'Please input class(ex: ClassName)'
+      ),
+      genAutocompletePrompt(
+        'parentLayer',
+        'Please choice layer',
+        LAYERS,
+      ),
+      genModuleInputPrompt(
+        'parentModule',
+        'Please input parent module(ex: module-name)',
+        {empty: true}
+      ),
+      genClassInputPrompt(
+        'parentClass',
+        'Please input parent class(ex: ClassName)',
+        {default: 'Entity'}
+      ),
     ],
     actions: function () {
       return [
