@@ -9,6 +9,7 @@ const TEMPLATES_PATH = 'plop/templates';
 
 const PACKAGES = readDir(PACKAGE_ROOT_PATH);
 const LAYERS = ['domain', 'data'];
+const TYPE = ['interface', 'class'];
 
 module.exports = {
   ROOT_PATH,
@@ -16,4 +17,5 @@ module.exports = {
   TEMPLATES_PATH,
   PACKAGES,
   LAYERS,
+  TYPE,
 };
