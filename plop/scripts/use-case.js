@@ -1,37 +1,56 @@
 const {
   TEMPLATES_PATH,
+  PACKAGE_ROOT_PATH,
 } = require('./constant');
+const {
+  genAutocompletePrompt,
+  genModuleInputPrompt,
+  genClassInputPrompt,
+} = require('./utils/prompt');
+const {
+  readDir,
+} = require('./utils/file');
 module.exports = (plop) => {
   plop.setGenerator('use-case', {
     description: 'Create use-case in package',
     prompts: [
-      {
-        type: 'input',
-        name: 'module',
-        message: 'Please input module(ex: module-name)',
-        validate: (input) => {
-          return !!input || 'module can not be empty'
-        }
-      },
-      {
-        type: 'input',
-        name: 'class',
-        message: 'Please input class(ex: ClassName)',
-        validate: (input) => {
-          return !!input || 'class can not be empty'
-        }
-      },
-      {
-        type: 'input',
-        name: 'repositoryModule',
-        message: 'Please input repository module(ex: module-name)',
-      },
-      {
-        type: 'input',
-        name: 'repositoryClass',
-        default: 'Repository',
-        message: 'Please input repository class(ex: ClassName)'
-      },
+      genModuleInputPrompt(
+        'module',
+        'Please input module(ex: module-name)'
+      ),
+      genClassInputPrompt(
+        'class',
+        'Please input class(ex: ClassName)'
+      ),
+      genAutocompletePrompt(
+        'repositoryModule',
+        'Please choice repository module',
+        (answer, input) => new Promise((resolve) => {
+          input = input || '';
+          const source = readDir(`${PACKAGE_ROOT_PATH}/core/src/domain/repositories`)
+            .filter(file => !file.endsWith('.ts'));
+          if (!input) {
+            resolve(source);
+          } else {
+            resolve(source.filter((value) => value.toLowerCase().indexOf(input.toLowerCase()) > -1));
+          }
+        }),
+      ),
+      genAutocompletePrompt(
+        'repositoryClass',
+        'Please choice repository class',
+        (answer, input) => new Promise((resolve) => {
+          input = input || '';
+          const source = readDir(`${PACKAGE_ROOT_PATH}/core/src/domain/repositories/${answer.repositoryModule}`)
+            .filter(file => file.endsWith('.ts'))
+            .map(file => file.replace('.ts', ''));
+          if (!input) {
+            resolve(source);
+          } else {
+            resolve(source.filter((value) => value.toLowerCase().indexOf(input.toLowerCase()) > -1));
+          }
+        }),
+      ),
     ],
     actions: (data) => {
       const actions = [];
