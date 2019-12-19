@@ -1,0 +1,4 @@
+export enum ScheduleFunction {
+  CRAWL_STOCK_ITEMS = 'CRAWL_STOCK_ITEMS',
+  CRAWL_STOCK_ITEM = 'CRAWL_STOCK_ITEM',
+}
