@@ -8,11 +8,11 @@ import { apply } from '../../../../src/utils/common';
 import UpdateStockItem from '../../../../src/domain/use-cases/stock-item/UpdateStockItem';
 import {
   DEFAULT_CODE,
-  DEFAULT_ID,
   DEFAULT_STOCK_ITEM
 } from '../../../../__mocks__/stock-item/constant';
 import StockItem from '../../../../src/domain/entities/stock-item/StockItem';
 import { DEFAULT_NAME } from '../../../../__mocks__/account/constant';
+import { DEFAULT_ID } from '../../../../__mocks__/constant';
 
 describe('UpdateStockItem UseCase', () => {
   beforeEach(() => {

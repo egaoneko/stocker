@@ -1,18 +1,18 @@
 import { Observable } from 'rxjs';
 import UseCase from '../UseCase';
-import StockItemRepository from '../../repositories/stock-item/StockItemRepository';
+import ScheduleRepository from '../../repositories/schedule/ScheduleRepository';
 import { Options } from '../../../interfaces/repository/options';
 
-export default class CountStockItems extends UseCase<number> {
+export default class CountSchedules extends UseCase<number> {
   public options: Options = {};
 
   constructor(
-    private repository: StockItemRepository
+    private repository: ScheduleRepository
   ) {
     super();
   }
 
   protected build(): Observable<number> {
-    return this.repository.countStockItems(this.options);
+    return this.repository.countSchedules(this.options);
   }
 }

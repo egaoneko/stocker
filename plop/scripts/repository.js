@@ -53,7 +53,7 @@ module.exports = (plop) => {
         {default: 'Repository'}
       ),
     ],
-    actions: (data) => {
+    actions: (answer) => {
       const actions = [];
 
       actions.push({
@@ -63,7 +63,7 @@ module.exports = (plop) => {
         abortOnFail: true
       });
 
-      if (data.type === 'class') {
+      if (answer.type === 'class') {
         actions.push({
           type: 'add',
           path: `packages/{{package}}/__tests__/{{layer}}/repositories/{{module}}/{{class}}.spec.ts`,
@@ -72,7 +72,7 @@ module.exports = (plop) => {
         });
       }
 
-      if (data.package === 'core') {
+      if (answer.package === 'core') {
         actions.push({
           type: 'add',
           path: `packages/{{package}}/__mocks__/{{module}}/{{class}}.ts`,

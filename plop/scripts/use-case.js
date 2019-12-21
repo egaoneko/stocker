@@ -52,7 +52,7 @@ module.exports = (plop) => {
         }),
       ),
     ],
-    actions: (data) => {
+    actions: (answer) => {
       const actions = [];
 
       actions.push({
