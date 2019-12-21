@@ -5,10 +5,8 @@ import mockStockItemRepository, {
 } from '../../../../__mocks__/stock-item/StockItemRepository';
 import { queue } from 'rxjs/internal/scheduler/queue';
 import { apply } from '../../../../src/utils/common';
-import {
-  DEFAULT_FIND_OPTIONS,
-} from '../../../../__mocks__/stock-item/constant';
 import CountStockItems from '../../../../src/domain/use-cases/stock-item/CountStockItems';
+import { DEFAULT_FIND_OPTIONS } from '../../../../__mocks__/constant';
 
 describe('CountStockItems UseCase', () => {
   beforeEach(() => {

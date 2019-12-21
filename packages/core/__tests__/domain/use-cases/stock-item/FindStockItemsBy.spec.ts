@@ -7,9 +7,7 @@ import { queue } from 'rxjs/internal/scheduler/queue';
 import { apply } from '../../../../src/utils/common';
 import FindStockItemsBy from '../../../../src/domain/use-cases/stock-item/FindStockItemsBy';
 import StockItem from '../../../../src/domain/entities/stock-item/StockItem';
-import {
-  DEFAULT_FIND_OPTIONS,
-} from '../../../../__mocks__/stock-item/constant';
+import { DEFAULT_FIND_OPTIONS } from '../../../../__mocks__/constant';
 
 describe('FindStockItemsBy UseCase', () => {
   beforeEach(() => {
@@ -24,14 +22,14 @@ describe('FindStockItemsBy UseCase', () => {
 
     apply(useCase, (it: FindStockItemsBy) => it.options = DEFAULT_FIND_OPTIONS)
       .runOnce(async, queue)
-      .subscribe((stockItem: StockItem[] | null) => {
-        if (!stockItem) {
+      .subscribe((stockItems: StockItem[] | null) => {
+        if (!stockItems) {
           throw 'Can not find stock Item';
         }
 
         expect(mockFindStockItemsBy).toHaveBeenCalledTimes(1);
         expect(mockFindStockItemsBy).toBeCalledWith(DEFAULT_FIND_OPTIONS);
-        expect(stockItem.length).toBe(1);
+        expect(stockItems.length).toBe(1);
         done();
       });
   });

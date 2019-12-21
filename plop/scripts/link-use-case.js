@@ -82,20 +82,20 @@ module.exports = (plop) => {
         }),
       ),
     ],
-    actions: (data) => {
+    actions: (answer) => {
       const actions = [];
 
       actions.push({
         type: 'modify',
         path: `packages/{{repositoryPackage}}/src/{{repositoryLayer}}/repositories/{{repositoryModule}}/{{repositoryClass}}.ts`,
         pattern: /(\/\/ --ADD_METHOD--)/gi,
-        template: data.repositoryPackage === 'core' ?
+        template: answer.repositoryPackage === 'core' ?
           '{{camelCase useCaseClass}}(prop: any): Observable<any>;\r\n\n  $1' :
           'public {{camelCase useCaseClass}}(prop: any): Observable<any> {\n    return of(null);\n  }\r\n\n  $1',
         abortOnFail: true
       });
 
-      if (data.repositoryPackage === 'core') {
+      if (answer.repositoryPackage === 'core') {
         actions.push({
           type: 'modify',
           path: `packages/{{repositoryPackage}}/__mocks__/{{repositoryModule}}/{{repositoryClass}}.ts`,
