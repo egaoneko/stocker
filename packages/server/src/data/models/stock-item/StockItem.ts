@@ -10,7 +10,6 @@ import {
 import { Model } from '@stocker/core/lib/data/models/Model';
 import StockItemEntity from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import {
-  FindOptions,
   Transaction
 } from 'sequelize';
 import { MarketType } from '../../../enums/market';
@@ -23,7 +22,7 @@ import ErrorType from '@stocker/core/lib/error/ErrorType';
 import { generateFindOptions } from '../../../utils/sequelize';
 
 @Table({
-  tableName: 'stock_item'
+  tableName: 'stock_items'
 })
 export default class StockItem extends DBModel<StockItem> implements Model {
   @PrimaryKey

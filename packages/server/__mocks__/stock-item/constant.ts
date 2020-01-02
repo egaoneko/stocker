@@ -1,8 +1,8 @@
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 import { KOSPI } from '@stocker/core/lib/constants/market';
 import { Options } from '@stocker/core/lib/interfaces/repository/options';
+import { DEFAULT_ID } from '../constant';
 
-export const DEFAULT_ID: string = 'ea37d172-cc7b-4c26-be53-47bd02a5e327';
 export const DEFAULT_CODE: string = '096770';
 export const DEFAULT_NAME: string = 'SK이노베이션';
 

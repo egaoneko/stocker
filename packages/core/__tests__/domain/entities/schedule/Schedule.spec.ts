@@ -33,9 +33,11 @@ describe('Schedule', () => {
       '* * * * *',
       ScheduleFunction.CRAWL_STOCK_ITEMS,
     );
+    schedule.id = 'id';
     schedule.options = {};
     schedule.lastExecutedTime = new Date();
     const clone: Schedule = schedule.clone();
+    expect(clone.id).toBe(schedule.id);
     expect(clone.expression).toBe(schedule.expression);
     expect(clone.scheduleFunction).toBe(schedule.scheduleFunction);
     expect(clone.options).toEqual(schedule.options);
@@ -47,9 +49,11 @@ describe('Schedule', () => {
       '* * * * *',
       ScheduleFunction.CRAWL_STOCK_ITEMS,
     );
+    schedule.id = 'id';
     schedule.options = {};
     schedule.lastExecutedTime = new Date();
     expect(schedule.toString()).toBe([
+      schedule.id,
       schedule.expression,
       schedule.scheduleFunction,
       schedule.options,
