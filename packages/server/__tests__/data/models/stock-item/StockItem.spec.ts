@@ -28,7 +28,7 @@ describe('StockItem Model', () => {
     expect(stockItem.state).toEqual(stockItemEntity.state);
   });
 
-  test('createUser', async () => {
+  test('createStockItem', async () => {
     const [stockItem, created]: [StockItem, boolean] = await StockItem.createStockItem(DEFAULT_STOCK_ITEM);
     expect(created).toBeTruthy();
 

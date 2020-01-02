@@ -47,6 +47,7 @@ export default class Schedule implements Entity {
       this.expression,
       this.scheduleFunction,
     );
+    schedule.id = this.id;
     schedule.options = this.options;
     schedule.lastExecutedTime = this.lastExecutedTime;
     return schedule;
@@ -54,6 +55,7 @@ export default class Schedule implements Entity {
 
   public toString(): string {
     return [
+      this.id,
       this.expression,
       this.scheduleFunction,
       this.options,
