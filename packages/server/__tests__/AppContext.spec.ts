@@ -15,6 +15,13 @@ import UpdateStockItem from '@stocker/core/lib/domain/use-cases/stock-item/Updat
 import DeleteStockItem from '@stocker/core/lib/domain/use-cases/stock-item/DeleteStockItem';
 import FindStockItemsBy from '@stocker/core/lib/domain/use-cases/stock-item/FindStockItemsBy';
 import CountStockItems from '@stocker/core/lib/domain/use-cases/stock-item/CountStockItems';
+import SequelizeScheduleProvider from '../src/data/providers/schedule/SequelizeScheduleProvider';
+import ScheduleRepository from '../src/data/repositories/schedule/ScheduleRepository';
+import CreateSchedule from '@stocker/core/lib/domain/use-cases/schedule/CreateSchedule';
+import UpdateSchedule from '@stocker/core/lib/domain/use-cases/schedule/UpdateSchedule';
+import DeleteSchedule from '@stocker/core/lib/domain/use-cases/schedule/DeleteSchedule';
+import FindSchedulesBy from '@stocker/core/lib/domain/use-cases/schedule/FindSchedulesBy';
+import CountSchedules from '@stocker/core/lib/domain/use-cases/schedule/CountSchedules';
 
 describe('AppContext', () => {
   const application: AppContext = new AppContext();
@@ -41,5 +48,15 @@ describe('AppContext', () => {
     expect((application as any).useCases.deleteStockItem).toBeInstanceOf(DeleteStockItem);
     expect((application as any).useCases.findStockItemsBy).toBeInstanceOf(FindStockItemsBy);
     expect((application as any).useCases.countStockItems).toBeInstanceOf(CountStockItems);
+  });
+
+  test('Schedule', () => {
+    expect((application as any).providers.schedule).toBeInstanceOf(SequelizeScheduleProvider);
+    expect((application as any).repositories.schedule).toBeInstanceOf(ScheduleRepository);
+    expect((application as any).useCases.createSchedule).toBeInstanceOf(CreateSchedule);
+    expect((application as any).useCases.updateSchedule).toBeInstanceOf(UpdateSchedule);
+    expect((application as any).useCases.deleteSchedule).toBeInstanceOf(DeleteSchedule);
+    expect((application as any).useCases.findSchedulesBy).toBeInstanceOf(FindSchedulesBy);
+    expect((application as any).useCases.countSchedules).toBeInstanceOf(CountSchedules);
   });
 });
