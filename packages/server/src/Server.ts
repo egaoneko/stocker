@@ -16,10 +16,11 @@ import authToken from './middlewares/authToken';
 import router from './routes';
 
 // db
-
 import sequelize, { associate } from './libs/sequelize';
 // firebase
 import admin from './libs/firebase-admin';
+// schedule
+import { initialize } from './libs/schedule';
 
 export interface IState {
 }
@@ -63,6 +64,7 @@ export default class Server {
   private async initialize(): Promise<void> {
     await this.initializeDb();
     await this.initializeFirebase();
+    await this.initializeSchedule();
     await this.middleware();
   }
 
@@ -115,5 +117,9 @@ export default class Server {
   }
 
   private async initializeFirebase(): Promise<void> {
+  }
+
+  private async initializeSchedule(): Promise<void> {
+    await initialize();
   }
 }

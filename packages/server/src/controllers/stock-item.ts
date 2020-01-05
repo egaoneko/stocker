@@ -26,7 +26,7 @@ export const crawl = async (ctx: Context): Promise<void> => {
     success += 1;
   }
 
-  ctx.res.statusCode = 200;
+  ctx.status = 200;
   ctx.body = {
     total,
     success,
