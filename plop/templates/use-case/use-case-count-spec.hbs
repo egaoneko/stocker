@@ -22,7 +22,7 @@ describe('Count{{pluralEntity}} UseCase', () => {
       .runOnce(async, queue)
       .toPromise();
     expect(mockCount{{pluralEntity}}).toHaveBeenCalledTimes(1);
-    expect(mockCount{{pluralEntity}}).toBeCalledWith(DEFAULT_FIND_OPTIONS)
+    expect(mockCount{{pluralEntity}}).toBeCalledWith(DEFAULT_FIND_OPTIONS);
     expect(result).toBe(1);
   });
 });

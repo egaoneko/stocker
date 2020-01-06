@@ -10,6 +10,7 @@ describe('Schedule Model', () => {
     schedule.id = DEFAULT_SCHEDULE.id as string;
     schedule.expression = DEFAULT_SCHEDULE.expression;
     schedule.scheduleFunction = DEFAULT_SCHEDULE.scheduleFunction;
+    schedule.priority = DEFAULT_SCHEDULE.priority;
     schedule.options = JSON.stringify(DEFAULT_SCHEDULE.options);
     schedule.lastExecutedTime = DEFAULT_SCHEDULE.lastExecutedTime;
 
@@ -18,6 +19,7 @@ describe('Schedule Model', () => {
     expect(schedule.id).toEqual(scheduleEntity.id);
     expect(schedule.expression).toEqual(scheduleEntity.expression);
     expect(schedule.scheduleFunction).toEqual(scheduleEntity.scheduleFunction);
+    expect(schedule.priority).toEqual(scheduleEntity.priority);
     expect(JSON.parse(schedule.options)).toEqual(scheduleEntity.options);
     expect(schedule.lastExecutedTime).toEqual(scheduleEntity.lastExecutedTime);
   });

@@ -21,7 +21,7 @@ describe('Create{{entity}} UseCase', () => {
       .runOnce(async, queue)
       .toPromise();
     expect(mockCreate{{entity}}).toHaveBeenCalledTimes(1);
-    expect(mockCreate{{entity}}).toBeCalledWith(DEFAULT_{{upperCase (snakeCase entity)}})
+    expect(mockCreate{{entity}}).toBeCalledWith(DEFAULT_{{upperCase (snakeCase entity)}});
   });
 
   test('throw exception without entity', () => {

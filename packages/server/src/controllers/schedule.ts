@@ -17,6 +17,9 @@ const schema = Joi.object({
     .regex(new RegExp(`^${Object.values(ScheduleFunction).join('|')}$`))
     .required(),
 
+  priority: Joi.number()
+    .required(),
+
   options: Joi.object()
     .default({}),
 });
@@ -27,6 +30,7 @@ export const create = async (ctx: Context): Promise<void> => {
     const schedule: Schedule = new Schedule(
       params.expression,
       params.scheduleFunction,
+      params.priority,
     );
     schedule.options = params.options;
 

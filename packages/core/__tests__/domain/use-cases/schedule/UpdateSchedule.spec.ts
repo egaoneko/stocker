@@ -8,6 +8,7 @@ import UpdateSchedule from '../../../../src/domain/use-cases/schedule/UpdateSche
 import Schedule from '../../../../src/domain/entities/schedule/Schedule';
 import {
   DEFAULT_EXPRESSION,
+  DEFAULT_PRIORITY,
   DEFAULT_SCHEDULE,
   DEFAULT_SCHEDULE_FUNCTION
 } from '../../../../__mocks__/schedule/constant';
@@ -27,7 +28,7 @@ describe('UpdateSchedule UseCase', () => {
       .runOnce(async, queue)
       .toPromise();
     expect(mockUpdateSchedule).toHaveBeenCalledTimes(1);
-    expect(mockUpdateSchedule).toBeCalledWith(DEFAULT_SCHEDULE)
+    expect(mockUpdateSchedule).toBeCalledWith(DEFAULT_SCHEDULE);
   });
 
   test('throw exception without entity', () => {
@@ -43,7 +44,7 @@ describe('UpdateSchedule UseCase', () => {
   test('throw exception with invalid expression', () => {
     const repository = new mockScheduleRepository();
     const useCase: UpdateSchedule = new UpdateSchedule(repository);
-    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION);
+    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION, DEFAULT_PRIORITY);
     (schedule as any).expression = null;
     schedule.id = DEFAULT_ID;
 
@@ -56,7 +57,7 @@ describe('UpdateSchedule UseCase', () => {
   test('throw exception with invalid scheduleFunction', () => {
     const repository = new mockScheduleRepository();
     const useCase: UpdateSchedule = new UpdateSchedule(repository);
-    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION);
+    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION, DEFAULT_PRIORITY);
     (schedule as any).scheduleFunction = null;
     schedule.id = DEFAULT_ID;
 
@@ -69,7 +70,7 @@ describe('UpdateSchedule UseCase', () => {
   test('throw exception with invalid id', () => {
     const repository = new mockScheduleRepository();
     const useCase: UpdateSchedule = new UpdateSchedule(repository);
-    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION);
+    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION, DEFAULT_PRIORITY);
 
     expect(() => {
       apply(useCase, ((it: UpdateSchedule) => it.schedule = schedule))

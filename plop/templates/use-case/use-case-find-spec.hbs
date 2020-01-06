@@ -22,7 +22,7 @@ describe('Find{{pluralEntity}}By UseCase', () => {
       .runOnce(async, queue)
       .toPromise();
     expect(mockFind{{pluralEntity}}By).toHaveBeenCalledTimes(1);
-    expect(mockFind{{pluralEntity}}By).toBeCalledWith(DEFAULT_FIND_OPTIONS)
+    expect(mockFind{{pluralEntity}}By).toBeCalledWith(DEFAULT_FIND_OPTIONS);
     expect(results.length).toBe(1);
   });
 });

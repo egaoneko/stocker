@@ -22,7 +22,7 @@ describe('CountSchedules UseCase', () => {
       .runOnce(async, queue)
       .toPromise();
     expect(mockCountSchedules).toHaveBeenCalledTimes(1);
-    expect(mockCountSchedules).toBeCalledWith(DEFAULT_FIND_OPTIONS)
+    expect(mockCountSchedules).toBeCalledWith(DEFAULT_FIND_OPTIONS);
     expect(result).toBe(1);
   });
 });

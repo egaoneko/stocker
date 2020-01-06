@@ -35,6 +35,9 @@ export default class Schedule extends DBModel<Schedule> implements Model {
   @Column(DataType.STRING)
   public scheduleFunction!: ScheduleFunction;
 
+  @Column(DataType.INTEGER)
+  public priority!: number;
+
   @Column(DataType.STRING)
   public options!: string;
 
@@ -43,7 +46,7 @@ export default class Schedule extends DBModel<Schedule> implements Model {
   public lastExecutedTime?: Date;
 
   public static createSchedule(schedule: ScheduleEntity, transaction?: Transaction): Promise<[Schedule, boolean]> {
-    const { expression, scheduleFunction, options, lastExecutedTime }: ScheduleEntity = schedule;
+    const { expression, scheduleFunction, priority, options, lastExecutedTime }: ScheduleEntity = schedule;
     return Schedule.findOrCreate({
       where: {
         scheduleFunction: scheduleFunction,
@@ -51,6 +54,7 @@ export default class Schedule extends DBModel<Schedule> implements Model {
       defaults: {
         expression,
         scheduleFunction,
+        priority,
         lastExecutedTime,
         options: JSON.stringify(options),
       },
@@ -59,7 +63,7 @@ export default class Schedule extends DBModel<Schedule> implements Model {
   }
 
   public static updateSchedule(schedule: ScheduleEntity, transaction?: Transaction): Promise<[number, Schedule[]]> {
-    const { id, expression, scheduleFunction, options, lastExecutedTime }: ScheduleEntity = schedule;
+    const { id, expression, scheduleFunction, priority, options, lastExecutedTime }: ScheduleEntity = schedule;
 
     if (!id) {
       throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'id is empty.');
@@ -68,6 +72,7 @@ export default class Schedule extends DBModel<Schedule> implements Model {
     return Schedule.update({
       expression,
       scheduleFunction,
+      priority,
       lastExecutedTime,
       options: JSON.stringify(options),
     }, {
@@ -105,6 +110,7 @@ export default class Schedule extends DBModel<Schedule> implements Model {
     const schedule: ScheduleEntity = new ScheduleEntity(
       this.expression,
       this.scheduleFunction,
+      this.priority,
     );
 
     schedule.id = this.id;
