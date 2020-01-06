@@ -15,7 +15,7 @@ describe('StockItem Routes', () => {
 
   afterAll(() => server.close());
 
-  test.skip('crawl without authorization', async () => {
+  test('crawl without authorization', async () => {
     await request
       .get(PREFIX + '/crawl')
       .expect(401)
@@ -24,16 +24,14 @@ describe('StockItem Routes', () => {
       });
   });
 
-  test.skip('crawl with authorization', async () => {
+  test('crawl with authorization', async () => {
     const token: string = await getIdToken(DEFAULT_USER.id);
     await request
       .get(PREFIX + '/crawl')
       .set('Authorization', `Bearer ${token}`)
       .expect(200)
       .expect((res: supertest.Response) => {
-        console.log(res.body);
-        expect(res.body).toHaveProperty('total');
-        expect(res.body).toHaveProperty('success');
+        expect(res.text).toEqual('OK');
       });
-  }, 5 * 60 * 1000);
+  });
 });

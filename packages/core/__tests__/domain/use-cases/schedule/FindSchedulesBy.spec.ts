@@ -22,7 +22,7 @@ describe('FindSchedulesBy UseCase', () => {
       .runOnce(async, queue)
       .toPromise();
     expect(mockFindSchedulesBy).toHaveBeenCalledTimes(1);
-    expect(mockFindSchedulesBy).toBeCalledWith(DEFAULT_FIND_OPTIONS)
+    expect(mockFindSchedulesBy).toBeCalledWith(DEFAULT_FIND_OPTIONS);
     expect(results.length).toBe(1);
   });
 });

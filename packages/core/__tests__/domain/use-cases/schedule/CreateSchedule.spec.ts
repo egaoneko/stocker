@@ -8,6 +8,7 @@ import CreateSchedule from '../../../../src/domain/use-cases/schedule/CreateSche
 import Schedule from '../../../../src/domain/entities/schedule/Schedule';
 import {
   DEFAULT_EXPRESSION,
+  DEFAULT_PRIORITY,
   DEFAULT_SCHEDULE,
   DEFAULT_SCHEDULE_FUNCTION
 } from '../../../../__mocks__/schedule/constant';
@@ -26,7 +27,7 @@ describe('CreateSchedule UseCase', () => {
       .runOnce(async, queue)
       .toPromise();
     expect(mockCreateSchedule).toHaveBeenCalledTimes(1);
-    expect(mockCreateSchedule).toBeCalledWith(DEFAULT_SCHEDULE)
+    expect(mockCreateSchedule).toBeCalledWith(DEFAULT_SCHEDULE);
   });
 
   test('throw exception without entity', () => {
@@ -42,7 +43,7 @@ describe('CreateSchedule UseCase', () => {
   test('throw exception with invalid expression', () => {
     const repository = new mockScheduleRepository();
     const useCase: CreateSchedule = new CreateSchedule(repository);
-    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION);
+    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION, DEFAULT_PRIORITY);
     (schedule as any).expression = null;
 
     expect(() => {
@@ -54,7 +55,7 @@ describe('CreateSchedule UseCase', () => {
   test('throw exception with invalid scheduleFunction', () => {
     const repository = new mockScheduleRepository();
     const useCase: CreateSchedule = new CreateSchedule(repository);
-    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION);
+    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION, DEFAULT_PRIORITY);
     (schedule as any).scheduleFunction = null;
 
     expect(() => {

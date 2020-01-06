@@ -8,6 +8,7 @@ import DeleteSchedule from '../../../../src/domain/use-cases/schedule/DeleteSche
 import Schedule from '../../../../src/domain/entities/schedule/Schedule';
 import {
   DEFAULT_EXPRESSION,
+  DEFAULT_PRIORITY,
   DEFAULT_SCHEDULE,
   DEFAULT_SCHEDULE_FUNCTION
 } from '../../../../__mocks__/schedule/constant';
@@ -27,7 +28,7 @@ describe('DeleteSchedule UseCase', () => {
       .runOnce(async, queue)
       .toPromise();
     expect(mockDeleteSchedule).toHaveBeenCalledTimes(1);
-    expect(mockDeleteSchedule).toBeCalledWith(DEFAULT_SCHEDULE)
+    expect(mockDeleteSchedule).toBeCalledWith(DEFAULT_SCHEDULE);
   });
 
   test('throw exception without entity', () => {
@@ -44,7 +45,7 @@ describe('DeleteSchedule UseCase', () => {
   test('throw exception with invalid expression', () => {
     const repository = new mockScheduleRepository();
     const useCase: DeleteSchedule = new DeleteSchedule(repository);
-    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION);
+    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION, DEFAULT_PRIORITY);
     (schedule as any).expression = null;
     schedule.id = DEFAULT_ID;
 
@@ -57,7 +58,7 @@ describe('DeleteSchedule UseCase', () => {
   test('throw exception with invalid scheduleFunction', () => {
     const repository = new mockScheduleRepository();
     const useCase: DeleteSchedule = new DeleteSchedule(repository);
-    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION);
+    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION, DEFAULT_PRIORITY);
     (schedule as any).scheduleFunction = null;
     schedule.id = DEFAULT_ID;
 
@@ -70,7 +71,7 @@ describe('DeleteSchedule UseCase', () => {
   test('throw exception with invalid id', () => {
     const repository = new mockScheduleRepository();
     const useCase: DeleteSchedule = new DeleteSchedule(repository);
-    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION);
+    const schedule: Schedule = new Schedule(DEFAULT_EXPRESSION, DEFAULT_SCHEDULE_FUNCTION, DEFAULT_PRIORITY);
 
     expect(() => {
       apply(useCase, ((it: DeleteSchedule) => it.schedule = schedule))

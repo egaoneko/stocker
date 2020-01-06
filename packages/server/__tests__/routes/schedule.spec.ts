@@ -31,7 +31,8 @@ describe('Schedule Routes', () => {
       .post(PREFIX + '/')
       .send({
         expression: '* * * * *',
-        scheduleFunction: ScheduleFunction.CRAWL_STOCK_ITEM,
+        scheduleFunction: ScheduleFunction.CRAWL_STOCK_ITEMS,
+        priority: 0,
       })
       .set('Authorization', `Bearer ${token}`)
       .expect(409)

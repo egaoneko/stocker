@@ -22,7 +22,7 @@ describe('Delete{{entity}} UseCase', () => {
       .runOnce(async, queue)
       .toPromise();
     expect(mockDelete{{entity}}).toHaveBeenCalledTimes(1);
-    expect(mockDelete{{entity}}).toBeCalledWith(DEFAULT_{{upperCase (snakeCase entity)}})
+    expect(mockDelete{{entity}}).toBeCalledWith(DEFAULT_{{upperCase (snakeCase entity)}});
   });
 
   test('throw exception without entity', () => {

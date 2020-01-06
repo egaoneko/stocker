@@ -9,6 +9,7 @@ export default class Schedule implements Entity {
   constructor(
     public expression: string,
     public scheduleFunction: ScheduleFunction,
+    public priority: number,
   ) {
   }
 
@@ -18,6 +19,10 @@ export default class Schedule implements Entity {
     }
 
     if (this.scheduleFunction !== other.scheduleFunction) {
+      return false;
+    }
+
+    if (this.priority !== other.priority) {
       return false;
     }
 
@@ -46,6 +51,7 @@ export default class Schedule implements Entity {
     const schedule: Schedule = new Schedule(
       this.expression,
       this.scheduleFunction,
+      this.priority,
     );
     schedule.id = this.id;
     schedule.options = this.options;
@@ -58,6 +64,7 @@ export default class Schedule implements Entity {
       this.id,
       this.expression,
       this.scheduleFunction,
+      this.priority,
       this.options,
       this.lastExecutedTime,
     ].join(',');

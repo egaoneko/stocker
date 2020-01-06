@@ -7,6 +7,7 @@ describe('Schedule', () => {
     const schedule: Schedule = new Schedule(
       '* * * * *',
       ScheduleFunction.CRAWL_STOCK_ITEMS,
+      0,
     );
     schedule.options = {};
     schedule.lastExecutedTime = date;
@@ -14,6 +15,7 @@ describe('Schedule', () => {
     const equalSchedule: Schedule = new Schedule(
       '* * * * *',
       ScheduleFunction.CRAWL_STOCK_ITEMS,
+      0,
     );
     equalSchedule.options = {};
     equalSchedule.lastExecutedTime = date;
@@ -22,6 +24,7 @@ describe('Schedule', () => {
     const notEqualSchedule: Schedule = new Schedule(
       '',
       schedule.scheduleFunction,
+      0,
     );
     notEqualSchedule.options = {};
     notEqualSchedule.lastExecutedTime = date;
@@ -32,6 +35,7 @@ describe('Schedule', () => {
     const schedule: Schedule = new Schedule(
       '* * * * *',
       ScheduleFunction.CRAWL_STOCK_ITEMS,
+      0,
     );
     schedule.id = 'id';
     schedule.options = {};
@@ -48,6 +52,7 @@ describe('Schedule', () => {
     const schedule: Schedule = new Schedule(
       '* * * * *',
       ScheduleFunction.CRAWL_STOCK_ITEMS,
+      0,
     );
     schedule.id = 'id';
     schedule.options = {};
@@ -56,6 +61,7 @@ describe('Schedule', () => {
       schedule.id,
       schedule.expression,
       schedule.scheduleFunction,
+      schedule.priority,
       schedule.options,
       schedule.lastExecutedTime,
     ].join(','));
