@@ -40,6 +40,8 @@ async function runJob(schedule: Schedule): Promise<void> {
       break;
     case ScheduleFunction.CRAWL_STOCK_ITEM:
       break;
+    case ScheduleFunction.TEST_SCHEDULE:
+      break;
   }
 }
 

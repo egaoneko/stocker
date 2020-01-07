@@ -3,7 +3,7 @@ import Schedule from '../../src/domain/entities/schedule/Schedule';
 import { DEFAULT_ID } from '../constant';
 
 export const DEFAULT_EXPRESSION: string = '* * * * *';
-export const DEFAULT_SCHEDULE_FUNCTION: ScheduleFunction = ScheduleFunction.CRAWL_STOCK_ITEMS;
+export const DEFAULT_SCHEDULE_FUNCTION: ScheduleFunction = ScheduleFunction.TEST_SCHEDULE;
 export const DEFAULT_PRIORITY: number = 0;
 export const DEFAULT_OPTIONS: object = {};
 export const DEFAULT_LAST_EXECUTED_TIME: Date = new Date();
