@@ -2,13 +2,15 @@ import { Options } from '@stocker/core/lib/interfaces/repository/options';
 import { FindOptions } from 'sequelize';
 
 export function generateFindOptions(options: Options): FindOptions {
-  let { id, limit, page, sort }: Options = options;
+  let { id, limit, page, sort, where }: Options = options;
   const findOptions: FindOptions = {};
 
+  if (!where) {
+    where = {};
+  }
+
   if (id) {
-    findOptions.where = {
-      id,
-    };
+    where['id'] = id;
   }
 
   if (page) {
@@ -21,6 +23,7 @@ export function generateFindOptions(options: Options): FindOptions {
   }
 
   findOptions.order = sort;
+  findOptions.where = where;
 
   return findOptions;
 }
