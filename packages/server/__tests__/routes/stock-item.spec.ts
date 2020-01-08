@@ -5,7 +5,7 @@ import { DEFAULT_USER } from '../../__mocks__/account/constant';
 
 const server: Server = new Server();
 let request: supertest.SuperTest<supertest.Test>;
-const PREFIX: string = '/stock-item';
+const PREFIX: string = '/stock-items';
 
 describe('StockItem Routes', () => {
   beforeAll(async () => {
@@ -32,6 +32,26 @@ describe('StockItem Routes', () => {
       .expect(200)
       .expect((res: supertest.Response) => {
         expect(res.text).toEqual('OK');
+      });
+  });
+
+  test('findAll without authorization', async () => {
+    await request
+      .get(PREFIX + '/')
+      .expect(401)
+      .expect((res: supertest.Response) => {
+        expect(res.text).toEqual('Unauthorized');
+      });
+  });
+
+  test('findAll with authorization', async () => {
+    const token: string = await getIdToken(DEFAULT_USER.id);
+    await request
+      .get(PREFIX + '/')
+      .set('Authorization', `Bearer ${token}`)
+      .expect(200)
+      .expect((res: supertest.Response) => {
+        expect(Array.isArray(res.body)).toBeTruthy();
       });
   });
 });

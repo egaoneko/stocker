@@ -7,7 +7,7 @@ import { DEFAULT_SCHEDULE } from '../../__mocks__/schedule/constant';
 
 const server: Server = new Server();
 let request: supertest.SuperTest<supertest.Test>;
-const PREFIX: string = '/schedule';
+const PREFIX: string = '/schedules';
 
 describe('Schedule Routes', () => {
   beforeAll(async () => {

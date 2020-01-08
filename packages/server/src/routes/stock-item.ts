@@ -1,5 +1,8 @@
 import Router from 'koa-router';
-import { crawl } from '../controllers/stock-item';
+import {
+  crawl,
+  findAll
+} from '../controllers/stock-item';
 import {
   ICustom,
   IState
@@ -10,5 +13,6 @@ const router: Router<IState, ICustom> = new Router();
 
 // @ts-ignore
 router.get('/crawl', needsAuth, crawl);
+router.get('/', needsAuth, findAll);
 
 export default router;

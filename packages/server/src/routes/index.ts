@@ -7,7 +7,7 @@ import schedule from './schedule';
 const router: Router = new Router();
 
 router.use('', ping.routes());
-router.use('/stock-item', stockItem.routes());
-router.use('/schedule', schedule.routes());
+router.use('/stock-items', stockItem.routes());
+router.use('/schedules', schedule.routes());
 
 export default router;
