@@ -1,5 +1,10 @@
 import Entity from '../Entity';
 
+export interface NationInterface {
+  code: string;
+  name: string;
+}
+
 export default class Nation implements Entity {
   constructor(
     public code: string,

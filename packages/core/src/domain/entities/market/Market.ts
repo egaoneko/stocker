@@ -1,5 +1,10 @@
 import Entity from '../Entity';
-import Nation from '../nation/Nation';
+import Nation, { NationInterface } from '../nation/Nation';
+
+export interface MarketInterface {
+  name: string;
+  nation: NationInterface;
+}
 
 export default class Market implements Entity {
   constructor(
