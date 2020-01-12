@@ -15,4 +15,6 @@ export default interface StockItemRepository extends Repository {
   findStockItemsBy(options: Options): Observable<StockItem[]>;
 
   countStockItems(options: Options): Observable<number>;
+
+  // --ADD_METHOD--
 }

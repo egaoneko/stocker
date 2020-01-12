@@ -18,7 +18,7 @@ export default class UserRepository implements UserRepositoryInterface {
   }
 
   public createUser(user: User): Observable<[User, boolean]> {
-    throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'createUser is not supported.');
+    return this.provider.createUser(user);
   }
 
   public getCurrentUser(): Observable<User | null> {

@@ -8,15 +8,18 @@ import firebase from '../../../../libs/firebase';
 describe('FirebaseUserProvider', () => {
   const provider: FirebaseUserProvider = new FirebaseUserProvider();
 
-  test.skip('createUser', async () => {
-    const [_, success]: [User, boolean] = await provider.createUser(DEFAULT_USER).toPromise();
-    expect(success).toBeTruthy();
+  test.skip('findUserById', async () => {
+    const user: User | null = await provider.findUserById(DEFAULT_USER.id).toPromise();
 
-    const userRef: firebase.database.Reference = firebase.database().ref('users/' + DEFAULT_USER.id);
-    const dataSnapShot: firebase.database.DataSnapshot = await userRef.once('value');
-    expect(dataSnapShot.hasChildren()).toBeTruthy();
-    const err: any = await userRef.remove();
-    expect(err).toBeFalsy();
+    if (user) {
+      expect(user.id).toEqual(DEFAULT_USER.id);
+      expect(user.email).toEqual(DEFAULT_USER.email);
+      expect(user.name).toEqual(DEFAULT_USER.name);
+      expect(user.role).toEqual(DEFAULT_USER.role);
+      expect(user.photo).toEqual(DEFAULT_USER.photo);
+    } else {
+      expect(user).toBeNull();
+    }
   });
 
 
@@ -33,7 +36,6 @@ describe('FirebaseUserProvider', () => {
       expect(user.name).toEqual(DEFAULT_USER.name);
       expect(user.role).toEqual(DEFAULT_USER.role);
       expect(user.photo).toEqual(DEFAULT_USER.photo);
-      expect(user.provider).toEqual(DEFAULT_USER.provider);
     } else {
       expect(user).toBeNull();
     }

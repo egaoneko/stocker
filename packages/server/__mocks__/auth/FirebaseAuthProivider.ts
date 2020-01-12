@@ -2,6 +2,8 @@ import {
   Observable,
   of
 } from 'rxjs';
+import User from '@stocker/core/lib/domain/entities/account/User';
+import { DEFAULT_USER } from '../account/constant';
 
 const validToken: string = 'valid';
 
@@ -17,10 +19,19 @@ export const mockDecodeToken = jest.fn().mockImplementation(<T>(token: string): 
   }
 });
 
+export const mockFindUserByUid = jest.fn().mockImplementation((uid: string): Observable<User | null> => {
+  if (DEFAULT_USER.id === uid) {
+    return of(DEFAULT_USER);
+  } else {
+    return of(null);
+  }
+});
+
 const mockFirebaseAuthProvider = jest.fn().mockImplementation(() => {
   return {
     verifyToken: mockVerifyToken,
-    decodeToken: mockDecodeToken
+    decodeToken: mockDecodeToken,
+    findUserByUid: mockFindUserByUid,
   };
 });
 

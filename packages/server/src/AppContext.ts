@@ -1,10 +1,12 @@
 import FirebaseUserProvider from './data/providers/account/FirebaseUserProvider';
 import UserRepository from './data/repositories/account/UserRepository';
 import FindUserById from '@stocker/core/lib/domain/use-cases/account/FindUserById';
+import CreateUser from '@stocker/core/lib/domain/use-cases/account/CreateUser';
 import FirebaseAuthProvider from './data/providers/auth/FirebaseAuthProvider';
 import AuthRepository from './data/repositories/auth/AuthRepository';
 import VerifyToken from '@stocker/core/lib/domain/use-cases/auth/VerifyToken';
 import DecodeToken from '@stocker/core/lib/domain/use-cases/auth/DecodeToken';
+import FindUserByUid from '@stocker/core/lib/domain/use-cases/auth/FindUserByUid';
 import SequelizeStockItemProvider from './data/providers/stock-item/SequelizeStockItemProvider';
 import StockItemRepository from './data/repositories/stock-item/StockItemRepository';
 import CrawlStockItems from '@stocker/core/lib/domain/use-cases/stock-item/CrawlStockItems';
@@ -37,8 +39,10 @@ interface RepositoryDependencies {
 
 interface UseCaseDependencies {
   findUserById: FindUserById;
+  createUser: CreateUser;
   verifyToken: VerifyToken;
   decodeToken: DecodeToken;
+  findUserByUid: FindUserByUid;
   crawlStockItems: CrawlStockItems;
   createStockItem: CreateStockItem;
   updateStockItem: UpdateStockItem;
@@ -72,8 +76,10 @@ export default class AppContext {
     };
     this.useCases = {
       findUserById: new FindUserById(this.repositories.user),
+      createUser: new CreateUser(this.repositories.user),
       verifyToken: new VerifyToken(this.repositories.auth),
       decodeToken: new DecodeToken(this.repositories.auth),
+      findUserByUid: new FindUserByUid(this.repositories.auth),
       crawlStockItems: new CrawlStockItems(this.repositories.stockItem),
       createStockItem: new CreateStockItem(this.repositories.stockItem),
       updateStockItem: new UpdateStockItem(this.repositories.stockItem),

@@ -3,10 +3,12 @@ import AppContext from '../src/AppContext';
 import FirebaseUserProvider from '../src/data/providers/account/FirebaseUserProvider';
 import UserRepository from '../src/data/repositories/account/UserRepository';
 import FindUserById from '@stocker/core/lib/domain/use-cases/account/FindUserById';
+import CreateUser from '@stocker/core/lib/domain/use-cases/account/CreateUser';
 import FirebaseAuthProvider from '../src/data/providers/auth/FirebaseAuthProvider';
 import AuthRepository from '../src/data/repositories/auth/AuthRepository';
 import VerifyToken from '@stocker/core/lib/domain/use-cases/auth/VerifyToken';
 import DecodeToken from '@stocker/core/lib/domain/use-cases/auth/DecodeToken';
+import FindUserByUid from '@stocker/core/lib/domain/use-cases/auth/FindUserByUid';
 import SequelizeStockItemProvider from '../src/data/providers/stock-item/SequelizeStockItemProvider';
 import StockItemRepository from '../src/data/repositories/stock-item/StockItemRepository';
 import CrawlStockItems from '@stocker/core/lib/domain/use-cases/stock-item/CrawlStockItems';
@@ -30,6 +32,7 @@ describe('AppContext', () => {
     expect((application as any).providers.user).toBeInstanceOf(FirebaseUserProvider);
     expect((application as any).repositories.user).toBeInstanceOf(UserRepository);
     expect((application as any).useCases.findUserById).toBeInstanceOf(FindUserById);
+    expect((application as any).useCases.createUser).toBeInstanceOf(CreateUser);
   });
 
   test('Auth', () => {
@@ -37,6 +40,7 @@ describe('AppContext', () => {
     expect((application as any).repositories.auth).toBeInstanceOf(AuthRepository);
     expect((application as any).useCases.verifyToken).toBeInstanceOf(VerifyToken);
     expect((application as any).useCases.decodeToken).toBeInstanceOf(DecodeToken);
+    expect((application as any).useCases.findUserByUid).toBeInstanceOf(FindUserByUid);
   });
 
   test('StockItem', () => {

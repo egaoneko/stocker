@@ -13,7 +13,6 @@ describe('User', () => {
   test('clone', () => {
     const user: User = new User('0', 'test@test.com', 'Test', Role.USER);
     user.photo = 'photo';
-    user.provider = 'provider';
 
     const clone: User = user.clone();
     expect(clone.id).toBe(user.id);
@@ -21,13 +20,11 @@ describe('User', () => {
     expect(clone.name).toBe(user.name);
     expect(clone.role).toBe(user.role);
     expect(clone.photo).toBe(user.photo);
-    expect(clone.provider).toBe(user.provider);
   });
 
   test('toString', () => {
     const user: User = new User('0', 'test@test.com', 'Test', Role.USER);
     user.photo = 'photo';
-    user.provider = 'provider';
 
     expect(user.toString()).toBe([
       user.id,

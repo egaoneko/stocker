@@ -10,7 +10,6 @@ export default class UserDataSnapshotMapper implements ValueMapper<admin.databas
       name,
       role,
       photo,
-      provider,
     } = dataSnapshot.val();
     const user: User = new User(
       key,
@@ -20,7 +19,6 @@ export default class UserDataSnapshotMapper implements ValueMapper<admin.databas
     );
 
     user.photo = photo;
-    user.provider = provider;
 
     return user;
   }

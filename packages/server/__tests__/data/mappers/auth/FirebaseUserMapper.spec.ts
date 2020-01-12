@@ -1,6 +1,6 @@
 import User from '@stocker/core/lib/domain/entities/account/User';
-import FirebaseUserMapper from '../../../../data/mappers/account/FirebaseUserMapper';
 import { DEFAULT_USER } from '../../../../__mocks__/account/constant';
+import FirebaseUserMapper from '../../../../src/data/mappers/auth/FirebaseUserMapper';
 
 describe('FirebaseUserMapper', () => {
   const mapper: FirebaseUserMapper = new FirebaseUserMapper();

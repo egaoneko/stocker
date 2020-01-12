@@ -1,4 +1,7 @@
-import mockFirebaseUserProvider, { mockFindUserById } from '../../../../__mocks__/account/FirebaseUserProivider';
+import mockFirebaseUserProvider, {
+  mockFindUserById,
+  mockCreateUser,
+} from '../../../../__mocks__/account/FirebaseUserProivider';
 import UserRepository from '../../../../src/data/repositories/account/UserRepository';
 import User from '@stocker/core/lib/domain/entities/account/User';
 import { DEFAULT_USER } from '../../../../__mocks__/account/constant';
@@ -8,41 +11,48 @@ describe('UserRepository', () => {
 
   beforeEach(() => {
     mockFindUserById.mockClear();
+    mockCreateUser.mockClear();
   });
 
-  test('findUserById', (done) => {
+  test('findUserById', async () => {
     const uid: string = DEFAULT_USER.id;
-    repository.findUserById(uid)
-      .subscribe((user: User | null) => {
-        if (!user) {
-          throw 'Invalid User';
-        }
+    const user: User | null = await repository.findUserById(uid).toPromise();
 
-        expect(mockFindUserById).toHaveBeenCalledTimes(1);
-        expect(mockFindUserById).toBeCalledWith(uid);
-        expect(user.id).toEqual(DEFAULT_USER.id);
-        expect(user.email).toEqual(DEFAULT_USER.email);
-        expect(user.name).toEqual(DEFAULT_USER.name);
-        expect(user.role).toEqual(DEFAULT_USER.role);
-        done();
-      });
+    if (!user) {
+      throw 'Invalid User';
+    }
+
+    expect(mockFindUserById).toHaveBeenCalledTimes(1);
+    expect(mockFindUserById).toBeCalledWith(uid);
+    expect(user.id).toEqual(DEFAULT_USER.id);
+    expect(user.email).toEqual(DEFAULT_USER.email);
+    expect(user.name).toEqual(DEFAULT_USER.name);
+    expect(user.role).toEqual(DEFAULT_USER.role);
   });
 
-  test('findUserById with unregistered user', (done) => {
+  test('findUserById with unregistered user', async () => {
     const uid: string = '1234';
-    repository.findUserById(uid)
-      .subscribe((user: User | null) => {
-        expect(mockFindUserById).toHaveBeenCalledTimes(1);
-        expect(mockFindUserById).toBeCalledWith(uid);
-        expect(user).toBeNull();
-        done();
-      });
+    const user: User | null = await repository.findUserById(uid).toPromise();
+    expect(mockFindUserById).toHaveBeenCalledTimes(1);
+    expect(mockFindUserById).toBeCalledWith(uid);
+    expect(user).toBeNull();
   });
 
-  test('throw exception without createUser', () => {
-    expect(() => {
-      repository.createUser(DEFAULT_USER).subscribe()
-    }).toThrowError('createUser is not supported.');
+  test('createUser', async () => {
+    const [user, success]: [User, boolean] = await repository.createUser(DEFAULT_USER).toPromise();
+
+    if (!user) {
+      throw 'Invalid User';
+    }
+
+    expect(mockCreateUser).toHaveBeenCalledTimes(1);
+    expect(mockCreateUser).toBeCalledWith(DEFAULT_USER);
+    expect(success).toBeTruthy();
+    expect(user.id).toEqual(DEFAULT_USER.id);
+    expect(user.email).toEqual(DEFAULT_USER.email);
+    expect(user.name).toEqual(DEFAULT_USER.name);
+    expect(user.role).toEqual(DEFAULT_USER.role);
+    expect(user.photo).toBe(DEFAULT_USER.photo);
   });
 
   test('throw exception without getCurrentUser', () => {

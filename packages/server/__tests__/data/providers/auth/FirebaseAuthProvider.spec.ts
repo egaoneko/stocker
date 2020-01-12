@@ -1,6 +1,7 @@
 import '../../../__config__/firebase-admin';
 import FirebaseAuthProvider from '../../../../src/data/providers/auth/FirebaseAuthProvider';
 import { DEFAULT_USER } from '../../../../__mocks__/account/constant';
+import User from '@stocker/core/lib/domain/entities/account/User';
 
 describe('FirebaseAuthProvider', () => {
   const provider: FirebaseAuthProvider = new FirebaseAuthProvider();
@@ -29,5 +30,15 @@ describe('FirebaseAuthProvider', () => {
   test('decodeToken with invalid', async () => {
     const uid: string | null = await provider.decodeToken('').toPromise();
     expect(uid).toBeNull();
+  });
+
+  test('findUserByUid', async () => {
+    const user: User | null = await provider.findUserByUid(DEFAULT_USER.id).toPromise();
+
+    if (!user) {
+      throw 'Invalid User';
+    }
+
+    expect(user.id).toEqual(DEFAULT_USER.id);
   });
 });
