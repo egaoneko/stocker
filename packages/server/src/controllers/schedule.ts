@@ -43,13 +43,10 @@ export const create = async (ctx: Context): Promise<void> => {
       .runOnce(async, queue)
       .toPromise();
 
-    if (created) {
-      ctx.status = 200;
-      ctx.body = 'OK';
-    } else {
-      ctx.status = 409;
-      ctx.body = 'Already exists';
-    }
+    ctx.status = 200;
+    ctx.body = {
+      created,
+    };
   } catch (err) {
     ctx.status = 500;
     ctx.body = err;

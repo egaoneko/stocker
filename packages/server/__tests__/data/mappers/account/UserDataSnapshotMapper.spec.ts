@@ -17,7 +17,6 @@ describe('UserDataSnapshotMapper', () => {
                 name: DEFAULT_USER.name,
                 role: DEFAULT_USER.role,
                 photo: DEFAULT_USER.photo,
-                provider: DEFAULT_USER.provider,
               }
             })
           };
@@ -29,6 +28,5 @@ describe('UserDataSnapshotMapper', () => {
     expect(user.name).toEqual(DEFAULT_USER.name);
     expect(user.role).toEqual(DEFAULT_USER.role);
     expect(user.photo).toEqual(DEFAULT_USER.photo);
-    expect(user.provider).toEqual(DEFAULT_USER.provider);
   });
 });

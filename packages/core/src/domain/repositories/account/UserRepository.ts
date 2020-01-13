@@ -10,4 +10,6 @@ export default interface UserRepository extends Repository {
   getCurrentUser(): Observable<User | null>;
 
   getCurrentUserToken(): Observable<string | null>;
+
+  // --ADD_METHOD--
 }

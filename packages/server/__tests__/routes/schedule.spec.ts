@@ -36,9 +36,9 @@ describe('Schedule Routes', () => {
         priority: 0,
       })
       .set('Authorization', `Bearer ${token}`)
-      .expect(409)
+      .expect(200)
       .expect((res: supertest.Response) => {
-        expect(res.text).toEqual('Already exists');
+        expect(res.body.created).toBeFalsy();
       });
   });
 

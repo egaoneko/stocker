@@ -18,4 +18,18 @@ describe('FirebaseUserProvider', () => {
     expect(user.name).toEqual(DEFAULT_USER.name);
     expect(user.role).toEqual(DEFAULT_USER.role);
   });
+
+  test('createUser', async () => {
+    const [user, _]: [User, boolean] = await provider.createUser(DEFAULT_USER).toPromise();
+
+    if (!user) {
+      throw 'Invalid User';
+    }
+
+    expect(user.id).toBe(DEFAULT_USER.id);
+    expect(user.email).toBe(DEFAULT_USER.email);
+    expect(user.name).toBe(DEFAULT_USER.name);
+    expect(user.role).toBe(DEFAULT_USER.role);
+    expect(user.photo).toBe(DEFAULT_USER.photo);
+  });
 });

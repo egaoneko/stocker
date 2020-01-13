@@ -1,8 +1,16 @@
-import { of, Observable } from 'rxjs';
+import {
+  of,
+  Observable
+} from 'rxjs';
 import User from '@stocker/core/lib/domain/entities/account/User';
+import { DEFAULT_USER } from './constant';
 
-export const mockCreateUser = jest.fn().mockImplementation((user: User): Observable<[User, boolean]> => {
-  return of([user, true]);
+export const mockFindUserById = jest.fn().mockImplementation((id: string): Observable<User | null> => {
+  if (DEFAULT_USER.id !== id) {
+    return of(null);
+  }
+
+  return of(DEFAULT_USER);
 });
 
 let currentUser: User | null;
@@ -27,7 +35,7 @@ export const mockGetCurrentUserToken = jest.fn().mockImplementation((): Observab
 
 const mockFirebaseUserProvider = jest.fn().mockImplementation(() => {
   return {
-    createUser: mockCreateUser,
+    findUserById: mockFindUserById,
     getCurrentUser: mockGetCurrentUser,
     getCurrentUserToken: mockGetCurrentUserToken,
   };

@@ -3,6 +3,7 @@ import {
 } from 'rxjs';
 import AuthRepositoryInterface from '@stocker/core/lib/domain/repositories/auth/AuthRepository';
 import FirebaseAuthProvider from '../../providers/auth/FirebaseAuthProvider';
+import User from '@stocker/core/lib/domain/entities/account/User';
 
 export default class AuthRepository implements AuthRepositoryInterface {
   constructor(
@@ -16,5 +17,9 @@ export default class AuthRepository implements AuthRepositoryInterface {
 
   public decodeToken(token: string): Observable<string | null> {
     return this.provider.decodeToken(token);
+  }
+
+  public findUserByUid(uid: string): Observable<User | null> {
+    return this.provider.findUserByUid(uid);
   }
 }

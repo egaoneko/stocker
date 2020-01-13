@@ -17,9 +17,9 @@ module.exports = withPlugins([
     }
   }],
   withImages,
-  // [withTM, {
-  //   transpileModules: [],
-  // }],
+  [withTM, {
+    transpileModules: ['@stocker/core'],
+  }],
 ], {
   env: {
     TOKEN_NAME: process.env.TOKEN_NAME,

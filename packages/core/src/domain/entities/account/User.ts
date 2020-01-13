@@ -1,9 +1,16 @@
 import Entity from '../Entity';
 import { Role } from '../../../enums/account';
 
+export interface UserInterface {
+  id: string;
+  email: string;
+  name: string;
+  role: Role;
+  photo?: string;
+}
+
 export default class User implements Entity {
   public photo?: string;
-  public provider?: string;
 
   constructor(
     public id: string,
@@ -24,7 +31,6 @@ export default class User implements Entity {
   public clone(): User {
     const clone: User = new User(this.id, this.email, this.name, this.role);
     clone.photo = this.photo;
-    clone.provider = this.provider;
     return clone;
   }
 
