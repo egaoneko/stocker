@@ -14,7 +14,7 @@ export default class HttpUserProvider extends HttpProvider {
   public createUser(user: User): Observable<boolean> {
     return this.request<{ created: boolean }>({
       method: 'POST',
-      url: API_SEVER + '/account/users',
+      url: API_SEVER + '/accounts/users',
       data: {
         id: user.id,
       },
