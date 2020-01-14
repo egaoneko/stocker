@@ -9,6 +9,8 @@ import {
   useTranslation,
 } from '../i18n';
 import { NextPage } from 'next';
+import useStores from '../utils/mobx';
+import { observer } from 'mobx-react';
 
 interface PropsType extends AuthProps {
   namespacesRequired?: string[];
@@ -16,6 +18,7 @@ interface PropsType extends AuthProps {
 
 const Home: NextPage<PropsType> = (): JSX.Element => {
   const { t, i18n } = useTranslation('common');
+  const { rootStore } = useStores();
 
   useEffect(() => {
     (async () => {
@@ -31,7 +34,7 @@ const Home: NextPage<PropsType> = (): JSX.Element => {
 
   }, []);
   return (
-    <HeaderLayoutTemplate>
+    <HeaderLayoutTemplate user={rootStore.user}>
       <p onClick={() => {
         (i18n as any).changeLanguage((i18n as any).language === 'kr' ? 'en' : 'kr');
       }}>{t('greet')}</p>
@@ -43,4 +46,4 @@ Home.getInitialProps = async (): Promise<PropsType> => ({
   namespacesRequired: ['common'],
 });
 
-export default withAuthSync(Home);
+export default withAuthSync(observer(Home));
