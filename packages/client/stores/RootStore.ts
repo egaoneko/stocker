@@ -1,4 +1,5 @@
 import {
+  action,
   observable
 } from 'mobx';
 import { useStaticRendering } from 'mobx-react';
@@ -18,6 +19,7 @@ export default class RootStore {
       : null;
   }
 
+  @action
   public updateUser(user: User | null): void {
     this.user = user;
   }

@@ -13,7 +13,7 @@ import FullLayoutTemplate from '../layout/FullLayoutTemplate';
 import CenterTemplate from '../layout/CenterTemplate';
 import { StyledFirebaseAuth } from 'react-firebaseui';
 import firebase from '../../../libs/firebase';
-import Logo from '../../molecules/logo/Logo';
+import Logo from '../../molecules/layout/Logo';
 import { main } from '../../../utils/router';
 
 const logoImageUrl: string = 'images/logo_transparent.png';

@@ -1,4 +1,7 @@
-import React, { CSSProperties } from 'react';
+import React, {
+  CSSProperties,
+  useState
+} from 'react';
 /** @jsx jsx */
 import {
   jsx,
@@ -6,26 +9,59 @@ import {
   SerializedStyles,
 } from '@emotion/core';
 import {
-  Avatar,
+  Dropdown,
   Layout,
   Menu,
 } from 'antd';
-import Logo from '../../molecules/logo/Logo';
+import Logo from '../../molecules/layout/Logo';
 import {
   signIn,
   main
 } from '../../../utils/router';
+import User from '@stocker/core/lib/domain/entities/account/User';
+import Avatar from '../../molecules/layout/Avartar';
 
 const { Header } = Layout;
 const logoWidth: number = 118;
 const navHeight: number = 42;
 const logoImageUrl: string = 'images/header.png';
 
+const menu = (
+  <Menu>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+        1st menu item
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+        2nd menu item
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+        3rd menu item
+      </a>
+    </Menu.Item>
+  </Menu>
+);
+
 interface PropsType {
   selectedKey: string;
+  user?: User | null;
 }
 
-const HeaderNav: (props: PropsType) => JSX.Element = ({ selectedKey }: PropsType): JSX.Element => {
+const HeaderNav: (props: PropsType) => JSX.Element = ({ selectedKey, user }: PropsType): JSX.Element => {
+  const [visible, setVisible] = useState<boolean>(false);
+
+  function onClickAvatar(user?: User | null) {
+    if (!user) {
+      signIn();
+    } else {
+      setVisible(!visible);
+    }
+  }
+
   return (
     <Header
       className="header"
@@ -37,9 +73,12 @@ const HeaderNav: (props: PropsType) => JSX.Element = ({ selectedKey }: PropsType
         style={styles.logo}
         onClick={main}
       />
-      <div css={avatar} onClick={signIn}>
-        <Avatar icon="user"/>
-      </div>
+      <Dropdown overlay={menu} trigger={['click']} visible={!!user && visible} placement="bottomRight">
+        <div css={avatar} onClick={() => onClickAvatar(user)}>
+          <Avatar user={user}/>
+        </div>
+      </Dropdown>
+
       <Menu
         mode="horizontal"
         selectedKeys={[selectedKey]}
