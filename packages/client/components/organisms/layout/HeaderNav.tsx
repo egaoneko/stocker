@@ -20,6 +20,8 @@ import {
 } from '../../../utils/router';
 import User from '@stocker/core/lib/domain/entities/account/User';
 import Avatar from '../../molecules/layout/Avartar';
+import Router from 'next/router';
+import firebase from '../../../libs/firebase';
 
 const { Header } = Layout;
 const logoWidth: number = 118;
@@ -29,18 +31,13 @@ const logoImageUrl: string = 'images/header.png';
 const menu = (
   <Menu>
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-        1st menu item
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-        2nd menu item
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-        3rd menu item
+      <a
+        onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+          e.preventDefault();
+          firebase.auth().signOut();
+          Router.push('/sign-in');
+        }}>
+        Sign Out
       </a>
     </Menu.Item>
   </Menu>
@@ -102,6 +99,7 @@ const styles: { [key: string]: CSSProperties } = {
     backgroundColor: '#fff',
     boxShadow: '0 1px 4px rgba(0,21,41,.08)',
     padding: '0 10px',
+    zIndex: 100,
   },
   logo: {
     margin: '2px 10px 2px 0',
