@@ -7,6 +7,9 @@ import { queue } from 'rxjs/internal/scheduler/queue';
 import { apply } from '@stocker/core/lib/utils/common';
 import FindStockItemsBy from '@stocker/core/lib/domain/use-cases/stock-item/FindStockItemsBy';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
+import StockItemJSONMapper from '@stocker/core/lib/data/mappers/stock-item/StockItemJSONMapper';
+
+const mapper: StockItemJSONMapper = new StockItemJSONMapper();
 
 export const crawl = async (ctx: Context): Promise<void> => {
   saveStockItems();
@@ -37,7 +40,7 @@ export const findAll = async (ctx: Context): Promise<void> => {
       .toPromise();
 
     ctx.status = 200;
-    ctx.body = stockItems;
+    ctx.body = stockItems.map((stockItem: StockItem) => mapper.toJSON(stockItem));
   } catch (err) {
     ctx.status = 500;
     ctx.body = err;

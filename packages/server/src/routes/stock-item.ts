@@ -11,8 +11,7 @@ import needsAuth from '../middlewares/needsAuth';
 
 const router: Router<IState, ICustom> = new Router();
 
-// @ts-ignore
-router.get('/crawl', needsAuth, crawl);
-router.get('/', needsAuth, findAll);
+router.get('/crawl/stock-items', needsAuth, crawl);
+router.get('/stock-items', needsAuth, findAll);
 
 export default router;

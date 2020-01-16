@@ -11,8 +11,7 @@ import {
 
 const router: Router<IState, ICustom> = new Router();
 
-// @ts-ignore
-router.post('/', needsAuth, create);
-router.put('/', needsAuth, update);
+router.post('/schedules', needsAuth, create);
+router.put('/schedules', needsAuth, update);
 
 export default router;

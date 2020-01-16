@@ -9,7 +9,7 @@ const PREFIX: string = '/stock-items';
 
 describe('StockItem Routes', () => {
   beforeAll(async () => {
-    await server.listen(8080);
+    await server.listen(9000);
     request = supertest.agent(server.httpServer);
   });
 
@@ -17,7 +17,7 @@ describe('StockItem Routes', () => {
 
   test('crawl without authorization', async () => {
     await request
-      .get(PREFIX + '/crawl')
+      .get('/crawl' + PREFIX)
       .expect(401)
       .expect((res: supertest.Response) => {
         expect(res.text).toEqual('Unauthorized');
