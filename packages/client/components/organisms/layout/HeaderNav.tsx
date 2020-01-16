@@ -65,7 +65,7 @@ const HeaderNav: (props: PropsType) => JSX.Element = ({ selectedKey, user }: Pro
       style={styles.header}>
       <Logo
         width={logoWidth}
-        height={navHeight - 2}
+        height={navHeight - 4}
         imageUrl={logoImageUrl}
         style={styles.logo}
         onClick={main}

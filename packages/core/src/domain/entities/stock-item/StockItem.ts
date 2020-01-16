@@ -1,6 +1,16 @@
 import Entity from '../Entity';
-import Market from '../market/Market';
+import Market, { MarketInterface } from '../market/Market';
 import { StockItemState } from '../../../enums/stock-item';
+
+export interface StockItemInterface {
+  id?: string;
+  code: string;
+  name: string;
+  market?: MarketInterface;
+  gics?: string;
+  wics?: string;
+  state: string;
+}
 
 export default class StockItem implements Entity {
   public id?: string;

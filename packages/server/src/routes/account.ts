@@ -7,7 +7,6 @@ import { create } from '../controllers/account';
 
 const router: Router<IState, ICustom> = new Router();
 
-// @ts-ignore
-router.post('/users', create);
+router.post('/accounts/users', create);
 
 export default router;

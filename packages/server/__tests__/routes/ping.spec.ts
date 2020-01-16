@@ -7,7 +7,7 @@ let request: supertest.SuperTest<supertest.Test>;
 
 describe('Ping Routes', () => {
   beforeAll(async () => {
-    await server.listen(8080);
+    await server.listen(9000);
     request = supertest.agent(server.httpServer);
   });
 
