@@ -32,7 +32,7 @@ export default class StockItemRepository implements StockItemRepositoryInterface
   }
 
   public findStockItemsBy(options: Options): Observable<StockItem[]> {
-    throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'Not implements');
+    return this.provider.findStockItemsBy(options);
   }
 
   public countStockItems(options: Options): Observable<number> {
