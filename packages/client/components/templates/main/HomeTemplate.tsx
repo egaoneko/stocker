@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, {
+  useEffect,
+  useState
+} from 'react';
 /** @jsx jsx */
 import {
   jsx,
@@ -15,6 +18,11 @@ import {
 import FullLayoutTemplate from '../layout/FullLayoutTemplate';
 import { useTranslation } from '../../../i18n';
 import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
+import { apply } from '@stocker/core/lib/utils/common';
+import { CONTEXT } from '../../../constant';
+import FindStockItemsBy from '@stocker/core/lib/domain/use-cases/stock-item/FindStockItemsBy';
+import { async } from 'rxjs/internal/scheduler/async';
+import { queue } from 'rxjs/internal/scheduler/queue';
 
 const { Content } = Layout;
 
@@ -33,6 +41,14 @@ const HomeTemplate: (props: PropsType) => JSX.Element = (): JSX.Element => {
 
   const [data, setData] = useState<StockItem[]>([
   ]);
+
+  useEffect(() => {
+    apply(CONTEXT.useCases.findStockItemsBy, (it: FindStockItemsBy) => it.options = {})
+      .runOnce(async, queue)
+      .subscribe((stockItems: StockItem[]) => {
+        console.log(stockItems);
+      });
+  }, []);
 
   return (
     <FullLayoutTemplate>
