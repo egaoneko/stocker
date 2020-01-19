@@ -26,7 +26,7 @@ const FullLayout: (props: PropsType) => JSX.Element = ({ children }: PropsType):
 const global: SerializedStyles = css`
   html,
   body,
-  body > div:first-child,
+  body > div:first-of-type,
   div#__next {
     height: 100%;
   }

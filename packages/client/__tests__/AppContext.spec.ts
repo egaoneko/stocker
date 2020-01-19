@@ -8,6 +8,7 @@ import CreateUser from '@stocker/core/lib/domain/use-cases/account/CreateUser';
 import HttpStockItemProvider from '../data/providers/stock-item/HttpStockItemProvider';
 import StockItemRepository from '../data/repositories/stock-item/StockItemRepository';
 import FindStockItemsBy from '@stocker/core/lib/domain/use-cases/stock-item/FindStockItemsBy';
+import CountStockItems from '@stocker/core/lib/domain/use-cases/stock-item/CountStockItems';
 
 describe('AppContext', () => {
   const axiosInstance: any = {};
@@ -26,5 +27,6 @@ describe('AppContext', () => {
     expect((application as any).providers.httpStockItem).toBeInstanceOf(HttpStockItemProvider);
     expect((application as any).repositories.stockItem).toBeInstanceOf(StockItemRepository);
     expect((application as any).useCases.findStockItemsBy).toBeInstanceOf(FindStockItemsBy);
+    expect((application as any).useCases.countStockItems).toBeInstanceOf(CountStockItems);
   });
 });

@@ -54,4 +54,24 @@ describe('StockItem Routes', () => {
         expect(Array.isArray(res.body)).toBeTruthy();
       });
   });
+
+  test('count without authorization', async () => {
+    await request
+      .get('/count' + PREFIX + '/')
+      .expect(401)
+      .expect((res: supertest.Response) => {
+        expect(res.text).toEqual('Unauthorized');
+      });
+  });
+
+  test('count with authorization', async () => {
+    const token: string = await getIdToken(DEFAULT_USER.id);
+    await request
+      .get('/count' + PREFIX + '/')
+      .set('Authorization', `Bearer ${token}`)
+      .expect(200)
+      .expect((res: supertest.Response) => {
+        expect(typeof res.body === 'number').toBeTruthy();
+      });
+  });
 });

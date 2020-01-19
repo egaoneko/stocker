@@ -22,7 +22,7 @@ export default class HttpStockItemProvider extends HttpProvider {
     return this.request<StockItemInterface[]>({
       method: 'GET',
       url: API_SEVER + '/stock-items',
-      data: options,
+      params: options,
       headers: {
         Authorization: getToken(),
       }
@@ -34,5 +34,16 @@ export default class HttpStockItemProvider extends HttpProvider {
           );
         })
       );
+  }
+
+  public countStockItems(options: Options): Observable<number> {
+    return this.request<number>({
+      method: 'GET',
+      url: API_SEVER + '/count/stock-items',
+      params: options,
+      headers: {
+        Authorization: getToken(),
+      }
+    });
   }
 }

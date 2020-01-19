@@ -7,9 +7,14 @@ export const mockFindStockItemsBy = jest.fn().mockImplementation((options: Optio
   return of([DEFAULT_STOCK_ITEM]);
 });
 
+export const mockCountStockItems = jest.fn().mockImplementation((options: Options): Observable<number> => {
+  return of(0);
+});
+
 const mockHttpStockItemProvider = jest.fn().mockImplementation(() => {
   return {
     findStockItemsBy: mockFindStockItemsBy,
+    countStockItems: mockCountStockItems,
   };
 });
 
