@@ -6,7 +6,9 @@ module.exports = {
   "testRegex": "/__tests__/.*\\.(test|spec)\\.(t|j)sx?$",
   "moduleFileExtensions": [
     "ts",
-    "js"
+    "tsx",
+    "js",
+    "jsx",
   ],
   "coveragePathIgnorePatterns": [
     "/node_modules/",

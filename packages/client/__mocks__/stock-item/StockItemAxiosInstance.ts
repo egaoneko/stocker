@@ -13,6 +13,11 @@ const mockAxiosInstance = jest.fn().mockImplementation(({ url, method, data }: A
               data: [DEFAULT_STOCK_ITEM]
             });
             return;
+          } else if ('/count/stock-items') {
+            resolve({
+              data: 0
+            });
+            return;
           }
       }
       reject();

@@ -36,6 +36,6 @@ export default class StockItemRepository implements StockItemRepositoryInterface
   }
 
   public countStockItems(options: Options): Observable<number> {
-    throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'Not implements');
+    return this.provider.countStockItems(options);
   }
 }

@@ -14,4 +14,10 @@ describe('HttpStockItemProvider', () => {
     expect(Array.isArray(stockItems)).toBeTruthy();
     expect(mockAxiosInstance).toBeCalledTimes(1);
   });
+
+  test('countStockItems', async () => {
+    const count = await provider.countStockItems({}).toPromise();
+    expect(typeof count === 'number').toBeTruthy();
+    expect(mockAxiosInstance).toBeCalledTimes(1);
+  });
 });

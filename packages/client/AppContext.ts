@@ -8,6 +8,7 @@ import HttpUserProvider from './data/providers/account/HttpUserProvider';
 import HttpStockItemProvider from './data/providers/stock-item/HttpStockItemProvider';
 import StockItemRepository from './data/repositories/stock-item/StockItemRepository';
 import FindStockItemsBy from '@stocker/core/lib/domain/use-cases/stock-item/FindStockItemsBy';
+import CountStockItems from '@stocker/core/lib/domain/use-cases/stock-item/CountStockItems';
 
 interface ProviderDependencies {
   firebaseUser: FirebaseUserProvider;
@@ -25,6 +26,7 @@ interface UseCaseDependencies {
   getCurrentUser: GetCurrentUser;
   getCurrentUserToken: GetCurrentUserToken;
   findStockItemsBy: FindStockItemsBy;
+  countStockItems: CountStockItems;
 }
 
 export default class AppContext {
@@ -49,6 +51,7 @@ export default class AppContext {
       getCurrentUser: new GetCurrentUser(this.repositories.user),
       getCurrentUserToken: new GetCurrentUserToken(this.repositories.user),
       findStockItemsBy: new FindStockItemsBy(this.repositories.stockItem),
+      countStockItems: new CountStockItems(this.repositories.stockItem),
     };
   }
 }
