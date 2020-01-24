@@ -1,26 +1,27 @@
-import FinancialStatement from '../../../../src/domain/entities/finance/FinancialStatement';
+import FinancialStatement from '../../../../src/domain/entities/financial-statement/FinancialStatement';
 
 describe('FinancialStatement', () => {
   test('equal', () => {
-    const actual: FinancialStatement = new FinancialStatement();
+    const actual: FinancialStatement = new FinancialStatement('0');
     actual.id = '1';
 
     let expected: FinancialStatement;
-    expected = new FinancialStatement();
+    expected = new FinancialStatement('0');
     expect(actual.equal(expected)).toBeFalsy();
 
-    expected = new FinancialStatement();
+    expected = new FinancialStatement('0');
     expected.id = '2';
     expect(actual.equal(expected)).toBeFalsy();
 
-    expected = new FinancialStatement();
+    expected = new FinancialStatement('0');
     expected.id = '1';
     expect(actual.equal(expected)).toBeTruthy();
   });
 
   test('clone', () => {
-    const financialStatement: FinancialStatement = new FinancialStatement();
+    const financialStatement: FinancialStatement = new FinancialStatement('0');
     financialStatement.id = '0';
+    financialStatement.stockItemId = '0';
     financialStatement.finalAccountYear = 0;
     financialStatement.currentAssets = 0;
     financialStatement.cashableAssets = 0;
@@ -48,6 +49,7 @@ describe('FinancialStatement', () => {
 
     const clone: FinancialStatement = financialStatement.clone();
     expect(clone.id).toBe(financialStatement.id);
+    expect(clone.stockItemId).toBe(financialStatement.stockItemId);
     expect(clone.finalAccountYear).toBe(financialStatement.finalAccountYear);
     expect(clone.currentAssets).toBe(financialStatement.currentAssets);
     expect(clone.cashableAssets).toBe(financialStatement.cashableAssets);
@@ -75,7 +77,7 @@ describe('FinancialStatement', () => {
   });
 
   test('toString', () => {
-    const financialStatement: FinancialStatement = new FinancialStatement();
+    const financialStatement: FinancialStatement = new FinancialStatement('0');
     financialStatement.id = '0';
     financialStatement.finalAccountYear = 0;
     financialStatement.currentAssets = 0;
@@ -104,6 +106,7 @@ describe('FinancialStatement', () => {
 
     expect(financialStatement.toString()).toBe([
       financialStatement.id,
+      financialStatement.stockItemId,
       financialStatement.finalAccountYear,
       financialStatement.currentAssets,
       financialStatement.cashableAssets,
