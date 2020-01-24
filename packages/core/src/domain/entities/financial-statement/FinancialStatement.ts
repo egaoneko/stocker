@@ -2,6 +2,7 @@ import Entity from '../Entity';
 
 export interface FinancialStatementInterface {
   id?: string;
+  stockItemId: string;
   finalAccountYear?: number; // 결산년도
 
   currentAssets?: number; // 유동자산
@@ -63,6 +64,11 @@ export default class FinancialStatement implements Entity {
   public earnedSurplus?: number;
   public totalCapital?: number;
 
+  constructor(
+    public stockItemId: string,
+  ) {
+  }
+
   public equal(other: FinancialStatement): boolean {
     if (!this.id || !this.id) {
       return false;
@@ -75,7 +81,7 @@ export default class FinancialStatement implements Entity {
   }
 
   public clone(): FinancialStatement {
-    const clone: FinancialStatement = new FinancialStatement();
+    const clone: FinancialStatement = new FinancialStatement(this.stockItemId);
     clone.id = this.id;
     clone.finalAccountYear = this.finalAccountYear;
     clone.currentAssets = this.currentAssets;
@@ -107,6 +113,7 @@ export default class FinancialStatement implements Entity {
   public toString(): string {
     return [
       this.id,
+      this.stockItemId,
       this.finalAccountYear,
       this.currentAssets,
       this.cashableAssets,
