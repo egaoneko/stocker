@@ -8,6 +8,7 @@ import {{parentClass}} from '../{{#if parentModule}}{{parentModule}}/{{/if}}{{pa
 {{#ifNotEquals package "core"}}
 import {{parentClass}}{{#ifEquals type "class"}}Interface{{/ifEquals}} from '@stocker/core/lib/{{parentLayer}}/repositories/{{#if parentModule}}{{parentModule}}/{{/if}}{{parentClass}}';
 {{/ifNotEquals}}
+// --ADD_IMPORT--
 
 {{#ifEquals type "interface"}}
 export default interface {{class}} extends {{parentClass}} {

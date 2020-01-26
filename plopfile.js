@@ -5,6 +5,7 @@ const loadRepository = require('./plop/scripts/repository');
 const loadUseCase = require('./plop/scripts/use-case');
 const loadUseCaseCRUD = require('./plop/scripts/use-case-crud');
 const loadLintUseCase = require('./plop/scripts/link-use-case');
+const loadLintUseCaseCRUD = require('./plop/scripts/link-use-case-crud');
 
 module.exports = (plop) => {
   loadHelpers(plop);
@@ -14,4 +15,5 @@ module.exports = (plop) => {
   loadUseCase(plop);
   loadUseCaseCRUD(plop);
   loadLintUseCase(plop);
+  loadLintUseCaseCRUD(plop);
 };

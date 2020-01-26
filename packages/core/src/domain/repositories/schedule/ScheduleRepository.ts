@@ -4,6 +4,7 @@ import {
 import Repository from '../Repository';
 import Schedule from '../../entities/schedule/Schedule';
 import { Options } from '../../../interfaces/repository/options';
+// --ADD_IMPORT--
 
 export default interface ScheduleRepository extends Repository {
   createSchedule(schedule: Schedule): Observable<[Schedule, boolean]>;

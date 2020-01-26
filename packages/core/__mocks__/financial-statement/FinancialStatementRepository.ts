@@ -6,6 +6,8 @@ import FinancialStatement from '../../src/domain/entities/financial-statement/Fi
 import { Options } from '../../src/interfaces/repository/options';
 import { DEFAULT_FINANCIAL_STATEMENT } from './constant';
 
+// --ADD_IMPORT--
+
 const cache: Map<string, FinancialStatement> = new Map();
 reset();
 

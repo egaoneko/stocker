@@ -1,6 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
+const readFile = (file) => {
+  return fs.readFileSync(file, 'utf8');
+};
+
 const readDir = (dir) => {
   return fs.readdirSync(dir);
 };
@@ -18,6 +22,7 @@ const getPath = (dir) => {
 };
 
 module.exports = {
+  readFile,
   readDir,
   walkDir,
   getPath,
