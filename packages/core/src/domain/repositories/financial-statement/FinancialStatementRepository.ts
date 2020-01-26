@@ -5,6 +5,7 @@ import {
 import Repository from '../Repository';
 import FinancialStatement from '../../entities/financial-statement/FinancialStatement';
 import { Options } from '../../../interfaces/repository/options';
+// --ADD_IMPORT--
 
 export default interface FinancialStatementRepository extends Repository {
   createFinancialStatement(financialStatement: FinancialStatement): Observable<[FinancialStatement, boolean]>;

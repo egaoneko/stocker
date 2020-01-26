@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import Repository from '../Repository';
 import StockItem from '../../entities/stock-item/StockItem';
 import { Options } from '../../../interfaces/repository/options';
+// --ADD_IMPORT--
 
 export default interface StockItemRepository extends Repository {
   crawlStockItems(): Observable<StockItem[]>;

@@ -6,6 +6,8 @@ import Schedule from '../../src/domain/entities/schedule/Schedule';
 import { Options } from '../../src/interfaces/repository/options';
 import { DEFAULT_SCHEDULE } from './constant';
 
+// --ADD_IMPORT--
+
 const cache: Map<string, Schedule> = new Map();
 reset();
 

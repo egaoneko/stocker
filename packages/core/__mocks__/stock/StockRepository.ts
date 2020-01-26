@@ -4,6 +4,8 @@ import {
 } from 'rxjs';
 import LastBusinessDay from '../../src/domain/entities/stock/LastBusinessDay';
 
+// --ADD_IMPORT--
+
 export const mockCrawlLastBusinessDay = jest.fn().mockImplementation((): Observable<LastBusinessDay> => {
   const date: Date = new Date();
   date.setHours(0);
