@@ -5,6 +5,7 @@ import {
 import FinancialStatement from '../../src/domain/entities/financial-statement/FinancialStatement';
 import { Options } from '../../src/interfaces/repository/options';
 import { DEFAULT_FINANCIAL_STATEMENT } from './constant';
+import StockItem from '../../src/domain/entities/stock-item/StockItem';
 
 // --ADD_IMPORT--
 
@@ -51,6 +52,9 @@ export const mockDeleteFinancialStatement = jest.fn().mockImplementation((financ
 export const mockCountFinancialStatements = jest.fn().mockImplementation((options: Options): Observable<number> => {
   return of(cache.size);
 });
+export const mockCrawlFinancialStatement = jest.fn().mockImplementation((stockItem: StockItem): Observable<FinancialStatement> => {
+  return of(DEFAULT_FINANCIAL_STATEMENT);
+});
 // --ADD_METHOD--
 
 const mockFinancialStatementRepository = jest.fn().mockImplementation(() => {
@@ -60,6 +64,7 @@ const mockFinancialStatementRepository = jest.fn().mockImplementation(() => {
     updateFinancialStatement: mockUpdateFinancialStatement,
     deleteFinancialStatement: mockDeleteFinancialStatement,
     countFinancialStatements: mockCountFinancialStatements,
+    crawlFinancialStatement: mockCrawlFinancialStatement,
     // --APPLY_METHOD--
   };
 });

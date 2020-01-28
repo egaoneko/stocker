@@ -14,14 +14,6 @@ module.exports = (plop) => {
   plop.setGenerator('use-case', {
     description: 'Create use-case in package',
     prompts: [
-      genModuleInputPrompt(
-        'module',
-        'Please input module(ex: module-name)'
-      ),
-      genClassInputPrompt(
-        'class',
-        'Please input class(ex: ClassName)'
-      ),
       genAutocompletePrompt(
         'repositoryModule',
         'Please choice repository module',
@@ -51,20 +43,24 @@ module.exports = (plop) => {
           }
         }),
       ),
+      genClassInputPrompt(
+        'class',
+        'Please input class(ex: ClassName)'
+      ),
     ],
     actions: (answer) => {
       const actions = [];
 
       actions.push({
         type: 'add',
-        path: `packages/core/src/domain/use-cases/{{module}}/{{class}}.ts`,
+        path: `packages/core/src/domain/use-cases/{{repositoryModule}}/{{class}}.ts`,
         templateFile: `${TEMPLATES_PATH}/use-case/use-case.hbs`,
         abortOnFail: true
       });
 
       actions.push({
         type: 'add',
-        path: `packages/core/__tests__/domain/repositories/{{module}}/{{class}}.spec.ts`,
+        path: `packages/core/__tests__/domain/repositories/{{repositoryModule}}/{{class}}.spec.ts`,
         templateFile: `${TEMPLATES_PATH}/use-case/use-case-spec.hbs`,
         abortOnFail: true
       });
