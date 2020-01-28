@@ -5,6 +5,7 @@ import {
 import Repository from '../Repository';
 import FinancialStatement from '../../entities/financial-statement/FinancialStatement';
 import { Options } from '../../../interfaces/repository/options';
+import StockItem from '../../entities/stock-item/StockItem';
 // --ADD_IMPORT--
 
 export default interface FinancialStatementRepository extends Repository {
@@ -17,6 +18,8 @@ export default interface FinancialStatementRepository extends Repository {
   deleteFinancialStatement(financialStatement: FinancialStatement): Observable<[FinancialStatement, boolean]>;
 
   countFinancialStatements(options: Options): Observable<number>;
+
+  crawlFinancialStatement(stockItem: StockItem): Observable<FinancialStatement>;
 
   // --ADD_METHOD--
 }

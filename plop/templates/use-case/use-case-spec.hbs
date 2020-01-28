@@ -4,7 +4,7 @@ import { apply } from '../../../../src/utils/common';
 import mock{{repositoryClass}}, {
   mock{{class}},
 } from '../../../../__mocks__/{{#if repositoryModule}}{{repositoryModule}}/{{/if}}{{repositoryClass}}';
-import {{class}} from '../../../../src/domain/use-cases/{{module}}/{{class}}';
+import {{class}} from '../../../../src/domain/use-cases/{{repositoryModule}}/{{class}}';
 
 describe('{{class}} UseCase', () => {
   beforeEach(() => {
