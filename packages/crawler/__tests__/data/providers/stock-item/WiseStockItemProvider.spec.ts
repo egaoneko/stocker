@@ -13,7 +13,7 @@ const mockGetLastBusinessDay: any = jest.fn().mockImplementation(() => {
   return of(new LastBusinessDay(moment.tz('2019-11-20', 'Asia/Seoul').toDate()));
 });
 
-describe('KrxStockItemProvider', () => {
+describe('WiseStockItemProvider', () => {
   (WiseStockItemProvider as any).getSectors = mockGetSectors;
   (WiseStockItemProvider as any).getLastBusinessDay = mockGetLastBusinessDay;
   const provider: WiseStockItemProvider = new WiseStockItemProvider(mockAxiosInstance as any);

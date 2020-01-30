@@ -20,6 +20,7 @@ describe('StockItemJSONMapper', () => {
     },
     gics: '1',
     wics: '2',
+    corpCode: '0',
     state: 'NONE',
   };
   const entity: StockItem = new StockItem(
@@ -30,6 +31,7 @@ describe('StockItemJSONMapper', () => {
   entity.market = KOSPI;
   entity.gics = '1';
   entity.wics = '2';
+  entity.corpCode = '0';
   entity.state = StockItemState.NONE;
 
   test('toEntity', () => {

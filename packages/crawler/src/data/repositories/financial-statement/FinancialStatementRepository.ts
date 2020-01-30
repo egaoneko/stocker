@@ -8,7 +8,7 @@ import FinancialStatement from '@stocker/core/lib/domain/entities/financial-stat
 import { Options } from '@stocker/core/lib/interfaces/repository/options';
 import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 import ErrorType from '@stocker/core/lib/error/ErrorType';
-import StockItem from '@stocker/core/lib/src/domain/entities/stock-item/StockItem';
+import StockItem from '@stocker/core/lib/domain/entities/stock-item/StockItem';
 // --ADD_IMPORT--
 
 export default class FinancialStatementRepository implements FinancialStatementRepositoryInterface {

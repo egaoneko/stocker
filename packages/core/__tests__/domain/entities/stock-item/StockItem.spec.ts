@@ -37,6 +37,7 @@ describe('StockItem', () => {
     stockItem.market = KOSPI;
     stockItem.gics = '1';
     stockItem.wics = '2';
+    stockItem.corpCode = '0';
     stockItem.state = StockItemState.NONE;
 
     const clone: StockItem = stockItem.clone();
@@ -46,6 +47,7 @@ describe('StockItem', () => {
     expect(clone.market).toBe(stockItem.market);
     expect(clone.gics).toBe(stockItem.gics);
     expect(clone.wics).toBe(stockItem.wics);
+    expect(clone.corpCode).toBe(stockItem.corpCode);
     expect(clone.state).toBe(stockItem.state);
   });
 
@@ -55,6 +57,7 @@ describe('StockItem', () => {
     stockItem.market = KOSPI;
     stockItem.gics = '1';
     stockItem.wics = '2';
+    stockItem.corpCode = '0';
     stockItem.state = StockItemState.NONE;
 
     expect(stockItem.toString()).toBe([
@@ -63,7 +66,9 @@ describe('StockItem', () => {
       stockItem.name,
       stockItem.market && stockItem.market.name,
       stockItem.gics,
-      stockItem.wics
+      stockItem.wics,
+      stockItem.corpCode,
+      stockItem.state,
     ].join(','));
   });
 });

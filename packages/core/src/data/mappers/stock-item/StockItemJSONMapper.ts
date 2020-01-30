@@ -20,6 +20,7 @@ export default class StockItemJSONMapper implements JSONMapper<StockItemInterfac
     stockItem.market = json.market && marketJSONMapper.toEntity(json.market);
     stockItem.gics = json.gics;
     stockItem.wics = json.wics;
+    stockItem.corpCode = json.corpCode;
     stockItem.state = json.state as StockItemState;
     return stockItem;
   }
@@ -32,6 +33,7 @@ export default class StockItemJSONMapper implements JSONMapper<StockItemInterfac
       market: entity.market && marketJSONMapper.toJSON(entity.market),
       gics: entity.gics,
       wics: entity.wics,
+      corpCode: entity.corpCode,
       state: entity.state,
     };
   }

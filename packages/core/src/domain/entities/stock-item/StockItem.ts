@@ -9,6 +9,7 @@ export interface StockItemInterface {
   market?: MarketInterface;
   gics?: string;
   wics?: string;
+  corpCode?: string;
   state: string;
 }
 
@@ -17,6 +18,7 @@ export default class StockItem implements Entity {
   public market?: Market;
   public gics?: string;
   public wics?: string;
+  public corpCode?: string;
   public state: StockItemState = StockItemState.NONE;
 
   constructor(
@@ -42,6 +44,14 @@ export default class StockItem implements Entity {
       return false;
     }
 
+    if (this.corpCode !== other.corpCode) {
+      return false;
+    }
+
+    if (this.state !== other.state) {
+      return false;
+    }
+
     return true;
   }
 
@@ -51,6 +61,7 @@ export default class StockItem implements Entity {
     clone.market = this.market;
     clone.gics = this.gics;
     clone.wics = this.wics;
+    clone.corpCode = this.corpCode;
     clone.state = this.state;
     return clone;
   }
@@ -62,7 +73,9 @@ export default class StockItem implements Entity {
       this.name,
       this.market && this.market.name,
       this.gics,
-      this.wics
+      this.wics,
+      this.corpCode,
+      this.state
     ].join(',');
   }
 }

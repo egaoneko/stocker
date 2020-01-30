@@ -8,7 +8,7 @@ import FinancialStatement from '@stocker/core/lib/domain/entities/financial-stat
 import {
   DART_API_KEY,
   OPEN_DART_API
-} from '../../../financial-statement/constant';
+} from '../../../constant';
 
 export default class DartFinancialStatementProvider extends HttpProvider {
 
@@ -16,7 +16,7 @@ export default class DartFinancialStatementProvider extends HttpProvider {
     super(instance);
   }
 
-  public crawlLastBusinessDay(): Observable<FinancialStatement> {
+  public crawlFinancialStatement(): Observable<FinancialStatement> {
     return this.request<string>({
       method: 'GET',
       url: OPEN_DART_API,
@@ -26,7 +26,7 @@ export default class DartFinancialStatementProvider extends HttpProvider {
     })
       .pipe(
         map((html: string): FinancialStatement => {
-          throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'Not implements.')
+          throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'Not implements.');
         })
       );
   }
