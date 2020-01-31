@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm run clean && npm run compile",
     "clean": "rm -rf ./lib",
-    "compile": "cross-env NODE_ENV=production tsc --project tsconfig.json",
+    "compile": "tsc --project tsconfig.json",
     "start": "npm run build && node lib/index.js",
     "test": "cross-env NODE_ENV=test jest"
   },

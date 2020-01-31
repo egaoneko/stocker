@@ -47,13 +47,17 @@ export default class StockItem extends DBModel<StockItem> implements Model {
   @Column(DataType.STRING)
   public wics?: string;
 
+  @AllowNull(true)
+  @Column(DataType.STRING)
+  public corpCode?: string;
+
   @Column(DataType.STRING)
   public state!: StockItemState;
 
   private static mapper: MarketTypeMapper = new MarketTypeMapper();
 
   public static createStockItem(stockItem: StockItemEntity, transaction?: Transaction): Promise<[StockItem, boolean]> {
-    const { code, name, market, gics, wics, state }: StockItemEntity = stockItem;
+    const { code, name, market, gics, wics, corpCode, state }: StockItemEntity = stockItem;
     return StockItem.findOrCreate({
       where: {
         code: code,
@@ -64,6 +68,7 @@ export default class StockItem extends DBModel<StockItem> implements Model {
         name,
         gics,
         wics,
+        corpCode,
         state,
         market: StockItem.mapper.toValue(market as Market),
       },
@@ -72,7 +77,7 @@ export default class StockItem extends DBModel<StockItem> implements Model {
   }
 
   public static updateStockItem(stockItem: StockItemEntity, transaction?: Transaction): Promise<[number, StockItem[]]> {
-    const { id, code, name, market, gics, wics, state }: StockItemEntity = stockItem;
+    const { id, code, name, market, gics, wics, corpCode, state }: StockItemEntity = stockItem;
 
     if (!id) {
       throw ApplicationErrorFactory.getError(ErrorType.GENERAL, 'id is empty.');
@@ -83,6 +88,7 @@ export default class StockItem extends DBModel<StockItem> implements Model {
       name,
       gics,
       wics,
+      corpCode,
       state,
       market: StockItem.mapper.toValue(market as Market),
     }, {
@@ -126,6 +132,7 @@ export default class StockItem extends DBModel<StockItem> implements Model {
     stockItem.market = StockItem.mapper.toEntity(this.market);
     stockItem.gics = this.gics;
     stockItem.wics = this.wics;
+    stockItem.corpCode = this.corpCode;
     stockItem.state = this.state;
 
     return stockItem;

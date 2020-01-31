@@ -10,11 +10,13 @@ import WiseStockItemProvider from '../../providers/stock-item/WiseStockItemProvi
 import { Options } from '@stocker/core/lib/interfaces/repository/options';
 import ApplicationErrorFactory from '@stocker/core/lib/data/errors/ApplicationErrorFactory';
 import ErrorType from '@stocker/core/lib/error/ErrorType';
+import DartStockItemProvider from '../../providers/stock-item/DartStockItemProvider';
 
 export default class CrawlStockItemRepository implements StockItemRepository {
   constructor(
     private krxStockItemProvider: KrxStockItemProvider,
     private wiseStockItemProvider: WiseStockItemProvider,
+    private dartStockItemProvider: DartStockItemProvider,
   ) {
   }
 
@@ -22,9 +24,10 @@ export default class CrawlStockItemRepository implements StockItemRepository {
     return forkJoin<Observable<StockItem[]>[]>([
       this.krxStockItemProvider.crawlStockItems(),
       this.wiseStockItemProvider.crawlStockItems(),
+      this.dartStockItemProvider.crawlStockItems(),
     ])
       .pipe(
-        map<StockItem[][], StockItem[]>(([krx, wise]: StockItem[][]): StockItem[] => {
+        map<StockItem[][], StockItem[]>(([krx, wise, dart]: StockItem[][]): StockItem[] => {
           const stockItemMap: Map<string, StockItem> = new Map();
 
           krx.forEach((item: StockItem) => stockItemMap.set(item.code, item.clone()));
@@ -38,6 +41,15 @@ export default class CrawlStockItemRepository implements StockItemRepository {
             }
 
             insertedItem.wics = item.wics;
+          });
+          dart.forEach((item: StockItem) => {
+            let insertedItem: StockItem | undefined = stockItemMap.get(item.code);
+
+            if (!insertedItem) {
+              return;
+            }
+
+            insertedItem.corpCode = item.corpCode;
           });
 
           return Array.from(stockItemMap.values());

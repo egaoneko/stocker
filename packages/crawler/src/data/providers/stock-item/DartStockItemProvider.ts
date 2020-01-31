@@ -54,6 +54,7 @@ export default class DartStockItemProvider {
           resolve();
         });
       });
+
       const zip = new AdmZip(stream.path);
       const zipEntries = zip.getEntries();
       zipEntries.forEach((zipEntry) => {
