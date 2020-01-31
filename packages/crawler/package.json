@@ -13,25 +13,36 @@
     "clean": "rm -rf ./lib",
     "compile": "tsc --project tsconfig.json",
     "start": "npm run build && node lib/index.js",
-    "test": "jest"
+    "test": "cross-env NODE_ENV=test jest"
   },
   "dependencies": {
     "@stocker/core": "^0.0.1",
+    "adm-zip": "^0.4.13",
     "axios": "^0.19.1",
     "cheerio": "^1.0.0-rc.3",
+    "cross-env": "^7.0.0",
+    "dotenv-flow": "^3.1.0",
     "iconv-lite": "^0.5.0",
     "moment-timezone": "^0.5.27",
+    "node-fetch": "^2.6.0",
     "papaparse": "^5.1.0",
-    "rxjs": "^6.5.3"
+    "rxjs": "^6.5.3",
+    "temp": "^0.9.1",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
+    "@types/adm-zip": "^0.4.32",
     "@types/axios": "^0.14.0",
     "@types/cheerio": "^0.22.14",
+    "@types/dotenv-flow": "^3.0.0",
     "@types/iconv-lite": "^0.0.1",
     "@types/jest": "^24.0.23",
     "@types/moment-timezone": "^0.5.12",
     "@types/node": "^12.12.12",
+    "@types/node-fetch": "^2.5.4",
     "@types/papaparse": "^5.0.2",
+    "@types/temp": "^0.8.34",
+    "dotenv-flow": "^3.1.0",
     "jest": "^24.9.0",
     "jest-config": "^24.9.0",
     "supertest": "^4.0.2",

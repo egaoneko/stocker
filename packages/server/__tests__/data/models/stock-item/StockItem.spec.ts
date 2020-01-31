@@ -15,6 +15,7 @@ describe('StockItem Model', () => {
     stockItem.market = new MarketTypeMapper().toValue(DEFAULT_STOCK_ITEM.market as Market);
     stockItem.gics = DEFAULT_STOCK_ITEM.gics;
     stockItem.wics = DEFAULT_STOCK_ITEM.wics;
+    stockItem.corpCode = DEFAULT_STOCK_ITEM.corpCode;
     stockItem.state = DEFAULT_STOCK_ITEM.state;
 
     const stockItemEntity: StockItemEntity = stockItem.toEntity();
@@ -25,6 +26,7 @@ describe('StockItem Model', () => {
     expect(stockItem.market).toEqual(new MarketTypeMapper().toValue(stockItemEntity.market as Market));
     expect(stockItem.gics).toEqual(stockItemEntity.gics);
     expect(stockItem.wics).toEqual(stockItemEntity.wics);
+    expect(stockItem.corpCode).toEqual(stockItemEntity.corpCode);
     expect(stockItem.state).toEqual(stockItemEntity.state);
   });
 

@@ -51,6 +51,11 @@ const StockItemListContainer: (props: PropsType) => JSX.Element = (): JSX.Elemen
       key: 'wics',
     },
     {
+      title: 'CorpCode',
+      dataIndex: 'corpCode',
+      key: 'corpCode',
+    },
+    {
       title: 'State',
       dataIndex: 'state',
       key: 'state',

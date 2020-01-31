@@ -3,10 +3,12 @@ import CrawlStockItems from '@stocker/core/lib/domain/use-cases/stock-item/Crawl
 import KrxStockItemProvider from '../data/providers/stock-item/KrxStockItemProvider';
 import CrawlStockItemRepository from '../data/repositories/stock-item/CrawlStockItemRepository';
 import WiseStockItemProvider from '../data/providers/stock-item/WiseStockItemProvider';
+import DartStockItemProvider from '../data/providers/stock-item/DartStockItemProvider';
 
 interface ProviderDependencies {
   krxStockItem: KrxStockItemProvider;
   wiseStockItem: WiseStockItemProvider;
+  dartStockItem: DartStockItemProvider;
 }
 
 interface RepositoryDependencies {
@@ -28,9 +30,14 @@ export default class StockItemContext {
     this.providers = {
       krxStockItem: new KrxStockItemProvider(axiosInstance),
       wiseStockItem: new WiseStockItemProvider(axiosInstance),
+      dartStockItem: new DartStockItemProvider(),
     };
     this.repositories = {
-      crawlStockItem: new CrawlStockItemRepository(this.providers.krxStockItem, this.providers.wiseStockItem),
+      crawlStockItem: new CrawlStockItemRepository(
+        this.providers.krxStockItem,
+        this.providers.wiseStockItem,
+        this.providers.dartStockItem,
+      ),
     };
     this.useCases = {
       crawlStockItems: new CrawlStockItems(this.repositories.crawlStockItem),
